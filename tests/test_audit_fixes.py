@@ -67,9 +67,15 @@ def test_safety_question_pins_the_boxed_warning(indexed, settings):
 def test_question_about_an_unnamed_drug_is_refused_without_calling_the_llm(service):
     ans = service.ask("Can I take this drug with my other medication?")
     assert ans.status == "abstained_retrieval" and "Which drug" in ans.text
-    assert service.llm.calls == []
+    assert service.llm.calls == [] and ans.sources == []
 
 
 def test_naming_the_drug_lifts_the_unnamed_drug_gate(service):
     ans = service.ask("Can I take metformin with my other medication?")
     assert ans.status == "answered"
+
+
+def test_unnamed_drug_stream_shows_no_unrelated_evidence(service):
+    events = list(service.ask_stream("Can I take this drug with my other medication?"))
+    assert events[0] == ("sources", [])
+    assert events[-1][1].status == "abstained_retrieval" and events[-1][1].sources == []

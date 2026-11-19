@@ -184,7 +184,9 @@ class RagService:
                     "drug may not be in this index.")
         return Answer(
             question=q, text=text, status="abstained_retrieval",
-            sources=[_source_dict(i, h, False) for i, h in enumerate(res.hits, start=1)],
+            # Passages retrieved for an unnamed drug belong to arbitrary drugs: never shown.
+            sources=[] if res.unnamed_drug else [_source_dict(i, h, False)
+                                                 for i, h in enumerate(res.hits, start=1)],
             grounding=Grounding().to_dict(), scoped_drugs=res.scoped_drugs,
             top_score=res.top_score, timings_ms=timings, model=self.llm.model,
             index_version=res.index_version, request_id=rid,
@@ -240,7 +242,8 @@ class RagService:
         res = self.retriever.retrieve(q)
         timings = {k: v for k, v in res.timings_ms.items() if k != "total"}
         timings["retrieval"] = res.timings_ms.get("total", 0.0)
-        yield "sources", [_source_dict(i, h, False) for i, h in enumerate(res.hits, start=1)]
+        yield "sources", ([] if res.unnamed_drug else
+                          [_source_dict(i, h, False) for i, h in enumerate(res.hits, start=1)])
 
         if self._gate(res):
             timings["total"] = round((time.perf_counter() - t0) * 1000, 2)

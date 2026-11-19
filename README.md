@@ -134,7 +134,7 @@ After the fixes: 6 of 16 questions correctly refused (cost, probability, patient
 - **Observability.** Prometheus metrics with per-stage latency histograms (scope, BM25, embed, dense, rerank, first token, generation), grounding-failure counters, structured JSON logs with request ids, and `/healthz` and `/readyz`.
 - **Failure handling.** Retries with backoff for model backends, a `503` with `Retry-After` when a backend is down, and empty or truncated completions flagged and never cached.
 - **Swappable providers.** Embedder, reranker and LLM are three small protocols. The generator runs locally on Ollama or on Claude (`LABELLENS_LLM_PROVIDER=anthropic`) with no code change.
-- **Tests that need no GPU.** 104 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
+- **Tests that need no GPU.** 105 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
 
 ## Quick start
 
@@ -236,7 +236,7 @@ src/labellens/
 streamlit_app.py   free hosted demo (CPU embeddings, Groq answers)
   evalkit/         golden-set synthesis, ablation, gate calibration, LLM judge
 docs/DECISIONS.md  every design decision, the constraint behind it, what was rejected
-tests/             104 tests, including regression tests for every review and audit finding
+tests/             105 tests, including regression tests for every review and audit finding
 ```
 
 ## Limitations
