@@ -114,24 +114,70 @@ def _digits(text: str) -> str:
     return re.sub(r"(?<=\d),(?=\d{3})", "", text)
 
 
-def _supported(num: str, unit: str | None, haystack: str) -> bool:
+# Spellings a label may use for the same unit.
+_UNIT_FORMS = {
+    "%": ["%", "percent"], "percent": ["%", "percent"],
+    "mcg": ["mcg", "µg", "μg", "ug", "microgram"], "hour": ["hour", "hr", "h"],
+    "hr": ["hour", "hr", "h"], "minute": ["minute", "min"], "min": ["minute", "min"],
+    "ml": ["ml", "milliliter"], "unit": ["unit", "iu"], "iu": ["iu", "unit"],
+}
+# Between a number and its unit, labels put a spread: "47.8 (13.7) hours",
+# "1.14 ± 0.14 mcg/mL", "500-mg".
+_SPREAD = r"(?:\s*\([^()]{0,20}\))?(?:\s*±\s*[\d.]+)?\s*-?\s*"
+# Table cells carry the unit in the column header: "Placebo (N=262) %: 6.1",
+# "t ½ (h) 47.8". The unit may then sit a short distance before the number.
+_HEADER_WINDOW = 80
+
+
+def _unit_pattern(unit: str) -> str:
+    u = unit.lower()
+    stem = u[:-1] if len(u) > 3 and u.endswith("s") else u
+    forms = _UNIT_FORMS.get(stem, [stem])
+    alts = "|".join(re.escape(f) + ("" if f in ("%",) else r"s?\b") for f in forms)
+    return f"(?:{alts})"
+
+
+def _supported(num: str, unit: str | None, haystack: str, table_like: bool = False) -> bool:
     n = re.escape(num)
-    if unit:
-        u = unit.lower()
-        if u == "%" or u == "percent":
-            return re.search(rf"(?<![\w.]){n}\s*(?:%|percent)", haystack, re.I) is not None
-        if u in _UNITS:
-            stem = u[:-1] if len(u) > 3 and u.endswith("s") else u
-            return re.search(rf"(?<![\w.]){n}\s*-?\s*{re.escape(stem)}", haystack, re.I) is not None
-    return re.search(rf"(?<![\w.]){n}(?!\d|\.\d)", haystack) is not None
+    bare = rf"(?<![\w.]){n}(?!\d|\.\d)"
+    if not unit or (unit.lower() not in _UNITS and unit != "%"):
+        return re.search(bare, haystack) is not None
+    up = _unit_pattern(unit)
+    if re.search(rf"(?<![\w.]){n}{_SPREAD}{up}", haystack, re.I):
+        return True
+    if not table_like:
+        return False
+    # Tabular text only: the unit in a nearby column header supports the number.
+    # Not applied to prose, where "type 2 ... 500 mg" must not validate "2 mg".
+    for m in re.finditer(bare, haystack):
+        before = haystack[max(0, m.start() - _HEADER_WINDOW): m.start()]
+        if re.search(rf"(?<![a-z]){up}", before, re.I) or re.search(rf"\({up}\)", before, re.I):
+            return True
+    return False
+
+
+def _is_table_like(text: str) -> bool:
+    """Linearised tables (" | " cells) or flattened ones, where many tokens are numbers.
+
+    openFDA often flattens a table into prose order ("Nausea 6.1 15.8 20.3
+    Vomiting 2.3 5 9.2"), leaving the unit only in a caption. Prose dosing
+    text rarely has one number in five tokens.
+    """
+    if " | " in text:
+        return True
+    tokens = text.split()
+    numeric = sum(bool(re.fullmatch(r"\(?[\d.,;]+\)?%?", t)) for t in tokens)
+    return len(tokens) >= 20 and numeric / len(tokens) >= 0.2
 
 
 def verify_grounding(answer: str, hits: list[Hit]) -> Grounding:
     g = Grounding()
-    # Only the passage text counts as evidence for a number: headers carry
-    # section numbers ("2.1 Adult Dosage") that would validate almost anything.
-    sources = {i: _digits(h.chunk.text) for i, h in enumerate(hits, start=1)}
-    all_text = " ".join(sources.values())
+    # The passage text and the drug's name count as evidence for a number, but
+    # not the section path: "2.1 Adult Dosage" would validate almost anything,
+    # while "Clobetasol Propionate Cream, 0.05%" is a fact about the product.
+    sources = {i: _digits(f"{h.drug} {h.chunk.text}") for i, h in enumerate(hits, start=1)}
+    tabular = {i: h.chunk.kind == "table" or _is_table_like(h.chunk.text)
+               for i, h in enumerate(hits, start=1)}
     cited: set[int] = set()
 
     answer = _TRAILING_CITE.sub(lambda m: f" {m.group(2).strip()}{m.group(1)} ",
@@ -152,11 +198,11 @@ def verify_grounding(answer: str, hits: list[Hit]) -> Grounding:
             g.cited_sentences += bool(valid)
         # Numbers are checked against the sources this sentence cites; an
         # uncited sentence may match any source, but must match one.
-        scope = " ".join(sources[i] for i in valid) if valid else all_text
+        ids = valid or list(sources)
         body = _digits(_CITE.sub(" ", sent))
         for m in _NUMBER.finditer(body):
             num, unit = m.group(1), m.group(2)
-            if not _supported(num, unit, scope):
+            if not any(_supported(num, unit, sources[i], tabular[i]) for i in ids):
                 shown = f"{num} {unit}" if unit and unit.lower() in _UNITS | {"%"} else num
                 if shown not in g.unsupported_numbers:
                     g.unsupported_numbers.append(shown)

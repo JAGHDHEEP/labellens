@@ -1,0 +1,182 @@
+{
+  "split": "test",
+  "n_questions": 192,
+  "corpus": {
+    "documents": 1200,
+    "chunks": 73470,
+    "words": 10561796,
+    "embeddings": 73440,
+    "index_version": 7
+  },
+  "embedder": "snowflake/snowflake-arctic-embed-s",
+  "reranker": "Xenova/ms-marco-MiniLM-L-6-v2",
+  "configs": {
+    "full: hybrid + scope + rerank": {
+      "hit@1": 0.5938,
+      "recall@5": 0.9062,
+      "recall@10": 0.9219,
+      "mrr@10": 0.718,
+      "ndcg@10": 0.7688,
+      "strict_recall@5": 0.8646,
+      "section_recall@5": 0.9583,
+      "right_drug@5": 0.9896,
+      "scope_linked": 0.9844,
+      "recall@5_ci95": [
+        0.8646,
+        0.9479
+      ],
+      "latency_ms_p50": 1451.5,
+      "latency_ms_p95": 1799.6
+    }
+  },
+  "skipped": {},
+  "slices": {
+    "by_lexical_overlap": {
+      "median_overlap": 0.667,
+      "recall@5_low_overlap": 0.8539,
+      "recall@5_high_overlap": 0.9515
+    },
+    "by_name_style": {
+      "brand": {
+        "n": 15,
+        "recall@5": 0.9333,
+        "scope_link_rate": 0.9333
+      },
+      "generic": {
+        "n": 105,
+        "recall@5": 0.8762,
+        "scope_link_rate": 0.981
+      },
+      "generic_no_salt": {
+        "n": 29,
+        "recall@5": 0.931,
+        "scope_link_rate": 1.0
+      },
+      "typo": {
+        "n": 43,
+        "recall@5": 0.9535,
+        "scope_link_rate": 1.0
+      }
+    },
+    "by_scope_link": {
+      "linked": {
+        "n": 189,
+        "recall@5": 0.9206
+      },
+      "not_linked": {
+        "n": 3,
+        "recall@5": 0.0
+      }
+    },
+    "full_pipeline_misses": [
+      {
+        "id": "a0038",
+        "question": "What risk is associated with long-term use of nitrofurantoin?",
+        "drug": "Nitrofurantoin (Monohydrate/Macrocrystals)",
+        "section": "warnings"
+      },
+      {
+        "id": "a0066",
+        "question": "What are the potential cardiovascular risks of lisdexamfetamine dimesylate overdose?",
+        "drug": "Lisdexamfetamine Dimesylate",
+        "section": "overdosage"
+      },
+      {
+        "id": "a0088",
+        "question": "Does lenalidomide increase the risk of pulmonary embolism?",
+        "drug": "Lenalidomide",
+        "section": "adverse_reactions"
+      },
+      {
+        "id": "a0096",
+        "question": "What is a common side effect of nivoluab when used with ipilimumab?",
+        "drug": "Nivolumab (Opdivo)",
+        "section": "adverse_reactions"
+      },
+      {
+        "id": "a0103",
+        "question": "Does apixaban increase the risk of major bleeding compared to aspirin?",
+        "drug": "Apixaban (Eliquis)",
+        "section": "adverse_reactions"
+      },
+      {
+        "id": "a0109",
+        "question": "Does PEG-3350, sodium chloride, sodium bicarbonate and potassium chloride pose a risk for older adults?",
+        "drug": "Polyethylene Glycol 3350, Sodium Chloride, Sodium Bicarbonate, Potassium Chloride (PEG-3350, sodium chloride, sodium bicarbonate and potassium chloride)",
+        "section": "adverse_reactions"
+      },
+      {
+        "id": "a0110",
+        "question": "What is the typical dosage of taletrectinib for patients?",
+        "drug": "Taletrectinib (Ibtrozi)",
+        "section": "adverse_reactions"
+      },
+      {
+        "id": "a0159",
+        "question": "Can dorzolamide hydrochloride and timolol maleate preservative free be used with oral carbonic anhydrase inhibitors?",
+        "drug": "Dorzolamide Hydrochloride And Timolol Maleate Preservative Free",
+        "section": "drug_interactions"
+      },
+      {
+        "id": "a0164",
+        "question": "What allergic reactions are associated with bendamusine?",
+        "drug": "Bendamustine Hydrochloride (Gobarden)",
+        "section": "contraindications"
+      },
+      {
+        "id": "a0189",
+        "question": "Does darolutamide cause a significant increase in liver enzymes?",
+        "drug": "Darolutamide (Nubeqa)",
+        "section": "adverse_reactions"
+      },
+      {
+        "id": "a0199",
+        "question": "What is the risk of liver enzyme elevation with diclofenac potassium tablets?",
+        "drug": "Diclofenac Potassium Tablets (Diclofenac Potassium)",
+        "section": "warnings"
+      },
+      {
+        "id": "a0300",
+        "question": "What is the recommended approach for determining the initial dose of butorphanol?",
+        "drug": "Butorphanol Tartrate",
+        "section": "dosage_and_administration"
+      },
+      {
+        "id": "a0309",
+        "question": "How long should patients be hospitalized after receiving the first step-up dose of elranatamab-bcmm?",
+        "drug": "Elranatamab-Bcmm (Elrexfio)",
+        "section": "dosage_and_administration"
+      },
+      {
+        "id": "a0330",
+        "question": "What are the risks of an overdose of sodium polystyrene sulfonate?",
+        "drug": "Sodium Polystyrene Sulfonate",
+        "section": "overdosage"
+      },
+      {
+        "id": "a0368",
+        "question": "What risk is associated with starting lisinopril and hydrochlorothiazide in patients with severe heart failure?",
+        "drug": "Lisinopril And Hydrochlorothiazide",
+        "section": "warnings"
+      },
+      {
+        "id": "a0380",
+        "question": "Should propofol be administered more slowly in certain patient groups?",
+        "drug": "Propofol",
+        "section": "warnings_and_cautions"
+      },
+      {
+        "id": "a0394",
+        "question": "What common side effects are associated with bictegravir sodium emtricitabine and tenofovir?",
+        "drug": "Bictegravir Sodium, Emtricitabine, And Tenofovir Alafenamide Fumarate (Biktarvy)",
+        "section": "adverse_reactions"
+      },
+      {
+        "id": "a0395",
+        "question": "Does azithromycin's absorption decrease when taken with antacids?",
+        "drug": "Azithromycin",
+        "section": "pharmacokinetics"
+      }
+    ]
+  }
+}

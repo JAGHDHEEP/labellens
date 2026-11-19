@@ -211,3 +211,54 @@ def test_full_salt_names_are_aliases_but_single_salt_words_are_not():
         indications_and_usage="1 INDICATIONS AND USAGE Used for metabolic acidosis in adults."))
     aliases = drug_aliases(doc)
     assert "sodium bicarbonate" in aliases and "bicarbonate" not in aliases
+
+
+# ------------------------------------------------- number check vs real label formats
+def _hit(text: str, drug: str = "Testdrug", kind: str = "text"):
+    from labellens.models import Chunk, Hit
+
+    chunk = Chunk(chunk_id="c", doc_id="d", section_key="s", section_title="S", subsection="",
+                  ordinal=0, kind=kind, text=text, header=f"{drug} | S", text_hash="h", n_words=9)
+    return Hit(rowid=1, chunk=chunk, drug=drug)
+
+
+@pytest.mark.parametrize("source,answer", [
+    # unit after a standard deviation or a +/- spread
+    ("The half-life was 47.8 (13.7) hours in adults.", "The mean half-life is 47.8 hours [1]."),
+    ("Cmax was 1.14 ± 0.14 mcg/mL after infusion.", "Peak concentration was 1.14 mcg/mL [1]."),
+    # unit spelled differently
+    ("Cmax was 1.14 µg/mL after infusion.", "Peak concentration was 1.14 mcg/mL [1]."),
+    # percent sign in the table's column header
+    ("Adverse Reaction: Nausea | Placebo (N=262) %: 6.1 | Drug 1 mg (N=261) %: 20.3",
+     "Nausea occurred in 20.3% on drug vs 6.1% on placebo [1]."),
+    ("Parameter (unit): t ½ (h) | Mean (SD): 47.8 (13.70)", "The half-life is 47.8 hours [1]."),
+])
+def test_real_label_number_formats_are_accepted(source, answer):
+    g = verify_grounding(answer, [_hit(source)])
+    assert g.unsupported_numbers == [], (source, g.unsupported_numbers)
+
+
+def test_number_in_the_drug_name_is_evidence():
+    h = _hit("Use during pregnancy only if clearly needed.", drug="Clobetasol Cream, 0.05%")
+    assert verify_grounding("Clobetasol 0.05% should be used in pregnancy only if needed [1].",
+                            [h]).unsupported_numbers == []
+
+
+def test_prose_still_rejects_a_dose_built_from_unrelated_digits():
+    h = _hit("Indicated in adults with type 2 diabetes mellitus. Start at 500 mg twice daily.")
+    assert verify_grounding("The starting dose is 2 mg twice daily [1].", [h]).unsupported_numbers == ["2 mg"]
+
+
+def test_wrong_value_in_a_table_is_still_caught():
+    h = _hit("Adverse Reaction: Nausea | Placebo (N=262) %: 6.1 | Drug (N=261) %: 20.3", kind="table")
+    assert verify_grounding("Nausea occurred in 25.3% of patients [1].", [h]).unsupported_numbers == ["25.3 %"]
+
+
+def test_flattened_table_with_unit_in_caption_is_accepted():
+    flat = ("Table 2: Select Laboratory Abnormalities ( >= 15%) Chemistry Glucose increased 44 2.9 "
+            "54 6 Triglycerides increased 35 2 36 0.7 ALT increased 27 0.3 28 0 AST increased "
+            "24 0.8 26 0.7 Hemoglobin decreased 32 0.3 30 0.3")
+    g = verify_grounding("Triglycerides increased in 35% of patients [1].", [_hit(flat)])
+    assert g.unsupported_numbers == []
+    g = verify_grounding("Triglycerides increased in 45% of patients [1].", [_hit(flat)])
+    assert g.unsupported_numbers == ["45 %"]
