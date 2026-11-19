@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LabelLens</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #ffffff; --ink: #16202b; --muted: #5d6b7a; --line: #dfe4ea;
+    --accent: #0b6e69; --accent-soft: #e2f3f1; --warn: #9a5b00; --warn-soft: #fdf1dc;
+    --bad: #a3262a; --bad-soft: #fbe6e6; --ok: #1d6b3a; --ok-soft: #e3f4e8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1418; --panel: #171e24; --ink: #e6ebf0; --muted: #94a3b3; --line: #2a343d;
+      --accent: #4fc4bb; --accent-soft: #12332f; --warn: #f0b64e; --warn-soft: #3a2c10;
+      --bad: #f08a8d; --bad-soft: #3b1819; --ok: #6fd093; --ok-soft: #14301f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 28px 16px 48px; }
+  header h1 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+  header p { margin: 4px 0 20px; color: var(--muted); }
+  form { display: flex; gap: 8px; }
+  input[type=text] { flex: 1; min-width: 0; padding: 12px 14px; font: inherit; color: var(--ink);
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+  input[type=text]:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  button { padding: 0 18px; font: inherit; font-weight: 600; color: #fff; background: var(--accent);
+    border: 0; border-radius: 10px; cursor: pointer; }
+  @media (prefers-color-scheme: dark) { button { color: #06201e; } }
+  button:disabled { opacity: .55; cursor: default; }
+  .examples { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 22px; }
+  .examples button { padding: 5px 10px; font-size: 13px; font-weight: 500; color: var(--accent);
+    background: var(--accent-soft); border-radius: 999px; }
+  .grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); gap: 18px; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .panel h2 { margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  #answer { white-space: pre-wrap; min-height: 80px; overflow-wrap: anywhere; }
+  .cite { display: inline-block; min-width: 20px; padding: 0 5px; margin: 0 1px; font-size: 12px;
+    font-weight: 700; text-align: center; color: var(--accent); background: var(--accent-soft);
+    border-radius: 5px; cursor: pointer; text-decoration: none; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .badge { padding: 2px 9px; font-size: 12px; font-weight: 600; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); }
+  .badge.ok { background: var(--ok-soft); color: var(--ok); }
+  .badge.warn { background: var(--warn-soft); color: var(--warn); }
+  .badge.bad { background: var(--bad-soft); color: var(--bad); }
+  .timings { margin-top: 12px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .src { padding: 10px 0; border-top: 1px solid var(--line); }
+  .src:first-of-type { border-top: 0; padding-top: 0; }
+  .src.flash { background: var(--accent-soft); }
+  .src .head { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+  .src .n { font-weight: 700; color: var(--accent); }
+  .src .drug { font-weight: 600; }
+  .src .sec, .src .meta { font-size: 12px; color: var(--muted); }
+  .src p { margin: 6px 0 0; font-size: 13.5px; color: var(--ink); max-height: 7.6em; overflow: hidden; overflow-wrap: anywhere; }
+  .src.open p { max-height: none; }
+  .src .more { font-size: 12px; color: var(--accent); background: none; padding: 0; font-weight: 500; }
+  .src.uncited { opacity: .62; }
+  footer { margin-top: 22px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>LabelLens</h1>
+    <p>Answers from official FDA drug labels, with a citation for every claim &mdash; or an honest &ldquo;not in the label&rdquo;.</p>
+  </header>
+  <form id="form">
+    <input id="q" type="text" maxlength="600" autocomplete="off"
+           placeholder="e.g. What are the contraindications of metformin?" required>
+    <button id="go" type="submit">Ask</button>
+  </form>
+  <div class="examples" id="examples"></div>
+  <div class="grid">
+    <section class="panel">
+      <h2>Answer</h2>
+      <div id="answer">Ask a question about a prescription drug.</div>
+      <div class="badges" id="badges"></div>
+      <div class="timings" id="timings"></div>
+    </section>
+    <section class="panel">
+      <h2>Evidence</h2>
+      <div id="sources"><span class="sec">Retrieved label passages appear here.</span></div>
+    </section>
+  </div>
+  <footer>Reference tool built on openFDA data. Not medical advice; verify against the full prescribing information.</footer>
+</main>
+<script>
+const EXAMPLES = [
+  "What are the contraindications of metformin?",
+  "Can warfarin be taken with amiodarone?",
+  "What is the boxed warning for clozapine?",
+  "How should the dose of apixaban be adjusted in renal impairment?",
+  "What is the wholesale price of atorvastatin?",
+];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+EXAMPLES.forEach((text) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.textContent = text;
+  b.onclick = () => { $("q").value = text; $("form").requestSubmit(); };
+  $("examples").appendChild(b);
+});
+
+function renderAnswer(text) {
+  $("answer").innerHTML = esc(text).replace(/\[(\d{1,2}(?:\s*[,\-\u2013]\s*\d{1,2})*)\]/g,
+    (_, g) => g.split(/\s*[,\-\u2013]\s*/).map((n) => `<a class="cite" data-n="${parseInt(n, 10)}">${parseInt(n, 10)}</a>`).join(""));
+}
+$("answer").addEventListener("click", (e) => {
+  const n = e.target.dataset && e.target.dataset.n;
+  const el = n && document.getElementById("src-" + n);
+  if (!el) return;
+  el.classList.add("open", "flash");
+  el.scrollIntoView({ behavior: "smooth", block: "center" });
+  setTimeout(() => el.classList.remove("flash"), 1200);
+});
+
+function renderSources(sources, final) {
+  if (!sources.length) { $("sources").innerHTML = '<span class="sec">No passages retrieved.</span>'; return; }
+  $("sources").innerHTML = sources.map((s) => `
+    <div class="src ${final && !s.cited ? "uncited" : ""}" id="src-${s.n}">
+      <div class="head">
+        <span class="n">[${s.n}]</span><span class="drug">${esc(s.drug)}</span>
+        <span class="sec">${esc(s.section)}${s.subsection ? " &middot; " + esc(s.subsection) : ""}</span>
+      </div>
+      <p>${esc(s.text)}</p>
+      <div class="meta">
+        ${s.score === null ? "" : "rerank " + s.score + " &middot; "}bm25 #${s.bm25_rank ?? "–"} &middot; dense #${s.dense_rank ?? "–"}
+        &middot; <a href="https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=${encodeURIComponent(s.doc_id)}" target="_blank" rel="noopener">full label</a>
+        &middot; <button class="more" type="button" onclick="this.closest('.src').classList.toggle('open')">expand</button>
+      </div>
+    </div>`).join("");
+}
+
+function renderMeta(a) {
+  const b = [];
+  const label = { answered: "Answered", abstained_retrieval: "No evidence found",
+                  abstained_llm: "Not in the label", blocked_ungrounded: "Withheld" }[a.status] || a.status;
+  b.push(`<span class="badge ${a.status === "answered" ? "ok" : "warn"}">${label}</span>`);
+  if (a.status === "answered") {
+    const g = a.grounding;
+    b.push(g.ok ? '<span class="badge ok">Grounding checks passed</span>'
+                : '<span class="badge bad">Grounding check failed</span>');
+    b.push(`<span class="badge">${Math.round(g.citation_coverage * 100)}% sentences cited</span>`);
+    if (g.truncated) b.push('<span class="badge bad">Answer cut off</span>');
+    if (g.unsupported_numbers.length)
+      b.push(`<span class="badge bad">Unverified numbers: ${esc(g.unsupported_numbers.join(", "))}</span>`);
+  }
+  a.scoped_drugs.slice(0, 3).forEach((d) => b.push(`<span class="badge">Scope: ${esc(d)}</span>`));
+  if (a.cached) b.push('<span class="badge">cached</span>');
+  $("badges").innerHTML = b.join("");
+  const t = a.timings_ms, parts = [];
+  ["retrieval", "rerank", "first_token", "generation", "total"].forEach((k) => {
+    if (t[k] !== undefined) parts.push(`${k.replace("_", " ")} ${Math.round(t[k])} ms`);
+  });
+  $("timings").textContent = parts.join("  ·  ") + `  ·  ${a.model}  ·  index v${a.index_version}`;
+}
+
+$("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const question = $("q").value.trim();
+  if (!question) return;
+  $("go").disabled = true;
+  $("answer").textContent = "Searching labels…";
+  $("badges").innerHTML = ""; $("timings").textContent = "";
+  // Never leave the previous question's evidence under a new question.
+  $("sources").innerHTML = '<span class="sec">Retrieving label passages…</span>';
+  let text = "";
+  try {
+    const res = await fetch("/v1/ask/stream", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question }),
+    });
+    if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "Request failed (" + res.status + ")");
+    const reader = res.body.getReader(), dec = new TextDecoder();
+    let buf = "";
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let i;
+      while ((i = buf.indexOf("\n\n")) >= 0) {
+        const frame = buf.slice(0, i); buf = buf.slice(i + 2);
+        const ev = (frame.match(/^event: (.*)$/m) || [])[1];
+        const data = JSON.parse((frame.match(/^data: (.*)$/m) || [, "null"])[1]);
+        if (ev === "sources") renderSources(data, false);
+        else if (ev === "token") { text += data; renderAnswer(text); }
+        else if (ev === "final") { renderAnswer(data.text); renderSources(data.sources, data.status === "answered"); renderMeta(data); }
+        else if (ev === "error") throw new Error(data.error);
+      }
+    }
+  } catch (err) {
+    const offline = err instanceof TypeError;  // fetch() rejects with TypeError when the server is unreachable
+    $("answer").textContent = offline
+      ? "Can't reach the LabelLens server. Start it with `labellens serve` and try again."
+      : "Something went wrong: " + err.message + ". Try again in a moment.";
+    $("sources").innerHTML = '<span class="sec">No evidence: the request did not complete.</span>';
+    $("badges").innerHTML = '<span class="badge bad">Not answered</span>';
+  } finally {
+    $("go").disabled = false;
+  }
+});
+</script>
+</body>
+</html>

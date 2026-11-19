@@ -1,0 +1,19 @@
+{
+  "labels_sampled": 419,
+  "writer_declined": 0,
+  "dropped_no_drug_name": 19,
+  "dropped_too_long": 0,
+  "writer_model": "qwen3:8b",
+  "answerable": 400,
+  "unanswerable": 80,
+  "by_split": {
+    "calib": 254,
+    "test": 226
+  },
+  "by_name_style": {
+    "brand": 37,
+    "generic": 229,
+    "generic_no_salt": 55,
+    "typo": 79
+  }
+}

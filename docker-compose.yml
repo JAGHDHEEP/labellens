@@ -1,0 +1,31 @@
+# docker compose up --build
+# First run only:
+#   docker compose exec ollama ollama pull bge-m3 && docker compose exec ollama ollama pull llama3.1:8b
+#   docker compose run --rm api labellens fetch && docker compose run --rm api labellens ingest
+services:
+  api:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      LABELLENS_OLLAMA_URL: http://ollama:11434
+      LABELLENS_LLM_MODEL: llama3.1:8b
+    volumes:
+      - index:/data
+      - models:/models
+    depends_on: [ollama]
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    volumes: ["ollama:/root/.ollama"]
+    # Uncomment on a host with the NVIDIA container toolkit:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices: [{ driver: nvidia, count: all, capabilities: [gpu] }]
+    restart: unless-stopped
+
+volumes:
+  index:
+  models:
+  ollama:

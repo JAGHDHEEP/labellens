@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Corpus and index are rebuilt with `labellens fetch && labellens ingest`
+data/
+*.log
+.env
+
+# Local tooling and personal notes
+.claude/
+docs/INTERVIEW.md
