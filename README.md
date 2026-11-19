@@ -111,6 +111,20 @@ Latency with the local GPU model: p50 5.9 s / p95 10.3 s end to end, and 3.0 s t
 - A first version of the checker over-flagged (6.4% of answers) on real label formats: `47.8 (13.7) hours`, `µg` vs `mcg`, and the `%` in a table header. The fix is pinned by tests. Stored answers were re-scored deterministically (`python -m labellens.evalkit.rescore`) without regenerating them, and the before and after figures are kept in `generation.json`.
 - An 8B model is a lenient judge. Treat judge scores as relative signals for comparing versions, not absolute truth.
 
+### Outside spot check: 16 adversarial questions
+
+An outside reviewer wrote a test plan covering interactions, multi-drug comparisons, missing information, patient-specific questions, prompt injection and ambiguous questions. I ran 16 of its questions on the hosted configuration and audited every answer against its cited passages ([`eval/results/spotcheck.json`](eval/results/spotcheck.json)). Five failures turned up, and each fix is pinned by a test in `tests/test_audit_fixes.py`:
+
+| Failure found | Fix |
+|---|---|
+| `gpt-oss` cited as `【1】`, so a correct answer failed the grounding check | Lenticular and full-width brackets are normalised before checking and before display |
+| "Compare metformin and apixaban": 3 of 4 passages were apixaban | When a question names several drugs, evidence slots are dealt round-robin per drug |
+| "Is metformin safe?" answered with pediatric and pregnancy notes and missed the boxed warning | For safety questions, the drug's boxed warning is pinned into the evidence |
+| "Can warfarin be taken with amiodarone?" began "Warfarin can be taken…", from one label only | The prompt forbids clearance statements and asks what each label says |
+| "Can I take this drug with my other medication?" was refused in one run but answered from four unrelated labels in another | A question that points at a drug without naming one is refused before the LLM, deterministically |
+
+After the fixes: 6 of 16 questions correctly refused (cost, probability, patient-specific dose, fictional drug, prompt injection, unnamed drug); 8 correct; 1 partially correct (the metformin/apixaban comparison still omits metformin's eGFR 30–45 rule); and the manufacturer-comparison question refused because that feature isn't supported. All 9 answered questions passed the grounding checks. Retrieval Recall@5 on the test split is unchanged at 90.6%.
+
 ## Engineering for production
 
 - **One transactional store.** Documents, chunks, the BM25 index, embeddings and aliases live in one SQLite file. A label revision replaces all of them atomically, so the keyword and vector indexes can never drift apart. ([why](docs/DECISIONS.md#1-one-sqlite-file-instead-of-a-vector-database-plus-a-search-engine))
@@ -120,7 +134,7 @@ Latency with the local GPU model: p50 5.9 s / p95 10.3 s end to end, and 3.0 s t
 - **Observability.** Prometheus metrics with per-stage latency histograms (scope, BM25, embed, dense, rerank, first token, generation), grounding-failure counters, structured JSON logs with request ids, and `/healthz` and `/readyz`.
 - **Failure handling.** Retries with backoff for model backends, a `503` with `Retry-After` when a backend is down, and empty or truncated completions flagged and never cached.
 - **Swappable providers.** Embedder, reranker and LLM are three small protocols. The generator runs locally on Ollama or on Claude (`LABELLENS_LLM_PROVIDER=anthropic`) with no code change.
-- **Tests that need no GPU.** 97 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
+- **Tests that need no GPU.** 104 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
 
 ## Quick start
 
@@ -222,7 +236,7 @@ src/labellens/
 streamlit_app.py   free hosted demo (CPU embeddings, Groq answers)
   evalkit/         golden-set synthesis, ablation, gate calibration, LLM judge
 docs/DECISIONS.md  every design decision, the constraint behind it, what was rejected
-tests/             97 tests, including regression tests for every review finding
+tests/             104 tests, including regression tests for every review and audit finding
 ```
 
 ## Limitations
@@ -232,7 +246,9 @@ tests/             97 tests, including regression tests for every review finding
 - **Unlinked drug names.** When no drug name in the question can be linked (3 of 192 test questions, mostly 5-ingredient combination products), retrieval runs unscoped and misses.
 - **Paraphrase errors.** The deterministic checks can't catch a sentence that misstates its source without changing a number. That residual risk is measured offline (judge faithfulness) but not blocked at request time.
 - **Corpus size.** The index holds about 1,200 of the ~37,000 prescription labels in openFDA (the most recent revision of each distinct drug, plus about 100 commonly prescribed drugs). The design targets the full set; the remaining work is ingest time.
-- **Label text only.** No clinical guidelines and no patient-specific reasoning.
+- **Label text only.** No clinical guidelines and no patient-specific reasoning. LabelLens reports what the labels say. It supports a professional's own judgment and doesn't replace a pharmacist or a clinical decision-support system such as Lexicomp or Micromedex. A label that doesn't mention an interaction is not evidence that none exists.
+- **One label revision per drug.** The index keeps the latest revision of each distinct label, so it can't compare manufacturers' versions or show what changed between revisions. Sources link to the exact label on DailyMed by set id.
+- **Attribution in multi-drug answers.** Every fact cites a passage, and the UI shows which drug's label each passage comes from. But a sentence like "the warfarin label says…" can still name the wrong label while citing the right passage. The checks don't catch that.
 
 ## License
 

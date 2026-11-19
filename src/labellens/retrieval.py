@@ -117,6 +117,10 @@ class EntityLinker:
                 i += 1
         return doc_ids, matched
 
+    def groups(self, matched: list[str]) -> list[frozenset[str]]:
+        """One set of label ids per drug named in the question, in order of mention."""
+        return list(dict.fromkeys(frozenset(self.aliases[m]) for m in matched if m in self.aliases))
+
     def correct(self, tok: str) -> str:
         """Typo tolerance ("metformine", "bicarbnate"), deliberately narrow.
 
@@ -134,6 +138,48 @@ class EntityLinker:
         if close and close[0][0] == tok[0] and abs(len(close[0]) - len(tok)) <= 1:
             return close[0]
         return tok
+
+
+def balance_entities(hits: list[Hit], groups: list[frozenset[str]], limit: int) -> list[Hit]:
+    """Give every drug named in the question a share of the final evidence.
+
+    "Compare the renal instructions for metformin and apixaban" scopes to both
+    drugs, but the reranker scores passages one at a time and may fill every
+    slot with one drug. The model then answers for one drug only. Slots are
+    dealt round-robin by drug (each drug's passages in rank order), any left
+    over go to the best remaining passages, and the result keeps rank order.
+    """
+    if len(groups) < 2:
+        return hits[:limit]
+    queues = [[h for h in hits if h.chunk.doc_id in g] for g in groups]
+    picked: dict[int, Hit] = {}
+    while len(picked) < limit and any(queues):
+        for q in queues:
+            while q and q[0].rowid in picked:
+                q.pop(0)
+            if q and len(picked) < limit:
+                h = q.pop(0)
+                picked[h.rowid] = h
+    for h in hits:
+        if len(picked) >= limit:
+            break
+        picked.setdefault(h.rowid, h)
+    order = {h.rowid: i for i, h in enumerate(hits)}
+    return sorted(picked.values(), key=lambda h: order[h.rowid])
+
+
+# Broad safety questions ("Is metformin safe?") match "safety and effectiveness
+# in pediatric patients" better than the boxed warning, the one passage a
+# reader most needs. For these the boxed warning is pinned into the evidence.
+# "Can I take this drug with my other medication?" names no drug. Unscoped
+# retrieval still finds confident-looking interaction passages for unrelated
+# drugs, and in testing the model once answered from four of them. Whether to
+# refuse must not depend on the model, so it is decided here.
+_UNNAMED_DRUG = re.compile(
+    r"\b(this|that|these|those|my|our|his|her|their|the same|other)\s+"
+    r"(drugs?|medications?|medicines?|meds|pills?|tablets?|prescriptions?)\b", re.I)
+
+_SAFETY_INTENT = re.compile(r"\b(safe|safety|risks?|dangers?|dangerous|warnings?|harmful)\b", re.I)
 
 
 def rrf(rankings: Iterable[list[int]], k: int = 60) -> dict[int, float]:
@@ -238,6 +284,23 @@ class Retriever:
             self._qcache.popitem(last=False)
         return vec
 
+    def _pin_boxed_warning(self, query: str, hits: list[Hit], scope: set[str],
+                           cfg: Settings) -> list[Hit]:
+        if any(h.chunk.section_key.startswith("boxed_warning") for h in hits[: cfg.final_k]):
+            return hits
+        rowids = self.store.section_chunks(scope, "boxed_warning", per_doc=1)
+        if not rowids:
+            return hits
+        cands = [Hit(rowid=r, chunk=c, drug=d) for r, (c, d) in self.store.get_chunks(rowids).items()]
+        if cfg.use_rerank and self.reranker:
+            for h, sc in zip(cands, self.reranker.score(query, [h.chunk.embed_text for h in cands])):
+                h.rerank_score = sc
+            cands.sort(key=lambda h: h.rerank_score, reverse=True)
+        best = cands[0]
+        rest = [h for h in hits if h.rowid != best.rowid]
+        # Second place: the top passage still leads, and final_k never cuts the warning.
+        return rest[:1] + [best] + rest[1:]
+
     def retrieve(self, query: str, settings: Settings | None = None) -> RetrievalResult:
         cfg = settings or self.settings
         self.refresh_if_stale()
@@ -247,8 +310,9 @@ class Retriever:
 
         scope: set[str] | None = None
         unknown: list[str] = []
+        matched: list[str] = []
         if cfg.use_entity_scope:
-            ids, _ = snap.linker.link(query)
+            ids, matched = snap.linker.link(query)
             scope = ids or None
             if scope is None:
                 # No known drug in the question. If it also contains a word that
@@ -303,7 +367,10 @@ class Retriever:
             timings["rerank"] = (time.perf_counter() - t) * 1000
             top_score = hits[0].rerank_score
 
-        unique = collapse_near_duplicates(hits, cfg.final_k)
+        groups = snap.linker.groups(matched) if scope else []
+        if scope and _SAFETY_INTENT.search(query):
+            hits = self._pin_boxed_warning(query, hits, scope, cfg)
+        unique = balance_entities(collapse_near_duplicates(hits, len(hits)), groups, cfg.final_k)
         timings["total"] = (time.perf_counter() - t0) * 1000
         return RetrievalResult(
             query=query, hits=unique,
@@ -311,4 +378,5 @@ class Retriever:
             scoped_doc_ids=sorted(scope or ()),
             timings_ms={k: round(v, 2) for k, v in timings.items()}, top_score=top_score,
             unknown_terms=unknown, index_version=snap.version,
+            unnamed_drug=cfg.use_entity_scope and not scope and bool(_UNNAMED_DRUG.search(query)),
         )

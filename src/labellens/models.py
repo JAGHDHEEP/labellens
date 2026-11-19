@@ -81,3 +81,5 @@ class RetrievalResult:
     unknown_terms: list[str] = field(default_factory=list)
     scoped_doc_ids: list[str] = field(default_factory=list)
     index_version: int = 0
+    # the question points at a drug ("this drug", "my medication") without naming one
+    unnamed_drug: bool = False

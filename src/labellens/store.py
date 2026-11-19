@@ -324,6 +324,25 @@ class Store:
         with self._lock:
             return self._db.execute("SELECT COUNT(*) FROM vocab").fetchone()[0]
 
+    def section_chunks(self, doc_ids: Iterable[str], section_key: str,
+                       per_doc: int = 1, max_docs: int = 8) -> list[int]:
+        """Row ids of the first chunks of one section in each of the given labels."""
+        ids = sorted(doc_ids)[:max_docs]
+        if not ids:
+            return []
+        with self._lock:
+            rows = self._db.execute(
+                "SELECT id, doc_id FROM chunks WHERE section_key = ? AND doc_id IN "
+                f"({','.join('?' * len(ids))}) ORDER BY doc_id, ordinal",
+                [section_key, *ids]).fetchall()
+        out: list[int] = []
+        seen: dict[str, int] = {}
+        for r in rows:
+            if seen.get(r["doc_id"], 0) < per_doc:
+                seen[r["doc_id"]] = seen.get(r["doc_id"], 0) + 1
+                out.append(r["id"])
+        return out
+
     def get_chunks(self, rowids: Iterable[int]) -> dict[int, tuple[Chunk, str]]:
         ids = list(rowids)
         if not ids:

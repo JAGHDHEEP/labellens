@@ -229,7 +229,7 @@ def task_gate(args, settings: Settings) -> int:
             # the generator's point of view, unanswerable
             "gold_retrieved": answerable and any(
                 it["chunk_id"] in (h.chunk.chunk_id, *h.dup_ids) for h in res.hits),
-            "pre_gated": not res.hits or bool(res.unknown_terms),
+            "pre_gated": not res.hits or bool(res.unknown_terms) or res.unnamed_drug,
             "top": res.top_score if res.top_score is not None else -math.inf,
         })
 

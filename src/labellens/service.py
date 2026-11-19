@@ -33,6 +33,7 @@ from .generation import (
     clean_abstention,
     could_be_abstention,
     is_abstention,
+    normalize_citations,
     verify_grounding,
 )
 from .models import Hit, RetrievalResult
@@ -44,6 +45,11 @@ log = logging.getLogger(__name__)
 NO_EVIDENCE_MSG = (
     "I can't answer this from the indexed FDA labels: no passage was relevant enough to "
     "support an answer. Try naming the drug explicitly, or rephrase the question."
+)
+UNNAMED_DRUG_MSG = (
+    "Which drug do you mean? The question refers to a drug without naming it, and labels "
+    "differ by drug. Ask again with the drug names, for example: \"Can warfarin be taken "
+    "with amiodarone?\""
 )
 UNGROUNDED_MSG = (
     "An answer was generated but withheld because it contained details that could not be "
@@ -89,7 +95,7 @@ def should_refuse(res: RetrievalResult, threshold: float) -> bool:
     A module-level function (not a method) so the offline evaluation calibrates
     and scores exactly the decision the service makes.
     """
-    if not res.hits or res.unknown_terms:
+    if not res.hits or res.unknown_terms or res.unnamed_drug:
         return True
     return res.top_score is not None and not math.isinf(threshold) and res.top_score < threshold
 
@@ -148,7 +154,7 @@ class RagService:
             status, text, g = "abstained_llm", clean_abstention(raw), Grounding()
         else:
             g = verify_grounding(raw, hits)
-            status, text = "answered", raw.strip()
+            status, text = "answered", normalize_citations(raw).strip()
             if g.invalid_citations:
                 obs.GROUNDING_FAILURES.labels("invalid_citation").inc()
             if g.unsupported_numbers:
@@ -170,7 +176,9 @@ class RagService:
 
     def _refuse(self, q: str, res: RetrievalResult, timings: dict, rid: str) -> Answer:
         text = NO_EVIDENCE_MSG
-        if res.unknown_terms:
+        if res.unnamed_drug:
+            text = UNNAMED_DRUG_MSG
+        elif res.unknown_terms:
             text = ("I can't answer this: " + ", ".join(f'"{t}"' for t in res.unknown_terms[:3])
                     + " does not appear in any indexed FDA label. Check the spelling, or the "
                     "drug may not be in this index.")
