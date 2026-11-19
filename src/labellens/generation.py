@@ -73,8 +73,42 @@ CLOSING_REMINDER = ("Answer only from the sources above. End every sentence and 
                     "taken; say what each label states.")
 
 
+_PROMPT_SENT = re.compile(r"(?<=[.!?])\s+(?=[A-Z(])")
+_PROMPT_WORD = re.compile(r"[a-z0-9.]+")
+_PROMPT_NUM = re.compile(r"\d+(?:\.\d+)?")
+
+
+def collapse_restated_sentences(text: str) -> str:
+    """Drop a sentence whose every word recurs in a longer sentence of the same passage.
+
+    openFDA labels often state a fact twice - the Highlights bullet ("X is a
+    biguanide indicated as an adjunct ...") and the full text ("X is indicated
+    as an adjunct ...") - and an 8B model dutifully repeats both. A sentence is
+    dropped only if all of its words appear in a longer one *and* both contain
+    exactly the same numbers, so no fact, dose or threshold can be lost. This
+    shapes what the model reads; the stored passage, the evidence shown to the
+    user and the grounding checks all keep the full text.
+    """
+    sents = [s.strip() for s in _PROMPT_SENT.split(text) if s.strip()]
+    if len(sents) < 2:
+        return text
+    words = [set(_PROMPT_WORD.findall(s.lower())) for s in sents]
+    nums = [_PROMPT_NUM.findall(s) for s in sents]
+    keep = [True] * len(sents)
+    for i in range(len(sents)):
+        if len(words[i]) < 6:
+            continue
+        for j in range(len(sents)):
+            if (i != j and keep[j] and len(words[j]) > len(words[i])
+                    and words[i] <= words[j] and nums[i] == nums[j]):
+                keep[i] = False
+                break
+    return " ".join(s for s, k in zip(sents, keep) if k)
+
+
 def build_user_prompt(question: str, hits: list[Hit]) -> str:
-    blocks = [f"[{i}] {h.chunk.header}\n{h.chunk.text}" for i, h in enumerate(hits, start=1)]
+    blocks = [f"[{i}] {h.chunk.header}\n{collapse_restated_sentences(h.chunk.text)}"
+              for i, h in enumerate(hits, start=1)]
     return ("<sources>\n" + "\n\n".join(blocks) + f"\n</sources>\n\nQuestion: {question.strip()}"
             + f"\n\n{CLOSING_REMINDER}")
 
@@ -116,7 +150,10 @@ class Grounding:
 
 
 def _digits(text: str) -> str:
-    return re.sub(r"(?<=\d),(?=\d{3})", "", text)
+    text = re.sub(r"(?<=\d),(?=\d{3})", "", text)
+    # openFDA drops spaces before numbers ("younger than18 years"). Re-split only
+    # after 3+ lowercase letters, so identifiers like CYP2C9 or MATE2 stay intact.
+    return re.sub(r"(?<=[a-z]{3})(?=\d)", " ", text)
 
 
 # Spellings a label may use for the same unit.
@@ -219,8 +256,41 @@ def verify_grounding(answer: str, hits: list[Hit]) -> Grounding:
 
 
 def is_abstention(text: str) -> bool:
-    """True if the sentinel starts any line - with or without a preamble."""
-    return _SENTINEL.search(text) is not None
+    """True if the reply is a refusal: the sentinel starts a line and no cited
+    answer comes before it.
+
+    Models also use the sentinel for rule 4's closing "what the sources do not
+    cover" line, after a full, cited answer. Treating that as a refusal threw
+    the answer away (seen on "What are the contraindications of metformin?",
+    3 of 3 runs on llama3.1:8b). An uncited preamble ("I am sorry.") before the
+    sentinel is still a refusal.
+    """
+    m = _SENTINEL.search(text)
+    return m is not None and not _CITE.search(normalize_citations(text[: m.start()]))
+
+
+def finalize_partial_answer(text: str) -> str:
+    """A cited answer followed by a sentinel line: keep the answer, turn the
+    sentinel line into a plain note, and drop anything after it (unverified)."""
+    m = _SENTINEL.search(text)
+    if not m or is_abstention(text):
+        return text.strip()
+    note = m.group(1).strip()
+    answer = text[: m.start()].rstrip()
+    return answer + (f"\n\nNot covered by the sources: {note}" if note else "")
+
+
+def stream_safe_prefix(text: str) -> str:
+    """The part of a streaming reply that can be shown now: everything before a
+    line that is, or may still become, a sentinel line."""
+    start = 0
+    for line in text.splitlines(keepends=True):
+        head = line.lstrip("*#_->•\t ").upper()
+        if head and (ABSTAIN_PREFIX.startswith(head.strip()[: len(ABSTAIN_PREFIX)])
+                     or head.startswith(ABSTAIN_PREFIX)):
+            return text[:start]
+        start += len(line)
+    return text
 
 
 def clean_abstention(text: str) -> str:

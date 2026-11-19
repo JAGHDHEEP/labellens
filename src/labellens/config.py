@@ -21,9 +21,13 @@ class Settings:
     db_name: str = "labellens.db"
 
     # --- model providers ---------------------------------------------------
-    ollama_url: str = "http://localhost:11434"
+    # 127.0.0.1, not localhost: on Windows "localhost" tries IPv6 (::1) first and
+    # Ollama listens on IPv4 only, which cost ~2 s on every new connection.
+    ollama_url: str = "http://127.0.0.1:11434"
     embed_provider: str = "ollama"  # "ollama" | "fastembed" (CPU, no server)
     embed_model: str = "bge-m3"
+    # Embed questions on the CPU so the chat model keeps the GPU (see OllamaEmbedder).
+    query_embed_on_cpu: bool = True
     embed_batch: int = 32
     # Some retrieval models expect an instruction prefix on queries only
     # (e.g. snowflake-arctic-embed); passages are embedded without it.

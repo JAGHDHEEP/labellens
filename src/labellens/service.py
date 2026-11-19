@@ -32,8 +32,10 @@ from .generation import (
     build_user_prompt,
     clean_abstention,
     could_be_abstention,
+    finalize_partial_answer,
     is_abstention,
     normalize_citations,
+    stream_safe_prefix,
     verify_grounding,
 )
 from .models import Hit, RetrievalResult
@@ -153,8 +155,9 @@ class RagService:
         if is_abstention(raw):
             status, text, g = "abstained_llm", clean_abstention(raw), Grounding()
         else:
-            g = verify_grounding(raw, hits)
-            status, text = "answered", normalize_citations(raw).strip()
+            answer = finalize_partial_answer(raw)
+            g = verify_grounding(answer, hits)
+            status, text = "answered", normalize_citations(answer).strip()
             if g.invalid_citations:
                 obs.GROUNDING_FAILURES.labels("invalid_citation").inc()
             if g.unsupported_numbers:
@@ -267,8 +270,10 @@ class RagService:
                 text = "".join(parts)
                 if hold_all or could_be_abstention(text):
                     continue
-                yield "token", text[released:]
-                released = len(text)
+                safe = stream_safe_prefix(text)  # never preview a sentinel line
+                if len(safe) > released:
+                    yield "token", safe[released:]
+                    released = len(safe)
             raw = "".join(parts)
             if not raw.strip():
                 # An empty completion is a backend failure, not an answer.
@@ -278,8 +283,11 @@ class RagService:
             timings["generation"] = round((now - t_gen) * 1000, 2)
             timings["total"] = round((now - t0) * 1000, 2)
             ans = self._finish(q, res, raw, timings, rid, truncated)
+            streamed = "".join(parts)[:released]
             if released == 0:
                 yield "token", ans.text
+            elif ans.text.startswith(streamed) and len(ans.text) > released:
+                yield "token", ans.text[released:]  # e.g. the "Not covered" note
 
         self._cache_put(key, ans)
         self._record(ans)

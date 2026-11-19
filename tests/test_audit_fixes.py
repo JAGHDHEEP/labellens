@@ -79,3 +79,88 @@ def test_unnamed_drug_stream_shows_no_unrelated_evidence(service):
     events = list(service.ask_stream("Can I take this drug with my other medication?"))
     assert events[0] == ("sources", [])
     assert events[-1][1].status == "abstained_retrieval" and events[-1][1].sources == []
+
+
+def test_restated_highlight_sentence_is_collapsed_for_the_model():
+    from labellens.generation import collapse_restated_sentences
+
+    text = ("Metformin extended-release tablets are indicated as an adjunct to diet and exercise "
+            "to improve glycemic control in adults with type 2 diabetes mellitus. Metformin "
+            "extended-release tablets are a biguanide indicated as an adjunct to diet and exercise "
+            "to improve glycemic control in adults with type 2 diabetes mellitus.")
+    out = collapse_restated_sentences(text)
+    assert out.count("indicated as an adjunct") == 1 and "biguanide" in out
+
+
+def test_sentences_with_different_numbers_are_never_collapsed():
+    from labellens.generation import collapse_restated_sentences
+
+    text = ("The recommended starting dose is 500 mg orally twice a day with meals. "
+            "The recommended starting dose is 850 mg orally twice a day with meals and water.")
+    assert collapse_restated_sentences(text) == text
+
+
+def test_service_embeds_questions_on_cpu_but_ingest_keeps_the_gpu(settings):
+    import json as _json
+
+    import httpx
+
+    from labellens.providers import build_embedder
+
+    sent = []
+
+    def handler(req):
+        sent.append(_json.loads(req.content))
+        return httpx.Response(200, json={"embeddings": [[1.0, 0.0]]})
+
+    for for_queries in (True, False):
+        e = build_embedder(settings.with_(embed_provider="ollama"), for_queries=for_queries)
+        e._http = httpx.Client(transport=httpx.MockTransport(handler), base_url="http://x")
+        e.embed(["what is the dose?"])
+    assert sent[0]["options"] == {"num_gpu": 0}  # query path: CPU, the LLM keeps the GPU
+    assert "options" not in sent[1]  # ingest path: Ollama's default (GPU)
+
+
+PARTIAL = ("Metformin is contraindicated in severe renal impairment (eGFR below 30 mL/min/1.73 m2) [1].\n"
+           "INSUFFICIENT_EVIDENCE: the sources do not cover use with iodinated contrast.")
+
+
+def test_cited_answer_followed_by_a_gap_note_is_a_partial_answer_not_a_refusal():
+    from labellens.generation import finalize_partial_answer, is_abstention
+
+    assert not is_abstention(PARTIAL)
+    out = finalize_partial_answer(PARTIAL)
+    assert out.startswith("Metformin is contraindicated") and "INSUFFICIENT_EVIDENCE" not in out
+    assert out.endswith("Not covered by the sources: the sources do not cover use with iodinated contrast.")
+    assert is_abstention("INSUFFICIENT_EVIDENCE: no price is listed.")
+    assert is_abstention("I am sorry.\nINSUFFICIENT_EVIDENCE: no price is listed.")
+
+
+def test_service_keeps_the_partial_answer_and_checks_it(retriever, settings):
+    hits = retriever.retrieve("What are the contraindications of metformin?").hits
+    n = next(i for i, h in enumerate(hits, 1) if "severe renal" in h.chunk.text)
+    svc = RagService(retriever, FakeLLM(PARTIAL.replace("[1]", f"[{n}]")), settings)
+    ans = svc.ask("What are the contraindications of metformin?")
+    assert ans.status == "answered" and ans.grounding["ok"]
+    assert "Not covered by the sources" in ans.text and "INSUFFICIENT" not in ans.text
+
+
+def test_stream_never_previews_the_sentinel_line(retriever, settings):
+    from labellens.generation import stream_safe_prefix
+
+    assert stream_safe_prefix("Dose is 500 mg [1].\nINSUFF") == "Dose is 500 mg [1].\n"
+    assert stream_safe_prefix("Dose is 500 mg [1].\n**INSUFFICIENT_EVIDENCE: x") == "Dose is 500 mg [1].\n"
+    assert stream_safe_prefix("Dose is 500 mg [1].\nIt is taken") == "Dose is 500 mg [1].\nIt is taken"
+    svc = RagService(retriever, FakeLLM(PARTIAL), settings)
+    events = list(svc.ask_stream("What are the contraindications of metformin?"))
+    shown = "".join(p for e, p in events if e == "token")
+    assert "INSUFFICIENT" not in shown and events[-1][1].status == "answered"
+    assert events[-1][1].text == shown
+
+
+def test_number_glued_to_a_word_in_the_label_still_counts_as_evidence(retriever):
+    from labellens.generation import _digits
+
+    assert _digits("not recommended in patients younger than18 years") == \
+        "not recommended in patients younger than 18 years"
+    assert _digits("inhibitor of CYP2C9 and MATE2-K") == "inhibitor of CYP2C9 and MATE2-K"

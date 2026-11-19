@@ -12,7 +12,7 @@ from .store import Store
 def build_retriever(settings: Settings, store: Store | None = None,
                     variant: str = "context") -> Retriever:
     store = store or Store(settings.db_path)
-    embedder = build_embedder(settings)
+    embedder = build_embedder(settings, for_queries=True)
     reranker = CrossEncoderReranker(settings.rerank_model) if settings.use_rerank else None
     return Retriever(store, embedder, reranker, settings, variant=variant)
 

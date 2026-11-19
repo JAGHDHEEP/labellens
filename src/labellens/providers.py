@@ -45,9 +45,21 @@ def _unit(m: np.ndarray) -> np.ndarray:
 
 
 class OllamaEmbedder:
-    def __init__(self, base_url: str, model: str, batch: int = 32, timeout: float = 120.0):
+    """Embeddings from an Ollama server.
+
+    ``num_gpu=0`` runs the model on the CPU. The query path uses that: one
+    question is ~20 tokens (about 50 ms on CPU), and keeping the embedder off
+    the GPU stops Ollama from evicting the chat model on every request when
+    both do not fit in GPU memory (8 GB laptop: llama3.1:8b alone takes 5.8 GB,
+    and the swap cost ~6 s per question). Bulk ingest keeps the GPU. CPU and
+    GPU vectors agree to cosine 0.99999, so one index serves both.
+    """
+
+    def __init__(self, base_url: str, model: str, batch: int = 32, timeout: float = 120.0,
+                 num_gpu: int | None = None):
         self.model = model
         self.batch = batch
+        self._options = {} if num_gpu is None else {"options": {"num_gpu": num_gpu}}
         self._http = httpx.Client(base_url=base_url, timeout=timeout)
 
     def embed(self, texts: list[str]) -> np.ndarray:
@@ -59,7 +71,8 @@ class OllamaEmbedder:
     def _embed_batch(self, batch: list[str]) -> np.ndarray:
         for attempt in range(4):
             try:
-                r = self._http.post("/api/embed", json={"model": self.model, "input": batch})
+                r = self._http.post("/api/embed",
+                                    json={"model": self.model, "input": batch, **self._options})
                 r.raise_for_status()
                 return np.asarray(r.json()["embeddings"], dtype=np.float32)
             except (httpx.HTTPError, KeyError) as exc:
@@ -101,11 +114,14 @@ class StoredAs:
         return self.inner.embed(texts)
 
 
-def build_embedder(settings) -> Embedder:
+def build_embedder(settings, for_queries: bool = False) -> Embedder:
+    """``for_queries``: the embedder a running service uses for questions."""
     if settings.embed_provider == "fastembed":
         return FastEmbedEmbedder(settings.embed_model, settings.embed_batch)
     if settings.embed_provider == "ollama":
-        return OllamaEmbedder(settings.ollama_url, settings.embed_model, settings.embed_batch)
+        cpu = for_queries and settings.query_embed_on_cpu
+        return OllamaEmbedder(settings.ollama_url, settings.embed_model, settings.embed_batch,
+                              num_gpu=0 if cpu else None)
     raise ValueError(f"unknown embed provider: {settings.embed_provider}")
 
 

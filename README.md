@@ -83,34 +83,42 @@ A first threshold rule allowed 2% false refusals on calibration data. It wrongly
 
 ### Answer quality
 
-The local configuration answered 154 test questions (120 answerable, 34 unanswerable): generator `llama3.1:8b`, judge `qwen3:8b`, a different model so nothing grades its own work.
+The local configuration was asked 154 test questions (120 answerable, 34 unanswerable): generator `llama3.1:8b`, judge `qwen3:8b`, a different model so nothing grades its own work.
 
-| Answerable questions (n = 120) | |
-|---|---:|
-| **Correct end to end** (answered, and judged correct) | **88.3%** |
-| Gold passage among the 6 the model saw | 94.2% |
-| Model chose `INSUFFICIENT_EVIDENCE` | 8.3% |
+| Answerable questions (n = 120) | Now | First run |
+|---|---:|---:|
+| **Correct end to end** (answered, and judged correct) | **96.7%** | 88.3% |
+| Gold passage among the 6 the model saw | 94.2% | 94.2% |
+| Model chose `INSUFFICIENT_EVIDENCE` | 0% | 8.3% |
+| Refused by the retrieval gate | 0.8% | 0.8% |
 
-| Of the 109 answers given | |
-|---|---:|
-| Judged correct against the reference | 97.3% |
-| Judged faithful: every claim supported by the passages | 99.1% |
-| **Deterministic grounding checks passed** | **97.2%** |
-| Sentences carrying a citation | 90.3% |
-| Citations pointing at a passage that wasn't supplied | 0% |
-| Cut off by the token limit | 0% |
+| Of the answers given | Now (119) | First run (109) |
+|---|---:|---:|
+| Judged correct against the reference | 97.5% | 97.3% |
+| Judged faithful: every claim supported by the passages | 99.2% | 99.1% |
+| **Deterministic grounding checks passed** | **98.3%** | 97.2% |
+| Sentences carrying a citation | 87.9% | 90.3% |
+| Citations pointing at a passage that wasn't supplied | 0% | 0% |
+| Cut off by the token limit | 0% | 0% |
 
 | Unanswerable questions (n = 34) | |
 |---|---:|
 | **Refused** | **100%** (94.1% before the LLM, 5.9% by the LLM) |
 
-Latency with the local GPU model: p50 5.9 s / p95 10.3 s end to end, and 3.0 s to the first streamed token. The hosted Groq model generates in under 1 s.
+Latency with the local GPU model (RTX 4060 laptop): p50 4.3 s / p95 9.3 s end to end, and p50 1.9 s until the first streamed token (retrieval included). The hosted Groq model generates in under 1 s.
+
+**What changed between the two runs.** The same 120 questions were asked, with the same models and seed:
+
+- **Partial answers are kept.** On 8% of answerable questions, the model had written a full cited answer and then closed with an `INSUFFICIENT_EVIDENCE` line for the part the sources don't cover. The service treated the whole reply as a refusal and threw the answer away. Such replies are now kept, checked and shown with a "Not covered by the sources" note. All 10 recovered answers were judged correct and faithful, and unanswerable questions are still refused 100% of the time.
+- **Faster.** On Windows, `localhost` tried IPv6 first and cost about 2 s per new connection to Ollama; the client now uses `127.0.0.1`. The question embedding also runs on the CPU (about 60 ms), so the chat model keeps the 8 GB GPU instead of being swapped out on every question.
+- Citation coverage fell slightly because a "Not covered" note is an uncited sentence by design.
 
 **Reading these numbers honestly**
 
-- The main failure mode is **over-caution, not hallucination.** The model declined 8.3% of answerable questions, against 0.9% of answers judged unfaithful.
-- **3 answers were flagged by the number check.** In 2, the model cited the wrong passage for a correct number. The third is a known gap in the checker: in a long flattened table, the "%" is too far from its number.
-- A first version of the checker over-flagged (6.4% of answers) on real label formats: `47.8 (13.7) hours`, `µg` vs `mcg`, and the `%` in a table header. The fix is pinned by tests. Stored answers were re-scored deterministically (`python -m labellens.evalkit.rescore`) without regenerating them, and the before and after figures are kept in `generation.json`.
+- The main failure mode is now **retrieval, not generation**. The gold passage is missing from the prompt for 5.8% of questions, and no model can answer from missing evidence. 0.8% of answers were judged unfaithful.
+- **One answer regressed:** for ropinirole in dialysis, the model gave both 18 mg/day and 3 mg/day. The labels state different maximums for different indications, and the judge marked the answer wrong. A second answer went the other way, from wrong to right.
+- **2 answers were flagged by the number check, and both flags are deserved.** One answer repeated a sentence five times, citing passages that don't contain the number. The other is a known gap: in a long flattened table, the "%" sits too far from its number.
+- **The checker has been corrected twice, never to hide a failure.** Each time, the stored answers were re-scored deterministically (`python -m labellens.evalkit.rescore`) without regenerating them, and the before and after figures are kept in `generation.json`. The first correction covered real label formats (`47.8 (13.7) hours`, `µg` for `mcg`, the `%` in a table header). The second covered numbers glued to a word in the label text ("younger than18 years").
 - An 8B model is a lenient judge. Treat judge scores as relative signals for comparing versions, not absolute truth.
 
 ### Outside spot check: 16 adversarial questions
@@ -136,7 +144,7 @@ After the fixes: 6 of 16 questions correctly refused (cost, probability, patient
 - **Observability.** Prometheus metrics with per-stage latency histograms (scope, BM25, embed, dense, rerank, first token, generation), grounding-failure counters, structured JSON logs with request ids, and `/healthz` and `/readyz`.
 - **Failure handling.** Retries with backoff for model backends, a `503` with `Retry-After` when a backend is down, and empty or truncated completions flagged and never cached.
 - **Swappable providers.** Embedder, reranker and LLM are three small protocols. The generator runs locally on Ollama or on Claude (`LABELLENS_LLM_PROVIDER=anthropic`) with no code change.
-- **Tests that need no GPU.** 106 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
+- **Tests that need no GPU.** 113 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
 
 ## Quick start
 
@@ -239,7 +247,7 @@ src/labellens/
 streamlit_app.py   free hosted demo (CPU embeddings, Groq answers)
   evalkit/         golden-set synthesis, ablation, gate calibration, LLM judge
 docs/DECISIONS.md  every design decision, the constraint behind it, what was rejected
-tests/             106 tests, including regression tests for every review and audit finding
+tests/             113 tests, including regression tests for every review and audit finding
 ```
 
 ## Limitations
