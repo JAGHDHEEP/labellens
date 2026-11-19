@@ -198,7 +198,8 @@ class Retriever:
     def reload(self) -> None:
         version = self.store.index_version  # read first: never label new data with an old version
         self._snap = _Snapshot(
-            dense=self.store.load_dense(self.embedder.model, self.variant),
+            dense=self.store.load_dense(self.settings.embed_index_name or self.embedder.model,
+                                        self.variant),
             linker=EntityLinker(self.store.aliases(), self.store.term_exists),
             doc_names=self.store.doc_names(),
             version=version,
@@ -231,7 +232,7 @@ class Retriever:
         cached = self._qcache.get(query)
         if cached is not None:
             return cached
-        vec = self.embedder.embed([query])[0]
+        vec = self.embedder.embed([self.settings.embed_query_prefix + query])[0]
         self._qcache[query] = vec
         while len(self._qcache) > 2048:
             self._qcache.popitem(last=False)

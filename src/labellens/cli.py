@@ -30,14 +30,14 @@ def cmd_fetch(args, settings: Settings) -> int:
 def cmd_ingest(args, settings: Settings) -> int:
     from .fetch import read_corpus
     from .ingest import embed_missing, ingest_records
-    from .providers import OllamaEmbedder
+    from .providers import build_embedder
     from .store import Store
 
     store = Store(settings.db_path)
     report = ingest_records(store, read_corpus(Path(args.corpus or _raw_path(settings))),
                             settings, prune=args.prune, bump=args.no_embed)
     if not args.no_embed:
-        embedder = OllamaEmbedder(settings.ollama_url, settings.embed_model, settings.embed_batch)
+        embedder = build_embedder(settings)
         variants = [args.variant]
         # Keep every embedding variant that is already in use complete, so the
         # header-less ablation index never silently falls behind the main one.
@@ -49,6 +49,46 @@ def cmd_ingest(args, settings: Settings) -> int:
         if report.embedded == 0 and (report.added or report.updated or report.removed):
             store.bump_version()
     print(json.dumps({**asdict(report), **store.stats()}, indent=2))
+    return 0
+
+
+def cmd_export(args, settings: Settings) -> int:
+    """Build the compact index used by the hosted demo.
+
+    Same documents, chunks, BM25 index, aliases and vocabulary as the full
+    index; vectors from a small CPU model stored in float16; gzip-compressed
+    for upload as a release asset.
+    """
+    import gzip
+    import hashlib
+    import shutil
+
+    from .ingest import embed_missing
+    from .providers import FastEmbedEmbedder, OllamaEmbedder, StoredAs
+    from .store import Store
+
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    Store(settings.db_path).export_compact(out)
+    compact = Store(out)
+    if args.embed_provider == "ollama":  # GPU: same weights the host runs on CPU
+        inner = OllamaEmbedder(settings.ollama_url, args.embed_model, batch=64)
+    else:
+        inner = FastEmbedEmbedder(args.embed_model, batch=32)
+    n = embed_missing(compact, StoredAs(inner, args.index_name or args.embed_model),
+                      variant="context", batch=256)
+    compact.vacuum()
+    stats = compact.stats()
+    compact.close()
+    gz = out.with_name(out.name + ".gz")
+    with out.open("rb") as src, gzip.open(gz, "wb", compresslevel=9) as dst:
+        shutil.copyfileobj(src, dst, length=1 << 20)
+    digest = hashlib.sha256(gz.read_bytes()).hexdigest()
+    gz.with_name(gz.name + ".sha256").write_text(f"{digest}  {gz.name}\n", encoding="utf-8")
+    print(json.dumps({**stats, "embedded": n, "embed_model": args.embed_model,
+                      "stored_as": args.index_name or args.embed_model,
+                      "db_mb": round(out.stat().st_size / 2**20, 1),
+                      "gz_mb": round(gz.stat().st_size / 2**20, 1), "sha256": digest}, indent=2))
     return 0
 
 
@@ -122,6 +162,14 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("stats", help="index statistics").set_defaults(fn=cmd_stats)
 
+    x = sub.add_parser("export", help="build the compact CPU index for the hosted demo")
+    x.add_argument("--out", default="data/deploy/labellens-compact.db")
+    x.add_argument("--embed-provider", default="ollama", choices=["ollama", "fastembed"])
+    x.add_argument("--embed-model", default="snowflake-arctic-embed:33m")
+    x.add_argument("--index-name", default="snowflake/snowflake-arctic-embed-s",
+                   help="model name the host loads the vectors under")
+    x.set_defaults(fn=cmd_export)
+
     s = sub.add_parser("search", help="retrieval only (debug)")
     s.add_argument("question")
     s.set_defaults(fn=cmd_search)
@@ -146,6 +194,8 @@ def main(argv: list[str] | None = None) -> int:
     e.add_argument("--gen-model", default="qwen3:8b")
     e.add_argument("--baseline", default="eval/baseline.json")
     e.add_argument("--update-baseline", action="store_true")
+    e.add_argument("--only-full", action="store_true", help="score only the full pipeline")
+    e.add_argument("--tag", default="", help="suffix for the results file, e.g. _hosted")
     e.set_defaults(fn=cmd_eval)
 
     # Label text contains symbols (arrows, Greek letters) that legacy Windows

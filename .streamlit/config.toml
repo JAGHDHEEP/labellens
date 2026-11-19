@@ -1,0 +1,9 @@
+[theme]
+primaryColor = "#0b6e69"
+font = "sans serif"
+
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false

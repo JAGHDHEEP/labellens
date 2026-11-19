@@ -9,7 +9,9 @@ from __future__ import annotations
 
 import json
 import logging
+import time
 import uuid
+from collections import deque
 from contextlib import asynccontextmanager
 from dataclasses import asdict
 from pathlib import Path
@@ -50,6 +52,28 @@ def create_app(service: RagService | None = None, settings: Settings | None = No
 
     def svc() -> RagService:
         return app.state.service
+
+    hits: dict[str, deque] = {}
+
+    @app.middleware("http")
+    async def rate_limit(request: Request, call_next):
+        limit = svc().settings.rate_limit_per_minute if app.state.service else 0
+        if limit > 0 and request.url.path.startswith("/v1/ask"):
+            # Behind a proxy the client is the first X-Forwarded-For hop.
+            client = (request.headers.get("x-forwarded-for", "").split(",")[0].strip()
+                      or (request.client.host if request.client else "unknown"))
+            now = time.monotonic()
+            window = hits.setdefault(client, deque())
+            while window and now - window[0] > 60:
+                window.popleft()
+            if len(window) >= limit:
+                retry = int(60 - (now - window[0])) + 1
+                return JSONResponse(status_code=429, headers={"Retry-After": str(retry)},
+                                    content={"error": f"rate limit: {limit} questions per minute"})
+            window.append(now)
+            if len(hits) > 10_000:  # bound memory under a scan of many addresses
+                hits.clear()
+        return await call_next(request)
 
     @app.middleware("http")
     async def request_id(request: Request, call_next):

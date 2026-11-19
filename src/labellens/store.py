@@ -210,11 +210,18 @@ class Store:
                 "WHERE e.text_hash IS NULL", (model,)).fetchall()
         return [(r["h"], r["t"]) for r in rows]
 
+    @property
+    def vec_dtype(self) -> np.dtype:
+        """Storage precision of vectors. A compact deployment index stores
+        float16 (half the bytes; cosine ranking is unaffected at this scale)."""
+        return np.dtype(self.get_meta("vec_dtype", "float32"))
+
     def put_embeddings(self, model: str, items: list[tuple[str, np.ndarray]]) -> None:
+        dtype = self.vec_dtype
         with self._lock, self._db:
             self._db.executemany(
                 "INSERT OR REPLACE INTO embeddings VALUES(?,?,?)",
-                [(h, model, np.asarray(v, dtype=np.float32).tobytes()) for h, v in items])
+                [(h, model, np.asarray(v, dtype=dtype).tobytes()) for h, v in items])
 
     def gc_embeddings(self) -> int:
         """Drop vectors no chunk references any more (after label revisions)."""
@@ -234,12 +241,13 @@ class Store:
         if not rows:
             return DenseIndex(np.zeros(0, np.int64), np.zeros(0, np.int32),
                               np.zeros((0, 1), np.float32), doc_index)
-        dim = len(rows[0]["vec"]) // 4
-        matrix = np.empty((len(rows), dim), dtype=np.float32)
+        dtype = self.vec_dtype
+        dim = len(rows[0]["vec"]) // dtype.itemsize
+        matrix = np.empty((len(rows), dim), dtype=np.float32)  # searched in float32
         rowids = np.empty(len(rows), dtype=np.int64)
         codes = np.empty(len(rows), dtype=np.int32)
         for i, r in enumerate(rows):
-            matrix[i] = np.frombuffer(r["vec"], dtype=np.float32)
+            matrix[i] = np.frombuffer(r["vec"], dtype=dtype)
             rowids[i] = r["id"]
             codes[i] = doc_index.setdefault(r["doc_id"], len(doc_index))
         return DenseIndex(rowids, codes, matrix, doc_index)
@@ -342,6 +350,37 @@ class Store:
                 f"SELECT COUNT(*) FROM chunks c JOIN embeddings e ON e.text_hash = c.{col} "
                 "AND e.model = ?", (model,)).fetchone()[0]
         return have, total
+
+    def export_compact(self, dest: Path | str, vec_dtype: str = "float16") -> None:
+        """Write a deployment copy: every document, chunk, alias and the vocabulary,
+        but no embeddings (the destination embeds with its own, smaller model)."""
+        dest = Path(dest)
+        if dest.exists():
+            dest.unlink()
+        out = Store(dest)
+        out.set_meta("vec_dtype", vec_dtype)
+        with self._lock:
+            docs = self._db.execute("SELECT * FROM documents").fetchall()
+            chunks = self._db.execute("SELECT * FROM chunks ORDER BY id").fetchall()
+            aliases = self._db.execute("SELECT alias, doc_id FROM aliases").fetchall()
+            vocab = self._db.execute("SELECT term FROM vocab").fetchall()
+        with out._lock, out._db:
+            out._db.executemany(f"INSERT INTO documents VALUES({','.join('?' * 12)})",
+                                [tuple(r) for r in docs])
+            out._db.executemany(f"INSERT INTO chunks VALUES({','.join('?' * 13)})",
+                                [tuple(r) for r in chunks])
+            out._db.executemany("INSERT INTO chunks_fts(rowid, header, text) VALUES(?,?,?)",
+                                [(r["id"], r["header"], r["text"]) for r in chunks])
+            out._db.executemany("INSERT INTO aliases VALUES(?,?)", [tuple(r) for r in aliases])
+            out._db.executemany("INSERT INTO vocab VALUES(?)", [tuple(r) for r in vocab])
+            out._db.execute("INSERT INTO chunks_fts(chunks_fts) VALUES('optimize')")
+        out.set_meta("index_version", str(self.index_version))
+        out.close()
+
+    def vacuum(self) -> None:
+        with self._lock:
+            self._db.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+            self._db.execute("VACUUM")
 
     def stats(self) -> dict:
         with self._lock:

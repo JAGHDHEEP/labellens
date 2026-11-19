@@ -1,0 +1,4241 @@
+{
+  "threshold_chosen_on": "calib",
+  "chosen": {
+    "threshold": 0.0,
+    "unanswerable_refused": 0.7586,
+    "answerable_wrongly_refused": 0.0
+  },
+  "test": {
+    "n_answerable": 192,
+    "n_unanswerable": 34,
+    "answerable_wrongly_refused": 0.0052,
+    "answerable_with_gold_wrongly_refused": 0.0056,
+    "unanswerable_refused": 0.9412,
+    "unanswerable_refused_by_type": {
+      "out_of_label": 0.9375,
+      "unknown_drug": 0.9444
+    },
+    "share_caught_before_reranker_by_type": {
+      "out_of_label": 0.0,
+      "unknown_drug": 0.9444
+    },
+    "auroc_gold_retrieved_vs_unanswerable": 0.9972,
+    "auroc_all_answerable_vs_unanswerable": 0.9971
+  },
+  "calib_curve": [
+    {
+      "threshold": -12.0,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -11.5,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -11.0,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -10.5,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -10.0,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -9.5,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -9.0,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -8.5,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -8.0,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -7.5,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -7.0,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -6.5,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -6.0,
+      "unanswerable_refused": 0.0,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -5.5,
+      "unanswerable_refused": 0.0345,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -5.0,
+      "unanswerable_refused": 0.0345,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -4.5,
+      "unanswerable_refused": 0.069,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -4.0,
+      "unanswerable_refused": 0.1034,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -3.5,
+      "unanswerable_refused": 0.2414,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -3.0,
+      "unanswerable_refused": 0.3103,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -2.5,
+      "unanswerable_refused": 0.4138,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -2.0,
+      "unanswerable_refused": 0.6207,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -1.5,
+      "unanswerable_refused": 0.6897,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -1.0,
+      "unanswerable_refused": 0.7586,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -0.5,
+      "unanswerable_refused": 0.7586,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": 0.0,
+      "unanswerable_refused": 0.7586,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": 0.5,
+      "unanswerable_refused": 0.7931,
+      "answerable_wrongly_refused": 0.0051
+    },
+    {
+      "threshold": 1.0,
+      "unanswerable_refused": 0.8276,
+      "answerable_wrongly_refused": 0.0152
+    },
+    {
+      "threshold": 1.5,
+      "unanswerable_refused": 0.8276,
+      "answerable_wrongly_refused": 0.0152
+    },
+    {
+      "threshold": 2.0,
+      "unanswerable_refused": 0.8276,
+      "answerable_wrongly_refused": 0.0305
+    },
+    {
+      "threshold": 2.5,
+      "unanswerable_refused": 0.8276,
+      "answerable_wrongly_refused": 0.0609
+    },
+    {
+      "threshold": 3.0,
+      "unanswerable_refused": 0.8966,
+      "answerable_wrongly_refused": 0.0609
+    },
+    {
+      "threshold": 3.5,
+      "unanswerable_refused": 0.8966,
+      "answerable_wrongly_refused": 0.066
+    },
+    {
+      "threshold": 4.0,
+      "unanswerable_refused": 0.931,
+      "answerable_wrongly_refused": 0.1015
+    },
+    {
+      "threshold": 4.5,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.1574
+    },
+    {
+      "threshold": 5.0,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.2132
+    },
+    {
+      "threshold": 5.5,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.2944
+    },
+    {
+      "threshold": 6.0,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.3756
+    }
+  ],
+  "test_curve": [
+    {
+      "threshold": -12.0,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -11.5,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -11.0,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -10.5,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -10.0,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -9.5,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -9.0,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -8.5,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -8.0,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -7.5,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -7.0,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -6.5,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -6.0,
+      "unanswerable_refused": 0.5,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -5.5,
+      "unanswerable_refused": 0.5294,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -5.0,
+      "unanswerable_refused": 0.5294,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -4.5,
+      "unanswerable_refused": 0.5588,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -4.0,
+      "unanswerable_refused": 0.5882,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -3.5,
+      "unanswerable_refused": 0.6176,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -3.0,
+      "unanswerable_refused": 0.6765,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -2.5,
+      "unanswerable_refused": 0.7941,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -2.0,
+      "unanswerable_refused": 0.8235,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -1.5,
+      "unanswerable_refused": 0.8529,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -1.0,
+      "unanswerable_refused": 0.8824,
+      "answerable_wrongly_refused": 0.0
+    },
+    {
+      "threshold": -0.5,
+      "unanswerable_refused": 0.8824,
+      "answerable_wrongly_refused": 0.0052
+    },
+    {
+      "threshold": 0.0,
+      "unanswerable_refused": 0.9412,
+      "answerable_wrongly_refused": 0.0052
+    },
+    {
+      "threshold": 0.5,
+      "unanswerable_refused": 0.9412,
+      "answerable_wrongly_refused": 0.0104
+    },
+    {
+      "threshold": 1.0,
+      "unanswerable_refused": 0.9706,
+      "answerable_wrongly_refused": 0.0312
+    },
+    {
+      "threshold": 1.5,
+      "unanswerable_refused": 0.9706,
+      "answerable_wrongly_refused": 0.0365
+    },
+    {
+      "threshold": 2.0,
+      "unanswerable_refused": 0.9706,
+      "answerable_wrongly_refused": 0.0365
+    },
+    {
+      "threshold": 2.5,
+      "unanswerable_refused": 0.9706,
+      "answerable_wrongly_refused": 0.0521
+    },
+    {
+      "threshold": 3.0,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.0729
+    },
+    {
+      "threshold": 3.5,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.0885
+    },
+    {
+      "threshold": 4.0,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.1146
+    },
+    {
+      "threshold": 4.5,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.1823
+    },
+    {
+      "threshold": 5.0,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.2396
+    },
+    {
+      "threshold": 5.5,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.3125
+    },
+    {
+      "threshold": 6.0,
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.375
+    }
+  ],
+  "scores": [
+    {
+      "id": "a0000",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.898,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0001",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.055,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0002",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.686,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0003",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.566,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0004",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.621,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0005",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 2.16,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0006",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.159,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0007",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.11,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0008",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.759,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0009",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.33,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0010",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.937,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0011",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.583,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0012",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.025,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0013",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.2,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0014",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 2.468,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0015",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 2.531,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0016",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 3.705,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0017",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.033,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0018",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.615,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0019",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.701,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0020",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.057,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0021",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.071,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0022",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.187,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0023",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.553,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0024",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 0.446,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0025",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.814,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0026",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.448,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0027",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 0.628,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0028",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.9,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0029",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.527,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0030",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.872,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0031",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.501,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0032",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.623,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0033",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.367,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0034",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.512,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0035",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.049,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0036",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.524,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0037",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.202,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0038",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.476,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0039",
+      "split": "test",
+      "type": "answerable",
+      "top_score": -0.85,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0040",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.208,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0041",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.411,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0042",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.681,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0043",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 0.794,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0044",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.011,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0045",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.406,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0046",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.946,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0047",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.569,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0048",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.095,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0049",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.247,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0050",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 9.802,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0051",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.097,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0052",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.407,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0053",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.058,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0054",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.651,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0055",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 3.898,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0056",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.706,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0057",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.921,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0058",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 2.505,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0059",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.995,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0060",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 3.901,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0061",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 9.27,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0062",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.438,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0063",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.872,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0064",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.806,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0065",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.304,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0066",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.173,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0067",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.545,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0068",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.576,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0069",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.077,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0070",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.768,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0071",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.199,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0072",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 0.969,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0073",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.583,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0074",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 3.906,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0075",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.733,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0076",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.498,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0077",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.188,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0078",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.218,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0079",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.693,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0080",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.934,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0081",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.445,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0082",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.814,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0083",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.829,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0084",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.225,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0085",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.051,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0086",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.357,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0087",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.149,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0088",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.167,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0089",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.208,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0090",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.085,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0091",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.858,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0092",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.192,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0093",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.114,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0094",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.584,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0095",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.654,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0096",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.387,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0097",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.538,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0098",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.42,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0099",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.836,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0100",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 3.597,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0101",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.493,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0102",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.015,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0103",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.633,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0104",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.091,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0105",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.568,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0106",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.275,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0107",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.819,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0108",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.112,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0109",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 1.387,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0110",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.7,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0111",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 0.691,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0112",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.495,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0113",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.41,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0114",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.446,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0115",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.379,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0116",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.201,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0117",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.598,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0118",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.28,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0119",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.405,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0120",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 9.465,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0121",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.534,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0122",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.284,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0123",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.453,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0124",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 10.852,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0125",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.248,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0126",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.727,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0127",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 9.129,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0128",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.675,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0129",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.864,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0130",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.905,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0131",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.022,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0132",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.217,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0133",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 3.683,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0134",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.238,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0135",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.49,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0136",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.016,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0137",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.14,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0138",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.246,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0139",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.661,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0140",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 2.121,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0141",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.591,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0142",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.625,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0143",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.832,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0144",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.424,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0145",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.719,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0146",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.111,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0147",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.401,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0148",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.94,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0149",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.882,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0150",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.045,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0151",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.949,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0152",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.605,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0153",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.524,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0154",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.135,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0155",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.348,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0156",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.495,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0157",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.603,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0158",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.247,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0159",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.636,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0160",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.087,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0161",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.617,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0162",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.089,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0163",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.18,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0164",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 3.636,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0165",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 1.561,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0166",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.119,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0167",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.692,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0168",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.92,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0169",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.376,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0170",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.902,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0171",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.13,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0172",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.549,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0173",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.705,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0174",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.037,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0175",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.417,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0176",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.021,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0177",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.154,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0178",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.16,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0179",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 2.397,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0180",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 0.669,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0181",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.587,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0182",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.013,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0183",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.63,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0184",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.984,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0185",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.173,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0186",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.546,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0187",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.759,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0188",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.979,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0189",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 0.143,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0190",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.99,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0191",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.668,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0192",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.032,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0193",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.74,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0194",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.682,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0195",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.619,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0196",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.008,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0197",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.896,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0198",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.856,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0199",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.406,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0200",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.367,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0201",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.625,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0202",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.36,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0203",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 3.444,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0204",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.606,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0205",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.336,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0206",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.424,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0207",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.704,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0208",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.926,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0209",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.047,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0210",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.733,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0211",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.504,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0212",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.474,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0213",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.648,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0214",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 1.963,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0215",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 3.746,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0216",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.741,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0217",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.06,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0218",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.062,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0219",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.316,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0220",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.233,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0221",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.604,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0222",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.651,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0223",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.074,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0224",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 2.407,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0225",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.063,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0226",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.846,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0227",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.984,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0228",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.109,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0229",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.025,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0230",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.466,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0231",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.52,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0232",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.197,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0233",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.534,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0234",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.888,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0235",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.991,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0236",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.743,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0237",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.082,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0238",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.871,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0239",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.941,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0240",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.387,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0241",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.01,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0242",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.555,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0243",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 3.751,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0244",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.611,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0245",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.031,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0246",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.655,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0247",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.945,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0248",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.679,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0249",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.642,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0250",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": -1.981,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0251",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.242,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0252",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.794,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0253",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.147,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0254",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.405,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0255",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.451,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0256",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.564,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0257",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 3.476,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0258",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.517,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0259",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.34,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0260",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.791,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0261",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.98,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0262",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.607,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0263",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.309,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0264",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.854,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0265",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.114,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0266",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.514,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0267",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.749,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0268",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.393,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0269",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.711,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0270",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.186,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0271",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.807,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0272",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 2.982,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0273",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.951,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0274",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.301,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0275",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 1.946,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0276",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.647,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0277",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.122,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0278",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.259,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0279",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.944,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0280",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.549,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0281",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.933,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0282",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.037,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0283",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.983,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0284",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 3.024,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0285",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.935,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0286",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 9.345,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0287",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.855,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0288",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.09,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0289",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.088,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0290",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.138,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0291",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.14,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0292",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.376,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0293",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.569,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0294",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.32,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0295",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.873,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0296",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 3.342,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0297",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.077,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0298",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.337,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0299",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.77,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0300",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.877,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0301",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.994,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0302",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 9.001,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0303",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.743,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0304",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.081,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0305",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.684,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0306",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.495,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0307",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.507,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0308",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 2.309,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0309",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.908,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0310",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.885,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0311",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 9.706,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0312",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.242,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0313",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 3.894,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0314",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.472,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0315",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 2.232,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0316",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.964,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0317",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.163,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0318",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.675,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0319",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.081,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0320",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.646,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0321",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.99,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0322",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.774,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0323",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.269,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0324",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.374,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0325",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.929,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0326",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 3.557,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0327",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.476,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0328",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.399,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0329",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.6,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0330",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.976,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0331",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.258,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0332",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.37,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0333",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.436,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0334",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.051,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0335",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 10.332,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0336",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.787,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0337",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 2.822,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0338",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.502,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0339",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.301,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0340",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.469,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0341",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.209,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0342",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.311,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0343",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 10.118,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0344",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.473,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0345",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.182,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0346",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.014,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0347",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.889,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0348",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.567,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0349",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.401,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0350",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.06,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0351",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.235,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0352",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.35,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0353",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.595,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0354",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.775,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0355",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.016,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0356",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.523,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0357",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 9.109,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0358",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.338,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0359",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 2.901,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0360",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.375,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0361",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.649,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0362",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 3.395,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0363",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.293,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0364",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.37,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0365",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.472,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0366",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.713,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0367",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 2.59,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0368",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.94,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0369",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 8.356,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0370",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 0.697,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0371",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.543,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0372",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.154,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0373",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.083,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0374",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.701,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0375",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 3.576,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0376",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.528,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0377",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 5.267,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0378",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.734,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0379",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 8.164,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0380",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.724,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0381",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 4.149,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0382",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.335,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0383",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.853,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0384",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.053,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0385",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 5.218,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0386",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.732,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0387",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.498,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0388",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.08,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0389",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.693,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0390",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 6.49,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0391",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.998,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0392",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 4.172,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0393",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.046,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0394",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 6.468,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0395",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 2.11,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "a0396",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 7.197,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0397",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 2.439,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0398",
+      "split": "calib",
+      "type": "answerable",
+      "top_score": 9.118,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "a0399",
+      "split": "test",
+      "type": "answerable",
+      "top_score": 7.669,
+      "pre_gated": false,
+      "gold_retrieved": true
+    },
+    {
+      "id": "u0000",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 2.57,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0001",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 4.915,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0002",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 3.582,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0003",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 2.367,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0004",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 0.14,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0005",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": -3.501,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0006",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 2.886,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0007",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 3.965,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0008",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 4.022,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0009",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 3.433,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0010",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 2.889,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0011",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": -2.16,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0012",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 2.312,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0013",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 2.834,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0014",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 2.933,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0015",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 3.188,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0016",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 2.852,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0017",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": -2.214,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0018",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 2.408,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0019",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 0.954,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0020",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 5.882,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0021",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 3.134,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0022",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": -2.981,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0023",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 1.896,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0024",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 0.557,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0025",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 2.898,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0026",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 2.48,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0027",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 2.632,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0028",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 0.542,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0029",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 2.521,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0030",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 3.546,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0031",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 4.085,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0032",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 1.042,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0033",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 0.93,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0034",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": -3.272,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0035",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 2.745,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0036",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": -1.804,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0037",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 2.921,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0038",
+      "split": "calib",
+      "type": "unknown_drug",
+      "top_score": 5.347,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0039",
+      "split": "test",
+      "type": "unknown_drug",
+      "top_score": 1.694,
+      "pre_gated": true,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0040",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -2.441,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0041",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -3.354,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0042",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -2.804,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0043",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -3.81,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0044",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -2.661,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0045",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -1.835,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0046",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -5.914,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0047",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -1.023,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0048",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": 0.112,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0049",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -2.828,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0050",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -2.505,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0051",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": 0.714,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0052",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -3.566,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0053",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -4.435,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0054",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -3.183,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0055",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -4.836,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0056",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -2.317,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0057",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -1.71,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0058",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -2.27,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0059",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -3.255,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0060",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -1.98,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0061",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -2.619,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0062",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -2.066,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0063",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -2.837,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0064",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -2.578,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0065",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -3.828,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0066",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -2.484,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0067",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -0.046,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0068",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -1.345,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0069",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -3.613,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0070",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -2.01,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0071",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -0.351,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0072",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -1.403,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0073",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -4.214,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0074",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -4.757,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0075",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -3.322,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0076",
+      "split": "test",
+      "type": "out_of_label",
+      "top_score": -2.366,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0077",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -5.607,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0078",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": 0.615,
+      "pre_gated": false,
+      "gold_retrieved": false
+    },
+    {
+      "id": "u0079",
+      "split": "calib",
+      "type": "out_of_label",
+      "top_score": -3.902,
+      "pre_gated": false,
+      "gold_retrieved": false
+    }
+  ]
+}

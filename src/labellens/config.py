@@ -22,9 +22,17 @@ class Settings:
 
     # --- model providers ---------------------------------------------------
     ollama_url: str = "http://localhost:11434"
+    embed_provider: str = "ollama"  # "ollama" | "fastembed" (CPU, no server)
     embed_model: str = "bge-m3"
     embed_batch: int = 32
-    llm_provider: str = "ollama"  # "ollama" | "anthropic"
+    # Some retrieval models expect an instruction prefix on queries only
+    # (e.g. snowflake-arctic-embed); passages are embedded without it.
+    embed_query_prefix: str = ""
+    # Name the vectors are stored under, when it differs from the runtime model
+    # name (the hosted index is built with Ollama on GPU, queried with fastembed
+    # on CPU: same weights, different names).
+    embed_index_name: str = ""
+    llm_provider: str = "ollama"  # "ollama" | "anthropic" | "groq"
     llm_model: str = "llama3.1:8b"
     llm_timeout_s: float = 120.0
     llm_max_tokens: int = 700
@@ -45,11 +53,15 @@ class Settings:
     use_rerank: bool = True
     use_entity_scope: bool = True
     # Reranker logit below which we refuse *before* spending an LLM call.
-    # Calibrated on the golden set (see eval/results); -inf disables the gate.
-    abstain_threshold: float = -4.0
+    # Chosen on the calib split (highest value with zero valid questions
+    # refused) and checked on held-out data: see eval/results/gate.json.
+    abstain_threshold: float = 0.0
 
     # --- serving -----------------------------------------------------------
     cache_size: int = 512
+    # Questions per minute per client IP on /v1/ask*; 0 disables. A public demo
+    # spends a rate-limited API key, so one visitor must not exhaust it for all.
+    rate_limit_per_minute: int = 0
     strict_grounding: bool = False  # True: replace ungrounded answers with a refusal
 
     @property

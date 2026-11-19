@@ -22,7 +22,7 @@ from pathlib import Path
 
 from ..bootstrap import build_retriever
 from ..config import Settings
-from ..providers import CrossEncoderReranker, OllamaEmbedder, OllamaLLM, build_llm
+from ..providers import CrossEncoderReranker, OllamaLLM, build_embedder, build_llm
 from ..retrieval import Retriever, strip_salt
 from ..service import RagService, should_refuse
 from ..store import Store
@@ -124,14 +124,16 @@ def _score_config(retriever: Retriever, cfg: Settings, items: list[dict]) -> dic
 def task_retrieval(args, settings: Settings) -> int:
     items = [i for i in _test(dataset.read_jsonl(Path(args.golden))) if i["type"] == "answerable"]
     store = Store(settings.db_path)
-    embedder = OllamaEmbedder(settings.ollama_url, settings.embed_model, settings.embed_batch)
+    embedder = build_embedder(settings)
     reranker = CrossEncoderReranker(settings.rerank_model)
     base = settings.with_(final_k=10)
     retrievers: dict[str, Retriever] = {}
     results: dict[str, dict] = {}
     skipped: dict[str, str] = {}
-    for name, (variant, overrides) in CONFIGS.items():
-        have, total = store.dense_coverage(embedder.model, variant)
+    configs = {FULL: CONFIGS[FULL]} if args.only_full else CONFIGS
+    index_name = settings.embed_index_name or embedder.model
+    for name, (variant, overrides) in configs.items():
+        have, total = store.dense_coverage(index_name, variant)
         if have < total:  # a partial index would silently understate a baseline
             skipped[name] = f"'{variant}' embeddings cover {have}/{total} chunks"
             log.warning("skipping %r: %s (run: labellens ingest --variant %s)",
@@ -174,8 +176,10 @@ def task_retrieval(args, settings: Settings) -> int:
     report = {"split": "test", "n_questions": len(items), "corpus": store.stats(),
               "embedder": embedder.model, "reranker": settings.rerank_model,
               "configs": results, "skipped": skipped, "slices": slices}
-    _write(Path(args.out) / "retrieval.json", report)
+    _write(Path(args.out) / f"retrieval{args.tag}.json", report)
     _print_table(results)
+    if args.tag:  # a tagged run (e.g. the hosted index) is reported, not gated
+        return 0
     return _regression_gate(results, Path(args.baseline), update=args.update_baseline)
 
 

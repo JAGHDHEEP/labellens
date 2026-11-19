@@ -11,6 +11,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import os
 import re
 import time
 from collections.abc import Iterator
@@ -66,6 +67,46 @@ class OllamaEmbedder:
                     raise ProviderError(f"embedding failed: {exc}") from exc
                 time.sleep(1.5**attempt)
         raise ProviderError("unreachable")
+
+
+class FastEmbedEmbedder:
+    """ONNX embeddings on CPU via fastembed: no model server, ~70 MB for bge-small.
+
+    Used by the hosted demo, which has no GPU and about 1 GB of memory.
+    """
+
+    def __init__(self, model: str, batch: int = 64, parallel: int | None = None):
+        from fastembed import TextEmbedding
+
+        self.model = model
+        self.batch = batch
+        self.parallel = parallel  # 0 = all CPU cores (bulk indexing); None = in-process
+        self._enc = TextEmbedding(model_name=model)
+
+    def embed(self, texts: list[str]) -> np.ndarray:
+        if not texts:
+            return np.zeros((0, 1), np.float32)
+        vecs = self._enc.embed(texts, batch_size=self.batch, parallel=self.parallel)
+        return _unit(np.asarray(list(vecs), dtype=np.float32))
+
+
+class StoredAs:
+    """Wrap an embedder so its vectors are stored under another model name."""
+
+    def __init__(self, inner: Embedder, name: str):
+        self.inner = inner
+        self.model = name
+
+    def embed(self, texts: list[str]) -> np.ndarray:
+        return self.inner.embed(texts)
+
+
+def build_embedder(settings) -> Embedder:
+    if settings.embed_provider == "fastembed":
+        return FastEmbedEmbedder(settings.embed_model, settings.embed_batch)
+    if settings.embed_provider == "ollama":
+        return OllamaEmbedder(settings.ollama_url, settings.embed_model, settings.embed_batch)
+    raise ValueError(f"unknown embed provider: {settings.embed_provider}")
 
 
 class HashEmbedder:
@@ -252,7 +293,68 @@ class FakeLLM:
             yield text[i: i + 12]
 
 
+class GroqLLM:
+    """Groq's OpenAI-compatible chat API (hosted demo; free tier available).
+
+    The key is read from ``GROQ_API_KEY`` and never logged. Reasoning models
+    (gpt-oss) return their reasoning in a separate field, so only the answer
+    text is streamed; their output budget includes reasoning, hence the
+    larger ``max_tokens`` sent to the API.
+    """
+
+    BASE_URL = "https://api.groq.com/openai/v1"
+
+    def __init__(self, model: str = "openai/gpt-oss-20b", timeout: float = 60.0,
+                 api_key: str | None = None, transport: httpx.BaseTransport | None = None):
+        key = api_key or os.environ.get("GROQ_API_KEY", "")
+        if not key:
+            raise ProviderError("GROQ_API_KEY is not set")
+        self.model = model
+        self._reasoning = "gpt-oss" in model
+        self._http = httpx.Client(base_url=self.BASE_URL, timeout=timeout, transport=transport,
+                                  headers={"Authorization": f"Bearer {key}"})
+
+    def _payload(self, system: str, user: str, max_tokens: int) -> dict:
+        body = {
+            "model": self.model, "stream": True, "temperature": 0, "seed": 7,
+            "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+            "max_tokens": max_tokens * 4 if self._reasoning else max_tokens,
+        }
+        if self._reasoning:
+            body["reasoning_effort"] = "low"
+        return body
+
+    def generate(self, system: str, user: str, max_tokens: int = 700) -> str:
+        return "".join(p for p in self.stream(system, user, max_tokens) if p != TRUNCATED).strip()
+
+    def stream(self, system: str, user: str, max_tokens: int = 700) -> Iterator[str]:
+        try:
+            with self._http.stream("POST", "/chat/completions",
+                                   json=self._payload(system, user, max_tokens)) as r:
+                if r.status_code == 429:
+                    raise ProviderError("rate limited by Groq; try again shortly")
+                if r.status_code >= 400:
+                    r.read()
+                    raise ProviderError(f"Groq API error {r.status_code}: {r.text[:200]}")
+                for line in r.iter_lines():
+                    if not line.startswith("data:"):
+                        continue
+                    data = line[5:].strip()
+                    if data == "[DONE]":
+                        break
+                    choice = (json.loads(data).get("choices") or [{}])[0]
+                    piece = (choice.get("delta") or {}).get("content") or ""
+                    if piece:
+                        yield piece
+                    if choice.get("finish_reason") == "length":
+                        yield TRUNCATED
+        except httpx.HTTPError as exc:
+            raise ProviderError(f"generation failed: {exc}") from exc
+
+
 def build_llm(provider: str, model: str, ollama_url: str, timeout: float = 120.0) -> LLM:
+    if provider == "groq":
+        return GroqLLM(model=model, timeout=timeout)
     if provider == "anthropic":
         return AnthropicLLM(model=model, timeout=timeout)
     if provider == "ollama":
