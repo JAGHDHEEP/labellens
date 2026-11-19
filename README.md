@@ -42,27 +42,29 @@ All numbers come from the **held-out test split** of a 480-question golden set (
 
 ### Retrieval: what each component is worth
 
-192 answerable test questions. *Recall@5* = the passage the question was written from is in the top 5.
+192 answerable test questions, each written from one label passage (its *gold* passage). *Recall@5* = the gold passage is in the top 5. *In prompt* = it is among the 6 passages actually given to the model.
 
-| Configuration | Hit@1 | Recall@5 | MRR@10 | Right drug in top 5 | p95 latency |
-|---|---:|---:|---:|---:|---:|
-| Naive: dense only, plain chunks | 43.2% | 66.1% | 0.533 | 90.1% | 50 ms |
-| BM25 only, plain chunks | 27.1% | 56.2% | 0.392 | 85.9% | 80 ms |
-| Dense + contextual header | 53.6% | 83.3% | 0.663 | 97.9% | 62 ms |
-| Hybrid (BM25 + dense, RRF) | 50.5% | 79.7% | 0.633 | 94.3% | 115 ms |
-| Hybrid + cross-encoder rerank | 53.1% | 87.0% | 0.667 | 98.4% | 1.5 s |
-| Hybrid + entity scoping | 56.8% | 89.6% | 0.699 | 98.4% | 179 ms |
-| **Full: hybrid + scoping + rerank** | **59.4%** | **90.6%** | **0.720** | **99.0%** | 1.6 s |
-| Full, without contextual header | 53.1% | 81.2% | 0.651 | 99.0% | 1.5 s |
+| Configuration | Hit@1 | Recall@5 | In prompt (6) | MRR@10 | Right drug in top 5 | p95 latency |
+|---|---:|---:|---:|---:|---:|---:|
+| Naive: dense only, plain chunks | 43.2% | 66.1% | 68.8% | 0.533 | 90.1% | 49 ms |
+| BM25 only, plain chunks | 27.1% | 56.2% | 58.9% | 0.392 | 85.9% | 54 ms |
+| Dense + contextual header | 53.6% | 83.3% | 84.9% | 0.663 | 97.9% | 65 ms |
+| Hybrid (BM25 + dense, RRF) | 50.5% | 79.7% | 82.3% | 0.633 | 94.3% | 130 ms |
+| Hybrid + cross-encoder rerank | 53.1% | 87.0% | 87.5% | 0.667 | 98.4% | 1.2 s |
+| Hybrid + entity scoping | 56.8% | 89.1% | 90.6% | 0.698 | 98.4% | 204 ms |
+| **Full: hybrid + scoping + rerank** | **59.4%** | **90.6%** | **91.7%** | **0.719** | **99.0%** | 1.3 s |
+| Full, without contextual header | 53.1% | 81.2% | 83.3% | 0.651 | 99.0% | 1.3 s |
 
-Full pipeline Recall@5: 95% bootstrap CI **86.5–94.8%**. Strict (exact-chunk) Recall@5: 86.5%. The credited figure also counts another manufacturer's identical copy of the same paragraph.
+Full pipeline Recall@5: 95% bootstrap CI **86.5–94.8%**. Strict (exact-chunk) Recall@5: 86.5%. The credited figure also counts another manufacturer's identical copy of the same paragraph. Every number was re-derived by an independent script that shares no code with the evaluation harness, and they match; the exact settings of each run are stored in the result file.
+
+What this does *not* measure: gold passages are prose only (tables and passages under 60 words are never gold), and each question has exactly one gold passage, so a correct answer found in a different passage counts as a miss.
 
 **What the ablation shows**
 
 - **The contextual header is the largest single gain:** +17.2 points for dense retrieval, and +9.4 points inside the full pipeline. Without it, "contraindicated in severe renal impairment" could be about any of 1,200 drugs.
 - **Naive hybrid search hurt** (79.7% vs 83.3% for dense alone). Every label shares the same section vocabulary, so BM25 alone is weak (56.2%) and drags the fusion down. Hybrid pays off only once entity scoping removes the other labels.
-- **Entity scoping is the cheapest lever:** 89.6% with no reranker, at 179 ms instead of 1.5 s.
-- **Once scoped, the embedding model barely matters.** A label has a median of 53 passages, so BM25-50 plus dense-50 already cover nearly all of it, and the reranker decides. The hosted demo's 33M-parameter CPU model scores the same Recall@5 (90.6%) as `bge-m3` (568M) on GPU.
+- **Entity scoping is the cheapest lever:** 89.1% with no reranker, at about 200 ms instead of 1.2 s.
+- **Once scoped, the embedding model barely matters.** A label has a median of 53 passages, so BM25-50 plus dense-50 already cover nearly all of it, and the reranker decides. The hosted demo's 33M-parameter CPU model scores the same Recall@5 (90.6%) as `bge-m3` (568M) on GPU. The hosted demo gives the model only 4 passages, though, so its gold-in-prompt rate is 88.5%.
 - **Bias check:** Recall@5 is 85.4% on questions with below-median word overlap with their source, and 95.2% above it. Misspelled drug names: 95.3% (n = 43).
 
 ### Refusing when the labels don't have the answer
@@ -134,7 +136,7 @@ After the fixes: 6 of 16 questions correctly refused (cost, probability, patient
 - **Observability.** Prometheus metrics with per-stage latency histograms (scope, BM25, embed, dense, rerank, first token, generation), grounding-failure counters, structured JSON logs with request ids, and `/healthz` and `/readyz`.
 - **Failure handling.** Retries with backoff for model backends, a `503` with `Retry-After` when a backend is down, and empty or truncated completions flagged and never cached.
 - **Swappable providers.** Embedder, reranker and LLM are three small protocols. The generator runs locally on Ollama or on Claude (`LABELLENS_LLM_PROVIDER=anthropic`) with no code change.
-- **Tests that need no GPU.** 105 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
+- **Tests that need no GPU.** 106 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
 
 ## Quick start
 
@@ -212,7 +214,8 @@ The free hosted version runs the same pipeline (entity scoping, hybrid retrieval
 | Answer model | `llama3.1:8b` on Ollama | `gpt-oss-20b` on Groq, falling back to `gpt-oss-120b` on rate limits |
 | Passages in prompt | 6 | 4 (Groq's free tier allows 8k tokens per minute per model) |
 | Protection | none | 5 questions per minute per session, short rate-limit waits instead of errors |
-| **Retrieval Recall@5 (test split)** | **90.6%** | **90.6%** (Hit@1 59.4%, p95 1.8 s on CPU) |
+| **Retrieval Recall@5 (test split)** | **90.6%** | **90.6%** (Hit@1 59.4%, p95 1.2 s on CPU) |
+| **Gold passage in the prompt** | **91.7%** of 6 passages | **88.5%** of 4 passages |
 
 Deploy your own:
 
@@ -236,13 +239,13 @@ src/labellens/
 streamlit_app.py   free hosted demo (CPU embeddings, Groq answers)
   evalkit/         golden-set synthesis, ablation, gate calibration, LLM judge
 docs/DECISIONS.md  every design decision, the constraint behind it, what was rejected
-tests/             105 tests, including regression tests for every review and audit finding
+tests/             106 tests, including regression tests for every review and audit finding
 ```
 
 ## Limitations
 
 - **Synthetic questions.** The golden set is LLM-generated from label passages. Its biases and mitigations are described in `src/labellens/evalkit/dataset.py`. Clinician-written questions would be a stronger test.
-- **Ranking, not just recall.** The right passage is in the top 5 for 90.6% of questions but ranked first for only 59.4%. The model sees all six passages, so this costs little in answers, but a section-aware query router would raise it.
+- **Ranking, not just recall.** The right passage is in the top 5 for 90.6% of questions but ranked first for only 59.4%. The model sees six passages (91.7% contain the gold one), so this costs little in answers, but a section-aware query router would raise it.
 - **Unlinked drug names.** When no drug name in the question can be linked (3 of 192 test questions, mostly 5-ingredient combination products), retrieval runs unscoped and misses.
 - **Paraphrase errors.** The deterministic checks can't catch a sentence that misstates its source without changing a number. That residual risk is measured offline (judge faithfulness) but not blocked at request time.
 - **Corpus size.** The index holds about 1,200 of the ~37,000 prescription labels in openFDA (the most recent revision of each distinct drug, plus about 100 commonly prescribed drugs). The design targets the full set; the remaining work is ingest time.

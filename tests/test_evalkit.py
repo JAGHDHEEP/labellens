@@ -64,3 +64,17 @@ def test_unanswerable_items_do_not_name_indexed_drugs(indexed):
     fictional = [i for i in items if i["type"] == "unknown_drug"]
     assert fictional and all("metformin" not in i["question"].lower() for i in fictional)
     assert {i["split"] for i in items} <= {"calib", "test"}
+
+
+def test_recall_is_also_scored_at_the_number_of_passages_actually_served(retriever, settings):
+    from labellens.evalkit.runner import _score_config
+
+    q = "What is the starting dose of metformin for adults?"
+    hits = retriever.retrieve(q, settings.with_(final_k=10)).hits
+    second = hits[1]
+    item = {"question": q, "chunk_id": second.chunk.chunk_id, "doc_id": second.chunk.doc_id,
+            "drug": second.drug, "section_key": second.chunk.section_key}
+    out = _score_config(retriever, settings.with_(final_k=10), [item], served_k=1)
+    assert out["recall@5"] == 1.0 and out["hit@1"] == 0.0
+    assert out["recall@served"] == 0.0 and out["served_k"] == 1  # the model never sees rank 2
+    assert _score_config(retriever, settings.with_(final_k=10), [item], served_k=2)["recall@served"] == 1.0

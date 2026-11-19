@@ -10,23 +10,37 @@
   },
   "embedder": "snowflake/snowflake-arctic-embed-s",
   "reranker": "Xenova/ms-marco-MiniLM-L-6-v2",
+  "settings": {
+    "db": "labellens-compact.db",
+    "embed_provider": "fastembed",
+    "embed_model": "snowflake/snowflake-arctic-embed-s",
+    "embed_query_prefix": true,
+    "bm25_k": 50,
+    "dense_k": 50,
+    "rerank_n": 20,
+    "served_final_k": 4,
+    "scored_depth": 10
+  },
   "configs": {
     "full: hybrid + scope + rerank": {
       "hit@1": 0.5938,
       "recall@5": 0.9062,
       "recall@10": 0.9219,
-      "mrr@10": 0.718,
-      "ndcg@10": 0.7688,
+      "mrr@10": 0.7176,
+      "ndcg@10": 0.7684,
       "strict_recall@5": 0.8646,
       "section_recall@5": 0.9583,
       "right_drug@5": 0.9896,
       "scope_linked": 0.9844,
+      "recall@served": 0.8854,
+      "strict_recall@served": 0.849,
+      "served_k": 4,
       "recall@5_ci95": [
         0.8646,
         0.9479
       ],
-      "latency_ms_p50": 1451.5,
-      "latency_ms_p95": 1799.6
+      "latency_ms_p50": 1075.7,
+      "latency_ms_p95": 1222.7
     }
   },
   "skipped": {},

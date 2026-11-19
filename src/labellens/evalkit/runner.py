@@ -82,11 +82,22 @@ def task_synth(args, settings: Settings) -> int:
 
 
 # --------------------------------------------------------------- retrieval
-def _score_config(retriever: Retriever, cfg: Settings, items: list[dict]) -> dict:
+def _score_config(retriever: Retriever, cfg: Settings, items: list[dict],
+                  served_k: int | None = None) -> dict:
+    """Score one configuration.
+
+    The ranking is scored to depth 10 so MRR@10 and Recall@10 are defined, but
+    the product puts only ``served_k`` passages in the prompt (6 locally, 4 in
+    the hosted demo). ``recall@served`` is the share of questions whose gold
+    passage the model actually sees; it is measured with ``final_k=served_k``
+    exactly as served, because per-drug balancing depends on the slot count.
+    """
+    served_k = served_k or cfg.final_k
     retriever._qcache.clear()  # every config pays for its own query embeddings
     m: dict[str, list[float]] = {k: [] for k in (
         "hit@1", "recall@5", "recall@10", "mrr@10", "ndcg@10", "strict_recall@5",
-        "section_recall@5", "right_drug@5", "scope_linked")}
+        "section_recall@5", "right_drug@5", "scope_linked", "recall@served",
+        "strict_recall@served")}
     lat: list[float] = []
     for it in items:
         t = time.perf_counter()
@@ -112,7 +123,13 @@ def _score_config(retriever: Retriever, cfg: Settings, items: list[dict]) -> dic
             for h in res.hits[:5])))
         m["right_drug@5"].append(float(any(_base(h.drug) == gold_base for h in res.hits[:5])))
         m["scope_linked"].append(float(it["doc_id"] in res.scoped_doc_ids))
+        served = retriever.retrieve(it["question"], cfg.with_(final_k=served_k)).hits
+        m["recall@served"].append(float(any(
+            h.chunk.chunk_id == it["chunk_id"]
+            or (it["chunk_id"] in h.dup_ids and _base(h.drug) == gold_base) for h in served)))
+        m["strict_recall@served"].append(float(any(h.chunk.chunk_id == it["chunk_id"] for h in served)))
     out = {k: round(mean(v), 4) for k, v in m.items()}
+    out["served_k"] = served_k
     lo, hi = bootstrap_ci(m["recall@5"])
     out["recall@5_ci95"] = [round(lo, 4), round(hi, 4)]
     out["latency_ms_p50"] = round(percentile(lat, 50), 1)
@@ -126,6 +143,7 @@ def task_retrieval(args, settings: Settings) -> int:
     store = Store(settings.db_path)
     embedder = build_embedder(settings)
     reranker = CrossEncoderReranker(settings.rerank_model)
+    served_k = settings.final_k  # passages the product puts in the prompt
     base = settings.with_(final_k=10)
     retrievers: dict[str, Retriever] = {}
     results: dict[str, dict] = {}
@@ -141,7 +159,7 @@ def task_retrieval(args, settings: Settings) -> int:
             continue
         if variant not in retrievers:
             retrievers[variant] = Retriever(store, embedder, reranker, base, variant=variant)
-        results[name] = _score_config(retrievers[variant], base.with_(**overrides), items)
+        results[name] = _score_config(retrievers[variant], base.with_(**overrides), items, served_k)
         r = results[name]
         log.info("%-34s R@5 %.3f  MRR %.3f  p95 %.0f ms", name, r["recall@5"], r["mrr@10"],
                  r["latency_ms_p95"])
@@ -175,6 +193,13 @@ def task_retrieval(args, settings: Settings) -> int:
 
     report = {"split": "test", "n_questions": len(items), "corpus": store.stats(),
               "embedder": embedder.model, "reranker": settings.rerank_model,
+              # the exact knobs, so a result can always be tied to the system it describes
+              "settings": {"db": str(settings.db_path.name), "embed_provider": settings.embed_provider,
+                           "embed_model": settings.embed_model,
+                           "embed_query_prefix": bool(settings.embed_query_prefix),
+                           "bm25_k": settings.bm25_k, "dense_k": settings.dense_k,
+                           "rerank_n": settings.rerank_n, "served_final_k": served_k,
+                           "scored_depth": 10},
               "configs": results, "skipped": skipped, "slices": slices}
     _write(Path(args.out) / f"retrieval{args.tag}.json", report)
     _print_table(results)
