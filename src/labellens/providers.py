@@ -303,24 +303,31 @@ class GroqLLM:
     """
 
     BASE_URL = "https://api.groq.com/openai/v1"
+    MAX_WAIT_S = 12.0  # wait out a short rate-limit window rather than fail the user
 
     def __init__(self, model: str = "openai/gpt-oss-20b", timeout: float = 60.0,
-                 api_key: str | None = None, transport: httpx.BaseTransport | None = None):
+                 api_key: str | None = None, transport: httpx.BaseTransport | None = None,
+                 fallbacks: list[str] | None = None, sleep=time.sleep):
         key = api_key or os.environ.get("GROQ_API_KEY", "")
         if not key:
             raise ProviderError("GROQ_API_KEY is not set")
         self.model = model
-        self._reasoning = "gpt-oss" in model
+        # Groq's free tier meters tokens per minute *per model*, so a second
+        # model is a second budget: on 429 the request moves to the next one.
+        self.models = [model, *(fallbacks or [])]
+        self._sleep = sleep
         self._http = httpx.Client(base_url=self.BASE_URL, timeout=timeout, transport=transport,
                                   headers={"Authorization": f"Bearer {key}"})
 
-    def _payload(self, system: str, user: str, max_tokens: int) -> dict:
+    @staticmethod
+    def _payload(model: str, system: str, user: str, max_tokens: int) -> dict:
+        reasoning = "gpt-oss" in model
         body = {
-            "model": self.model, "stream": True, "temperature": 0, "seed": 7,
+            "model": model, "stream": True, "temperature": 0, "seed": 7,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
-            "max_tokens": max_tokens * 4 if self._reasoning else max_tokens,
+            "max_tokens": max_tokens * 4 if reasoning else max_tokens,
         }
-        if self._reasoning:
+        if reasoning:
             body["reasoning_effort"] = "low"
         return body
 
@@ -328,11 +335,33 @@ class GroqLLM:
         return "".join(p for p in self.stream(system, user, max_tokens) if p != TRUNCATED).strip()
 
     def stream(self, system: str, user: str, max_tokens: int = 700) -> Iterator[str]:
+        """Try each model in turn on a rate limit; then wait once if the wait is short."""
+        waits: list[float] = []
+        for attempt in range(2):
+            for model in self.models:
+                retry_after = yield from self._stream_one(model, system, user, max_tokens)
+                if retry_after is None:
+                    return
+                waits.append(retry_after)
+            wait = min(waits)
+            if attempt == 0 and wait <= self.MAX_WAIT_S:
+                self._sleep(wait)
+                waits.clear()
+                continue
+            break
+        raise ProviderError("rate limited by Groq; try again shortly")
+
+    def _stream_one(self, model: str, system: str, user: str, max_tokens: int):
+        """Stream one model's answer. Returns None when done, or the
+        Retry-After seconds when the model was rate-limited before any output."""
         try:
             with self._http.stream("POST", "/chat/completions",
-                                   json=self._payload(system, user, max_tokens)) as r:
+                                   json=self._payload(model, system, user, max_tokens)) as r:
                 if r.status_code == 429:
-                    raise ProviderError("rate limited by Groq; try again shortly")
+                    try:
+                        return float(r.headers.get("retry-after", "30"))
+                    except ValueError:
+                        return 30.0
                 if r.status_code >= 400:
                     r.read()
                     raise ProviderError(f"Groq API error {r.status_code}: {r.text[:200]}")
@@ -350,11 +379,13 @@ class GroqLLM:
                         yield TRUNCATED
         except httpx.HTTPError as exc:
             raise ProviderError(f"generation failed: {exc}") from exc
+        return None
 
 
-def build_llm(provider: str, model: str, ollama_url: str, timeout: float = 120.0) -> LLM:
+def build_llm(provider: str, model: str, ollama_url: str, timeout: float = 120.0,
+              fallbacks: list[str] | None = None) -> LLM:
     if provider == "groq":
-        return GroqLLM(model=model, timeout=timeout)
+        return GroqLLM(model=model, timeout=timeout, fallbacks=fallbacks)
     if provider == "anthropic":
         return AnthropicLLM(model=model, timeout=timeout)
     if provider == "ollama":

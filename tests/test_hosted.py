@@ -92,3 +92,37 @@ def test_rate_limit_per_client(retriever, settings):
         # another visitor is unaffected, and so is the non-question API
         assert c.post("/v1/ask", json=q, headers={"x-forwarded-for": "2.2.2.2"}).status_code == 200
         assert c.get("/healthz").status_code == 200
+
+
+def test_groq_moves_to_fallback_model_on_rate_limit():
+    asked = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        model = json.loads(request.content)["model"]
+        asked.append(model)
+        if model == "primary":
+            return httpx.Response(429, headers={"retry-after": "40"})
+        return httpx.Response(200, content=_sse({"choices": [{"delta": {"content": "ok [1]."}}]}))
+
+    llm = GroqLLM(model="primary", api_key="k", fallbacks=["backup"],
+                  transport=httpx.MockTransport(handler), sleep=lambda s: None)
+    assert list(llm.stream("s", "u")) == ["ok [1]."] and asked == ["primary", "backup"]
+
+
+def test_groq_waits_out_a_short_limit_then_gives_up_on_a_long_one():
+    calls, slept = [], []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(1)
+        if len(calls) == 1:
+            return httpx.Response(429, headers={"retry-after": "3"})
+        return httpx.Response(200, content=_sse({"choices": [{"delta": {"content": "fine"}}]}))
+
+    llm = GroqLLM(model="m", api_key="k", transport=httpx.MockTransport(handler),
+                  sleep=slept.append)
+    assert list(llm.stream("s", "u")) == ["fine"] and slept == [3.0]
+
+    always = GroqLLM(model="m", api_key="k", sleep=slept.append, transport=httpx.MockTransport(
+        lambda r: httpx.Response(429, headers={"retry-after": "60"})))
+    with pytest.raises(ProviderError):
+        list(always.stream("s", "u"))

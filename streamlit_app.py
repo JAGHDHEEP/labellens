@@ -68,6 +68,9 @@ def hosted_settings() -> Settings:
         embed_provider="fastembed", embed_model="snowflake/snowflake-arctic-embed-s",
         embed_query_prefix="Represent this sentence for searching relevant passages: ",
         llm_provider="groq", llm_model="openai/gpt-oss-20b", llm_timeout_s=60.0,
+        # Groq's free tier allows 8k tokens/min per model; a second model is a
+        # second budget, and 4 passages instead of 6 cut prompt tokens ~30 %.
+        llm_fallback_models="openai/gpt-oss-120b", final_k=4,
         rerank_n=20,  # CPU budget: 20 cross-encoder pairs instead of 30
     )
     # Environment (LABELLENS_*) still wins over these hosted defaults.

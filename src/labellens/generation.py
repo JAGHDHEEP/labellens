@@ -60,9 +60,19 @@ _UNITS = frozenset(
 )
 
 
+# Restating the two most-violated rules *after* the sources raised citation
+# coverage (0.60 -> 0.72) and removed unsupported numbers on gpt-oss-20b in a
+# small A/B; models attend most to the end of a long prompt. Kept short: it is
+# sent with every request.
+CLOSING_REMINDER = ("Answer only from the sources above. End every sentence and every bullet "
+                    "with its source number(s), e.g. [2]. Use only numbers that appear in the "
+                    "cited source.")
+
+
 def build_user_prompt(question: str, hits: list[Hit]) -> str:
     blocks = [f"[{i}] {h.chunk.header}\n{h.chunk.text}" for i, h in enumerate(hits, start=1)]
-    return "<sources>\n" + "\n\n".join(blocks) + f"\n</sources>\n\nQuestion: {question.strip()}"
+    return ("<sources>\n" + "\n\n".join(blocks) + f"\n</sources>\n\nQuestion: {question.strip()}"
+            + f"\n\n{CLOSING_REMINDER}")
 
 
 def normalize_citations(text: str) -> str:

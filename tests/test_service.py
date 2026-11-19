@@ -60,7 +60,7 @@ def test_abstention_marker_and_prompt_shape(retriever):
     assert not is_abstention("Metformin is indicated for type 2 diabetes. [1]")
     prompt = build_user_prompt(Q, _hits(retriever))
     assert prompt.startswith("<sources>\n[1] Metformin Hydrochloride (Glucophage) | ")
-    assert prompt.rstrip().endswith(f"Question: {Q}")
+    assert f"Question: {Q}" in prompt and prompt.rstrip().endswith("appear in the cited source.")
 
 
 # -------------------------------------------------------------------- service

@@ -34,6 +34,7 @@ class Settings:
     embed_index_name: str = ""
     llm_provider: str = "ollama"  # "ollama" | "anthropic" | "groq"
     llm_model: str = "llama3.1:8b"
+    llm_fallback_models: str = ""  # comma-separated; used on rate limits (Groq)
     llm_timeout_s: float = 120.0
     llm_max_tokens: int = 700
     rerank_model: str = "Xenova/ms-marco-MiniLM-L-6-v2"

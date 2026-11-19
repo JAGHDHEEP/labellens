@@ -20,5 +20,6 @@ def build_retriever(settings: Settings, store: Store | None = None,
 def build_service(settings: Settings) -> RagService:
     retriever = build_retriever(settings)
     llm = build_llm(settings.llm_provider, settings.llm_model, settings.ollama_url,
-                    settings.llm_timeout_s)
+                    settings.llm_timeout_s,
+                    [m.strip() for m in settings.llm_fallback_models.split(",") if m.strip()])
     return RagService(retriever, llm, settings)

@@ -49,7 +49,7 @@ question ─► entity scope ─► BM25 (FTS5) ─┐
 - **Observability.** Prometheus metrics with per-stage latency histograms (scope, BM25, embed, dense, rerank, first token, generation), grounding-failure counters, structured JSON logs with request ids, and `/healthz` and `/readyz`.
 - **Failure handling.** Retries with backoff for model backends, a `503` with `Retry-After` when a backend is down, and empty or truncated completions flagged and never cached.
 - **Swappable providers.** Embedder, reranker and LLM are three small protocols. The generator runs locally on Ollama or on Claude (`LABELLENS_LLM_PROVIDER=anthropic`) with no code change.
-- **Tests that need no GPU.** 80 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
+- **Tests that need no GPU.** 88 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
 
 ## Quick start
 
@@ -116,6 +116,24 @@ labellens eval synth --n 400
 bash run_eval.sh
 ```
 
+## Hosted demo (Streamlit Community Cloud)
+
+The free hosted version runs the same pipeline (entity scoping, hybrid retrieval, reranking, gates and grounding checks) on a CPU-only host with about 1 GB of memory. Only the model providers are swapped:
+
+| | Full (local) | Hosted (free) |
+|---|---|---|
+| Passage embeddings | `bge-m3`, 1024-d, GPU | `snowflake-arctic-embed-s`, 384-d. The index is embedded on GPU with Ollama and queried on CPU with ONNX; same weights, verified identical vectors. |
+| Index | 713 MB, float32 | Compact export with float16 vectors, downloaded on first start |
+| Answer model | `llama3.1:8b` on Ollama | `gpt-oss-20b` on Groq, falling back to `gpt-oss-120b` on rate limits |
+| Passages in prompt | 6 | 4 (Groq's free tier allows 8k tokens per minute per model) |
+| Protection | none | 5 questions per minute per session, short rate-limit waits instead of errors |
+
+Deploy your own:
+
+1. `labellens export` builds `data/deploy/labellens-compact.db.gz`. Upload it as a GitHub release asset.
+2. On [share.streamlit.io](https://share.streamlit.io), create an app from this repository with main file `streamlit_app.py` and Python 3.12.
+3. In the app's **Secrets**, set `GROQ_API_KEY`, `LABELLENS_INDEX_URL` (the release asset URL) and, optionally, `LABELLENS_INDEX_SHA256`. See `.streamlit/secrets.toml.example`.
+
 ## Repository map
 
 ```
@@ -129,9 +147,10 @@ src/labellens/
   generation.py    prompt, citation and number grounding checks
   service.py       gates, streaming, cache, hot reload
   api.py           FastAPI app;  static/index.html  web UI
+streamlit_app.py   free hosted demo (CPU embeddings, Groq answers)
   evalkit/         golden-set synthesis, ablation, gate calibration, LLM judge
 docs/DECISIONS.md  every design decision, the constraint behind it, what was rejected
-tests/             80 tests, including regression tests for every review finding
+tests/             88 tests, including regression tests for every review finding
 ```
 
 ## Limitations
