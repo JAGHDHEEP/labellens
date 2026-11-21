@@ -1,0 +1,321 @@
+{
+ "rule": "for each variant, the threshold with the highest recall of false claims on calib while flagging at most 5% of true claims; then scored once on test",
+ "gold": "sentence labels by a stronger model against the passages the system was given; false = misattributed, contradicted or unsupported",
+ "variants": {
+  "small, single sentences": {
+   "threshold": 0.002,
+   "calib": {
+    "tp": 5,
+    "bad": 23,
+    "recall": 0.217,
+    "precision": 0.294,
+    "false_alarm_rate": 0.028,
+    "repair_recall": 0.769,
+    "repair_precision": 0.588,
+    "n_wrong_citation": 26
+   },
+   "test": {
+    "tp": 1,
+    "bad": 19,
+    "recall": 0.053,
+    "precision": 0.091,
+    "false_alarm_rate": 0.024,
+    "repair_recall": 0.92,
+    "repair_precision": 0.605,
+    "n_wrong_citation": 25
+   },
+   "ms_per_claim_all_6_passages": 920.8
+  },
+  "small, single sentences + qualifier check": {
+   "threshold": 0.002,
+   "calib": {
+    "tp": 6,
+    "bad": 23,
+    "recall": 0.261,
+    "precision": 0.316,
+    "false_alarm_rate": 0.031,
+    "repair_recall": 0.769,
+    "repair_precision": 0.606,
+    "n_wrong_citation": 26
+   },
+   "test": {
+    "tp": 2,
+    "bad": 19,
+    "recall": 0.105,
+    "precision": 0.125,
+    "false_alarm_rate": 0.032,
+    "repair_recall": 0.88,
+    "repair_precision": 0.667,
+    "n_wrong_citation": 25
+   },
+   "ms_per_claim_all_6_passages": 920.8
+  },
+  "small, 1-2 sentence windows": {
+   "threshold": 0.02,
+   "calib": {
+    "tp": 8,
+    "bad": 23,
+    "recall": 0.348,
+    "precision": 0.333,
+    "false_alarm_rate": 0.033,
+    "repair_recall": 0.654,
+    "repair_precision": 0.515,
+    "n_wrong_citation": 26
+   },
+   "test": {
+    "tp": 8,
+    "bad": 19,
+    "recall": 0.421,
+    "precision": 0.32,
+    "false_alarm_rate": 0.037,
+    "repair_recall": 0.84,
+    "repair_precision": 0.636,
+    "n_wrong_citation": 25
+   },
+   "ms_per_claim_all_6_passages": 2253.5
+  },
+  "small, 1-2 sentence windows + qualifier check": {
+   "threshold": 0.02,
+   "calib": {
+    "tp": 9,
+    "bad": 23,
+    "recall": 0.391,
+    "precision": 0.346,
+    "false_alarm_rate": 0.036,
+    "repair_recall": 0.654,
+    "repair_precision": 0.531,
+    "n_wrong_citation": 26
+   },
+   "test": {
+    "tp": 8,
+    "bad": 19,
+    "recall": 0.421,
+    "precision": 0.296,
+    "false_alarm_rate": 0.04,
+    "repair_recall": 0.8,
+    "repair_precision": 0.645,
+    "n_wrong_citation": 25
+   },
+   "ms_per_claim_all_6_passages": 2253.5
+  },
+  "small, drug name + sentence": {
+   "threshold": 0.02,
+   "calib": {
+    "tp": 9,
+    "bad": 23,
+    "recall": 0.391,
+    "precision": 0.346,
+    "false_alarm_rate": 0.041,
+    "repair_recall": 0.769,
+    "repair_precision": 0.645,
+    "n_wrong_citation": 26
+   },
+   "test": {
+    "tp": 6,
+    "bad": 19,
+    "recall": 0.316,
+    "precision": 0.273,
+    "false_alarm_rate": 0.04,
+    "repair_recall": 0.92,
+    "repair_precision": 0.575,
+    "n_wrong_citation": 25
+   },
+   "ms_per_claim_all_6_passages": 1330.1
+  },
+  "small, drug name + sentence + qualifier check": {
+   "threshold": 0.02,
+   "calib": {
+    "tp": 11,
+    "bad": 23,
+    "recall": 0.478,
+    "precision": 0.393,
+    "false_alarm_rate": 0.041,
+    "repair_recall": 0.769,
+    "repair_precision": 0.667,
+    "n_wrong_citation": 26
+   },
+   "test": {
+    "tp": 6,
+    "bad": 19,
+    "recall": 0.316,
+    "precision": 0.25,
+    "false_alarm_rate": 0.043,
+    "repair_recall": 0.88,
+    "repair_precision": 0.579,
+    "n_wrong_citation": 25
+   },
+   "ms_per_claim_all_6_passages": 1330.1
+  },
+  "base, single sentences": {
+   "threshold": 0.002,
+   "calib": {
+    "tp": 4,
+    "bad": 23,
+    "recall": 0.174,
+    "precision": 0.211,
+    "false_alarm_rate": 0.036,
+    "repair_recall": 0.731,
+    "repair_precision": 0.452,
+    "n_wrong_citation": 26
+   },
+   "test": {
+    "tp": 5,
+    "bad": 19,
+    "recall": 0.263,
+    "precision": 0.238,
+    "false_alarm_rate": 0.037,
+    "repair_recall": 0.84,
+    "repair_precision": 0.677,
+    "n_wrong_citation": 25
+   },
+   "ms_per_claim_all_6_passages": 2952.7
+  },
+  "base, single sentences + qualifier check": {
+   "threshold": 0.002,
+   "calib": {
+    "tp": 6,
+    "bad": 23,
+    "recall": 0.261,
+    "precision": 0.273,
+    "false_alarm_rate": 0.038,
+    "repair_recall": 0.731,
+    "repair_precision": 0.475,
+    "n_wrong_citation": 26
+   },
+   "test": {
+    "tp": 6,
+    "bad": 19,
+    "recall": 0.316,
+    "precision": 0.222,
+    "false_alarm_rate": 0.043,
+    "repair_recall": 0.76,
+    "repair_precision": 0.731,
+    "n_wrong_citation": 25
+   },
+   "ms_per_claim_all_6_passages": 2952.7
+  },
+  "base, drug name + sentence": {
+   "threshold": 0.005,
+   "calib": {
+    "tp": 8,
+    "bad": 23,
+    "recall": 0.348,
+    "precision": 0.286,
+    "false_alarm_rate": 0.048,
+    "repair_recall": 0.808,
+    "repair_precision": 0.568,
+    "n_wrong_citation": 26
+   },
+   "test": {
+    "tp": 6,
+    "bad": 19,
+    "recall": 0.316,
+    "precision": 0.24,
+    "false_alarm_rate": 0.048,
+    "repair_recall": 0.92,
+    "repair_precision": 0.719,
+    "n_wrong_citation": 25
+   },
+   "ms_per_claim_all_6_passages": 5204.9
+  },
+  "base, drug name + sentence + qualifier check": {
+   "threshold": 0.002,
+   "calib": {
+    "tp": 8,
+    "bad": 23,
+    "recall": 0.348,
+    "precision": 0.421,
+    "false_alarm_rate": 0.025,
+    "repair_recall": 0.769,
+    "repair_precision": 0.625,
+    "n_wrong_citation": 26
+   },
+   "test": {
+    "tp": 3,
+    "bad": 19,
+    "recall": 0.158,
+    "precision": 0.176,
+    "false_alarm_rate": 0.029,
+    "repair_recall": 0.84,
+    "repair_precision": 0.84,
+    "n_wrong_citation": 25
+   },
+   "ms_per_claim_all_6_passages": 5204.9
+  }
+ },
+ "llm_quote_verifier": {
+  "model": "llama3.1:8b",
+  "ms_per_answer": 6453,
+  "calib": {
+   "bad": 23,
+   "tp": 15,
+   "precision": 0.1,
+   "recall": 0.652,
+   "false_alarm_rate": 0.298,
+   "repair_recall": 0.308,
+   "repair_precision": 0.667,
+   "n_wrong_citation": 26
+  },
+  "test": {
+   "bad": 19,
+   "tp": 10,
+   "precision": 0.091,
+   "recall": 0.526,
+   "false_alarm_rate": 0.23,
+   "repair_recall": 0.44,
+   "repair_precision": 0.5,
+   "n_wrong_citation": 25
+  }
+ },
+ "shipped": {
+  "chosen_at": "2026-11-21T14:21:14",
+  "chosen_on": "calib split only; test scores for this configuration had not been computed",
+  "rule": "maximise recall of false claims (misattributed / contradicted / unsupported) with at most 5% of true claims flagged",
+  "verifier": {
+   "model": "cross-encoder/nli-deberta-v3-small",
+   "window_mode": "drug+s1",
+   "qualifier_check": true,
+   "entail_threshold": 0.02,
+   "contra_threshold": 0.9
+  },
+  "calib": {
+   "n": 442,
+   "bad": 23,
+   "flagged": 28,
+   "tp": 11,
+   "fp": 17,
+   "fn": 12,
+   "precision": 0.393,
+   "recall": 0.478,
+   "f1": 0.431,
+   "false_alarm_rate": 0.041,
+   "repair_recall": 0.769,
+   "repair_precision": 0.667,
+   "n_wrong_citation": 26
+  },
+  "variants_considered": [
+   "small s1",
+   "small s1+2",
+   "small drug+s1",
+   "base s1",
+   "base drug+s1",
+   "each with and without the qualifier check",
+   "LLM quote verifier (llama3.1:8b)"
+  ],
+  "test": {
+   "n": 418,
+   "bad": 19,
+   "flagged": 24,
+   "tp": 6,
+   "fp": 18,
+   "fn": 13,
+   "precision": 0.25,
+   "recall": 0.316,
+   "f1": 0.279,
+   "false_alarm_rate": 0.043,
+   "repair_recall": 0.88,
+   "repair_precision": 0.579,
+   "n_wrong_citation": 25
+  }
+ }
+}

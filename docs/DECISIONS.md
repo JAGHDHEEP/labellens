@@ -135,3 +135,23 @@ Each entry: the decision, the constraint that forced it, what was rejected, and 
 **Constraint.** An 8B judge grading an 8B generator can share its blind spots.
 
 **Decision.** The offline judge (`qwen3:8b`) stays, because it is free, local and reproducible, and it compares versions well. Every published answer-quality number is also re-judged by a much stronger model that sees the passages and the reference but not the 8B verdicts. Where the two disagree, the stronger judge's figure is the one quoted: 91.7% correct end to end, against 95.8% from the 8B judge.
+
+## 17. A sentence verifier that warns and repairs, but never deletes
+
+**Constraint.** About 1 answer in 10 attaches a real fact to the wrong trial, population or drug. Every number in such a sentence is in the source, so the deterministic checks pass it.
+
+**Decision.** Each sentence is checked against the passages by a small ONNX NLI model (`cross-encoder/nli-deberta-v3-small`) on single sentences prefixed with the drug name, plus a deterministic check that every population, species or trial the sentence names appears in its supporting passage. A sentence supported only by a passage it does not cite gets that citation added. A sentence nothing supports is marked "not verified" in the UI and kept.
+
+**How it was chosen.** Ten variants (two model sizes, three ways of cutting passages, with and without the qualifier check) and an LLM quote-checker were scored against sentence-level gold labels on calibration answers. The rule was fixed before any result: the highest recall of false sentences with at most 5% of true ones flagged. The winner was recorded with a timestamp before its test score existed. Test: 32% of false sentences caught, 4.3% of true ones flagged, 88% of wrong citations repaired.
+
+**Rejected.** Deleting flagged sentences: at 4% false alarms, a correct sentence would be removed from roughly one answer in seven. The LLM quote-checker: 23% false alarms and 6.5 s per answer, because an 8B model paraphrases what it is asked to quote. Two-sentence premises: the NLI model scored a verbatim sentence 0.986 alone and 0.003 with a neighbour appended.
+
+**Cost.** About 1 s per answer on CPU and a second model in memory, so it is off on the 1 GB hosted demo.
+
+## 18. An external benchmark, run on its own label text
+
+**Constraint.** Every earlier number came from questions generated from this project's own chunks.
+
+**Decision.** LabelLens was run unchanged on a stratified 400-question sample of FDARxBench (expert-reviewed, written by others). Its own label text was converted to the openFDA format and indexed with the normal pipeline, because 289 of its 685 labels are no longer served under the same id and the rest may have been revised. Every answer was graded by hand with the benchmark's CORRECT / INCORRECT / NOT_ATTEMPTED scheme.
+
+**Result.** Factual 89.5%, multi-hop 58.0%, refusal F1 0.98. It is not directly comparable with the paper's figures (different grader, sample, setting), and the README says so. It found the next problem: two-part questions, where the 8B model answers one half.

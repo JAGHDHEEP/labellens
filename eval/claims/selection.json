@@ -1,0 +1,51 @@
+{
+ "chosen_at": "2026-11-21T14:21:14",
+ "chosen_on": "calib split only; test scores for this configuration had not been computed",
+ "rule": "maximise recall of false claims (misattributed / contradicted / unsupported) with at most 5% of true claims flagged",
+ "verifier": {
+  "model": "cross-encoder/nli-deberta-v3-small",
+  "window_mode": "drug+s1",
+  "qualifier_check": true,
+  "entail_threshold": 0.02,
+  "contra_threshold": 0.9
+ },
+ "calib": {
+  "n": 442,
+  "bad": 23,
+  "flagged": 28,
+  "tp": 11,
+  "fp": 17,
+  "fn": 12,
+  "precision": 0.393,
+  "recall": 0.478,
+  "f1": 0.431,
+  "false_alarm_rate": 0.041,
+  "repair_recall": 0.769,
+  "repair_precision": 0.667,
+  "n_wrong_citation": 26
+ },
+ "variants_considered": [
+  "small s1",
+  "small s1+2",
+  "small drug+s1",
+  "base s1",
+  "base drug+s1",
+  "each with and without the qualifier check",
+  "LLM quote verifier (llama3.1:8b)"
+ ],
+ "test": {
+  "n": 418,
+  "bad": 19,
+  "flagged": 24,
+  "tp": 6,
+  "fp": 18,
+  "fn": 13,
+  "precision": 0.25,
+  "recall": 0.316,
+  "f1": 0.279,
+  "false_alarm_rate": 0.043,
+  "repair_recall": 0.88,
+  "repair_precision": 0.579,
+  "n_wrong_citation": 25
+ }
+}

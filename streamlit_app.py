@@ -71,6 +71,7 @@ def hosted_settings() -> Settings:
         # Groq's free tier allows 8k tokens/min per model; a second model is a
         # second budget, and 4 passages instead of 6 cut prompt tokens ~30 %.
         llm_fallback_models="openai/gpt-oss-120b", final_k=4,
+        verify_claims=False,  # the NLI model does not fit next to the index in 1 GB
         rerank_n=20,  # CPU budget: 20 cross-encoder pairs instead of 30
     )
     # Environment (LABELLENS_*) still wins over these hosted defaults.
@@ -128,8 +129,13 @@ def allow_question() -> bool:
     return True
 
 
-def render_answer(text: str) -> str:
+def render_answer(text: str, verification: dict | None = None) -> str:
     safe = html.escape(text)
+    for c in (verification or {}).get("claims", []):
+        if c["verdict"] in ("unsupported", "contradicted"):
+            s = html.escape(c["text"])
+            safe = safe.replace(s, f'<span style="text-decoration: underline dotted #d99a2b" '
+                                   f'title="Not verified against the passages">{s} ⚠</span>', 1)
     return re.sub(r"\[(\d{1,2})\]", r"<sup><b>[\1]</b></sup>", safe).replace("\n", "<br>")
 
 
@@ -215,7 +221,7 @@ def main() -> None:
         sources_slot.empty()
         return
 
-    answer_slot.markdown(render_answer(final.text), unsafe_allow_html=True)
+    answer_slot.markdown(render_answer(final.text, final.verification), unsafe_allow_html=True)
     render_sources(sources_slot, final.sources, final=final.status == "answered")
     label, color = STATUS_LABEL.get(final.status, (final.status, "gray"))
     badges = [f":{color}-badge[{label}]"]

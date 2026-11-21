@@ -1,0 +1,2573 @@
+{
+ "labeler": "claude-opus-5-5, 8 independent batches, sentence level, against the passages the system was given",
+ "labels": {
+  "a0002#0": {
+   "key": "a0002#0",
+   "label": "supported",
+   "evidence": "[1] Patients in early and late adolescence who participate in sports with repetitive impact may be at an increased risk of spondylolisthesis",
+   "reason": ""
+  },
+  "a0002#1": {
+   "key": "a0002#1",
+   "label": "supported",
+   "evidence": "[1] approximately 29% (104/358) developed back pain. Back pain was severe in 14% (14/104) of the cases",
+   "reason": ""
+  },
+  "a0002#2": {
+   "key": "a0002#2",
+   "label": "supported",
+   "evidence": "[1] Arthralgias were experienced in 22% (79/358) of pediatric subjects. Arthralgias were severe in 8% (6/79)",
+   "reason": ""
+  },
+  "a0002#3": {
+   "key": "a0002#3",
+   "label": "supported",
+   "evidence": "[1] There is some evidence that long-term, high-dose, or multiple courses of treatment with isotretinoin have more of an effect",
+   "reason": ""
+  },
+  "a0002#4": {
+   "key": "a0002#4",
+   "label": "supported",
+   "evidence": "[6] Isotretinoin use has been associated with musculoskeletal abnormalities (e.g., arthralgia, back pain)",
+   "reason": ""
+  },
+  "a0002#5": {
+   "key": "a0002#5",
+   "label": "supported",
+   "evidence": "[6] pediatric patients treated with isotretinoin capsules developed back pain including severe back pain, and arthralgias including severe arthralgias",
+   "reason": ""
+  },
+  "a0004#0": {
+   "key": "a0004#0",
+   "label": "supported",
+   "evidence": "A daily dose-free interval of at least 14 hours is advisable to minimize tolerance. (passage 2)",
+   "reason": ""
+  },
+  "a0004#1": {
+   "key": "a0004#1",
+   "label": "supported",
+   "evidence": "The optimal interval will vary with the individual patient, dose and regimen. (passage 2)",
+   "reason": ""
+  },
+  "a0004#2": {
+   "key": "a0004#2",
+   "label": "misattributed",
+   "evidence": "Studies of nitroglycerin... have shown that daily dose-free intervals of 10 to 12 hours are usually sufficient to minimize tolerance. (passage 1)",
+   "reason": "The 10-12 hour figure comes from nitroglycerin studies, but the answer presents it as an isosorbide dinitrate study result."
+  },
+  "a0004#3": {
+   "key": "a0004#3",
+   "label": "supported",
+   "evidence": "The daily dose-free interval sufficient to avoid tolerance to organic nitrates has not been well defined. (passage 5)",
+   "reason": ""
+  },
+  "a0004#4": {
+   "key": "a0004#4",
+   "label": "supported",
+   "evidence": "no dosing regimen with isosorbide dinitrate tablets should be expected to provide more than about 12 hours of continuous anti-anginal efficacy (passage 2)",
+   "reason": ""
+  },
+  "a0020#0": {
+   "key": "a0020#0",
+   "label": "supported",
+   "evidence": "[1] No adverse reactions have been reported for Ammonia N 13 Injection based on a review of the published literature",
+   "reason": ""
+  },
+  "a0020#1": {
+   "key": "a0020#1",
+   "label": "supported",
+   "evidence": "[1] However, the completeness of these sources is not known.",
+   "reason": ""
+  },
+  "a0026#0": {
+   "key": "a0026#0",
+   "label": "supported",
+   "evidence": "Passage 1: \"the ratio of mean AUC 0 to 23h of PAA to PAGN was 1, 1.25, and 1.6, respectively.\"",
+   "reason": ""
+  },
+  "a0026#1": {
+   "key": "a0026#1",
+   "label": "supported",
+   "evidence": "Passage 3: \"The dose normalized mean AUC 0 to 23h for PAA was 108% higher in females than in males.\"",
+   "reason": ""
+  },
+  "a0026#2": {
+   "key": "a0026#2",
+   "label": "supported",
+   "evidence": "Passage 4: \"mean C max and AUC were 66 micrograms/mL and 930 micrograms•h/mL for PBA and 28 micrograms/mL and 942 micrograms•h/mL for PAA\"",
+   "reason": ""
+  },
+  "a0026#3": {
+   "key": "a0026#3",
+   "label": "supported",
+   "evidence": "Passage 5: \"mean C max of PAA was 144 micrograms/mL (range: 14 to 358 micrograms/mL) after daily dosing of 6 mL\"",
+   "reason": ""
+  },
+  "a0027#0": {
+   "key": "a0027#0",
+   "label": "supported",
+   "evidence": "Passage 4: \"The impact of mild, moderate, or severe hepatic impairment on the pharmacokinetics of tradipitant is unknown.\"",
+   "reason": ""
+  },
+  "a0027#1": {
+   "key": "a0027#1",
+   "label": "supported",
+   "evidence": "Passage 4: \"Tradipitant has not been studied in subjects with any degree of hepatic impairment (Child-Pugh Class A to C).\"",
+   "reason": ""
+  },
+  "a0041#0": {
+   "key": "a0041#0",
+   "label": "supported",
+   "evidence": "[1] indicated for: ... Attention Deficit Disorder with Hyperactivity, as an integral part of a total treatment program ... pediatric patients (ages 3 to 16 years)",
+   "reason": ""
+  },
+  "a0041#1": {
+   "key": "a0041#1",
+   "label": "supported",
+   "evidence": "[1] The diagnosis of this syndrome should not be made with finality when these symptoms are only of comparatively recent origin.",
+   "reason": ""
+  },
+  "a0041#2": {
+   "key": "a0041#2",
+   "label": "supported",
+   "evidence": "[1] Nonlocalizing (soft) neurological signs, learning disability, and abnormal EEG may or may not be present",
+   "reason": ""
+  },
+  "a0041#3": {
+   "key": "a0041#3",
+   "label": "supported",
+   "evidence": "[2] XELSTRYM is a central nervous system (CNS) stimulant indicated for the treatment of ADHD in adults and pediatric patients 6 years and older",
+   "reason": ""
+  },
+  "a0041#4": {
+   "key": "a0041#4",
+   "label": "supported",
+   "evidence": "[2] The use of XELSTRYM is not recommended in pediatric patients younger than 6 years of age because they had higher plasma exposure",
+   "reason": ""
+  },
+  "a0043#0": {
+   "key": "a0043#0",
+   "label": "supported",
+   "evidence": "[2] overdosage of pyridostigmine bromide may result in cholinergic crisis, a state characterized by increasing muscle weakness which ... may lead to death.",
+   "reason": ""
+  },
+  "a0043#1": {
+   "key": "a0043#1",
+   "label": "supported",
+   "evidence": "[2] Myasthenic crisis ... may be difficult to distinguish from cholinergic crisis on a symptomatic basis.",
+   "reason": ""
+  },
+  "a0043#2": {
+   "key": "a0043#2",
+   "label": "supported",
+   "evidence": "[2] the differential diagnosis of the two types of crisis may require the use of Tensilon (edrophonium chloride) as well as clinical judgment.",
+   "reason": ""
+  },
+  "a0043#3": {
+   "key": "a0043#3",
+   "label": "supported",
+   "evidence": "[2] the diagnosis of cholinergic crisis ... calls for the prompt withdrawal of all drugs of this type.",
+   "reason": ""
+  },
+  "a0043#4": {
+   "key": "a0043#4",
+   "label": "supported",
+   "evidence": "[2] The immediate use of atropine in cholinergic crisis is also recommended.",
+   "reason": ""
+  },
+  "a0044#0": {
+   "key": "a0044#0",
+   "label": "supported",
+   "evidence": "The dosage may be increased to 10 mg per day, if necessary. More than two 5 mg tablets of amiloride HCl daily usually are not needed (passage 2)",
+   "reason": ""
+  },
+  "a0044#1": {
+   "key": "a0044#1",
+   "label": "misattributed",
+   "evidence": "If persistent hypokalemia is documented with 10 mg, the dose can be increased to 15 mg, then 20 mg (passage 2)",
+   "reason": "Drops the specific condition (persistent hypokalemia at 10 mg), replacing it with a generic 'if necessary'."
+  },
+  "a0044#2": {
+   "key": "a0044#2",
+   "label": "supported",
+   "evidence": "More than two 5 mg tablets of amiloride HCl daily usually are not needed (passage 2)",
+   "reason": ""
+  },
+  "a0045#0": {
+   "key": "a0045#0",
+   "label": "supported",
+   "evidence": "Serious adverse reactions were reported in 37% of patients treated with XALKORI (passage 1)",
+   "reason": ""
+  },
+  "a0045#1": {
+   "key": "a0045#1",
+   "label": "supported",
+   "evidence": "...and 23% of patients in the chemotherapy arm (passage 1)",
+   "reason": ""
+  },
+  "a0045#2": {
+   "key": "a0045#2",
+   "label": "supported",
+   "evidence": "Serious adverse reactions occurred in 35% of patients with ALCL treated with XALKORI. (passage 2)",
+   "reason": ""
+  },
+  "a0045#3": {
+   "key": "a0045#3",
+   "label": "supported",
+   "evidence": "Serious adverse reactions occurred in 7% of pediatric patients with IMT treated with XALKORI. (passage 4)",
+   "reason": ""
+  },
+  "a0045#4": {
+   "key": "a0045#4",
+   "label": "supported",
+   "evidence": "Serious adverse events were reported in 34% of patients treated with XALKORI. (passage 5)",
+   "reason": ""
+  },
+  "a0052#0": {
+   "key": "a0052#0",
+   "label": "wrong_citation",
+   "evidence": "P1: indicated for the treatment of infections in adults and pediatric patients, due to susceptible isolates of the designated bacteria in the conditions listed below",
+   "reason": "Factual lead-in supported by passage 1 but cites nothing."
+  },
+  "a0052#1": {
+   "key": "a0052#1",
+   "label": "supported",
+   "evidence": "P1: Lower Respiratory Tract Infections – caused by beta–lactamase–producing isolates of Haemophilus influenzae and Moraxella catarrhalis.",
+   "reason": ""
+  },
+  "a0052#10": {
+   "key": "a0052#10",
+   "label": "supported",
+   "evidence": "P1: When susceptibility test results show susceptibility to amoxicillin, indicating no beta–lactamase production, ... should not be used.",
+   "reason": ""
+  },
+  "a0052#2": {
+   "key": "a0052#2",
+   "label": "supported",
+   "evidence": "P1: Acute Bacterial Otitis Media – caused by beta–lactamase–producing isolates of H. influenzae and M. catarrhalis.",
+   "reason": ""
+  },
+  "a0052#3": {
+   "key": "a0052#3",
+   "label": "supported",
+   "evidence": "P1: Sinusitis – caused by beta–lactamase–producing isolates of H. influenzae and M. catarrhalis.",
+   "reason": ""
+  },
+  "a0052#4": {
+   "key": "a0052#4",
+   "label": "supported",
+   "evidence": "P1: Skin and Skin Structure Infections – caused by beta–lactamase–producing isolates of Staphylococcus aureus, Escherichia coli, and Klebsiella species.",
+   "reason": ""
+  },
+  "a0052#5": {
+   "key": "a0052#5",
+   "label": "supported",
+   "evidence": "P1: Urinary Tract Infections – caused by beta–lactamase–producing isolates of E. coli, Klebsiella species, and Enterobacter species.",
+   "reason": ""
+  },
+  "a0052#6": {
+   "key": "a0052#6",
+   "label": "wrong_citation",
+   "evidence": "P2: indicated for treatment of the following infections in adults and pediatric patients",
+   "reason": "Factual lead-in supported by passage 2 but cites nothing."
+  },
+  "a0052#7": {
+   "key": "a0052#7",
+   "label": "supported",
+   "evidence": "P2: infections in adults and pediatric patients: Lower respiratory tract infections",
+   "reason": ""
+  },
+  "a0052#8": {
+   "key": "a0052#8",
+   "label": "supported",
+   "evidence": "P2: Acute bacterial otitis media",
+   "reason": ""
+  },
+  "a0052#9": {
+   "key": "a0052#9",
+   "label": "supported",
+   "evidence": "P2: Skin and skin structure infections",
+   "reason": ""
+  },
+  "a0053#0": {
+   "key": "a0053#0",
+   "label": "supported",
+   "evidence": "[1] Oral absorption of acitretin is optimal when given with food.",
+   "reason": ""
+  },
+  "a0053#1": {
+   "key": "a0053#1",
+   "label": "supported",
+   "evidence": "[1] The oral absorption of acitretin is linear and proportional with increasing doses from 25 to 100 mg.",
+   "reason": ""
+  },
+  "a0055#0": {
+   "key": "a0055#0",
+   "label": "supported",
+   "evidence": "[1] Thyroid hormones do not readily cross the placental barrier",
+   "reason": ""
+  },
+  "a0057#0": {
+   "key": "a0057#0",
+   "label": "supported",
+   "evidence": "[1] Advise females of reproductive potential to use effective contraception during treatment with ZYKADIA and for 6 months following completion of therapy.",
+   "reason": ""
+  },
+  "a0058#0": {
+   "key": "a0058#0",
+   "label": "supported",
+   "evidence": "Symptoms following acute NSAID overdosages have been typically limited to lethargy, drowsiness, nausea, vomiting, and epigastric pain (passage 1)",
+   "reason": ""
+  },
+  "a0058#1": {
+   "key": "a0058#1",
+   "label": "supported",
+   "evidence": "Gastrointestinal bleeding has occurred. (passage 1)",
+   "reason": ""
+  },
+  "a0058#2": {
+   "key": "a0058#2",
+   "label": "supported",
+   "evidence": "Hypertension, acute renal failure, respiratory depression and coma have occurred, but were rare. (passage 1)",
+   "reason": ""
+  },
+  "a0058#3": {
+   "key": "a0058#3",
+   "label": "supported",
+   "evidence": "the use of oral activated charcoal may help to reduce the absorption of diclofenac (passage 2)",
+   "reason": ""
+  },
+  "a0061#0": {
+   "key": "a0061#0",
+   "label": "supported",
+   "evidence": "No dose adjustment is necessary when Simulect is added to triple-immunosuppression regimens (passage 1)",
+   "reason": ""
+  },
+  "a0061#1": {
+   "key": "a0061#1",
+   "label": "supported",
+   "evidence": "Total body clearance of Simulect was reduced by an average 22% and 51% when azathioprine and mycophenolate mofetil, respectively, were added (passage 1)",
+   "reason": ""
+  },
+  "a0061#2": {
+   "key": "a0061#2",
+   "label": "supported",
+   "evidence": "azathioprine (12-57 mL/h) or mycophenolate mofetil (7-54 mL/h) did not extend outside the range observed with dual therapy (10-78 mL/h) (passage 1)",
+   "reason": ""
+  },
+  "a0061#3": {
+   "key": "a0061#3",
+   "label": "supported",
+   "evidence": "administered in clinical trials with Simulect with no increase in adverse reactions: ATG/ALG, azathioprine, corticosteroids (passage 1)",
+   "reason": ""
+  },
+  "a0062#0": {
+   "key": "a0062#0",
+   "label": "not_a_claim",
+   "evidence": "",
+   "reason": "List lead-in restating the question."
+  },
+  "a0062#1": {
+   "key": "a0062#1",
+   "label": "supported",
+   "evidence": "P1: These reactions are characterized by signs such as urticaria, pruritus, erythema, angioneurotic edema (including laryngeal edema)",
+   "reason": ""
+  },
+  "a0062#2": {
+   "key": "a0062#2",
+   "label": "supported",
+   "evidence": "P1: and possibly, anaphylactoid-like symptomatology (including severe hypotension).",
+   "reason": ""
+  },
+  "a0062#3": {
+   "key": "a0062#3",
+   "label": "supported",
+   "evidence": "P3: These reactions are characterized by signs such as urticaria, pruritus, erythema, angioneurotic edema (including laryngeal edema)",
+   "reason": ""
+  },
+  "a0062#4": {
+   "key": "a0062#4",
+   "label": "supported",
+   "evidence": "P3: and possibly anaphylactoid-like symptoms (including severe hypotension).",
+   "reason": ""
+  },
+  "a0062#5": {
+   "key": "a0062#5",
+   "label": "unsupported",
+   "evidence": "",
+   "reason": "No passage states the signs are the same for both products; this is the system's own comparison."
+  },
+  "a0063#0": {
+   "key": "a0063#0",
+   "label": "supported",
+   "evidence": "P1: Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death.",
+   "reason": ""
+  },
+  "a0063#1": {
+   "key": "a0063#1",
+   "label": "supported",
+   "evidence": "P1: risk of death in drug-treated patients of between 1.6 to 1.7 times the risk of death in placebo-treated patients.",
+   "reason": ""
+  },
+  "a0063#2": {
+   "key": "a0063#2",
+   "label": "supported",
+   "evidence": "P1: rate of death in the drug-treated patients was about 4.5%, compared to a rate of about 2.6% in the placebo group.",
+   "reason": ""
+  },
+  "a0063#3": {
+   "key": "a0063#3",
+   "label": "supported",
+   "evidence": "P1: REXULTI is not approved for the treatment of patients with dementia-related psychosis without agitation associated with dementia due to Alzheimer's disease",
+   "reason": ""
+  },
+  "a0071#0": {
+   "key": "a0071#0",
+   "label": "supported",
+   "evidence": "[1] the total dosage should not exceed 50 g/week because of the potential for the drug to suppress the hypothalamic-pituitary-adrenal (HPA) axis",
+   "reason": ""
+  },
+  "a0075#0": {
+   "key": "a0075#0",
+   "label": "supported",
+   "evidence": "[2] Residual concentrations of lenacapavir may remain in systemic circulation for up to 12 months or longer.",
+   "reason": ""
+  },
+  "a0075#1": {
+   "key": "a0075#1",
+   "label": "supported",
+   "evidence": "[4] SUNLENCA may remain in the body and affect certain other drugs for up to 9 months after receiving their last injection",
+   "reason": ""
+  },
+  "a0076#0": {
+   "key": "a0076#0",
+   "label": "supported",
+   "evidence": "Passage 2: \"Reversible acute renal failure following ingestion of 50 tablets of a product containing a combination of 50 mg triamterene and 25 mg hydrochlorothiazide has been reported.\"",
+   "reason": ""
+  },
+  "a0076#1": {
+   "key": "a0076#1",
+   "label": "supported",
+   "evidence": "Passage 1: \"A possible interaction resulting in acute renal failure has been reported in a few patients on triamterene and hydrochlorothiazide when treated with indomethacin\"",
+   "reason": ""
+  },
+  "a0076#2": {
+   "key": "a0076#2",
+   "label": "supported",
+   "evidence": "Passage 3: \"Renal Acute renal failure (one case of irreversible renal failure has been reported)\"",
+   "reason": ""
+  },
+  "a0080#0": {
+   "key": "a0080#0",
+   "label": "supported",
+   "evidence": "Dermatitis herpetiformis: The dosage should be individually titrated starting in adults with 50 mg daily [1]",
+   "reason": ""
+  },
+  "a0081#0": {
+   "key": "a0081#0",
+   "label": "supported",
+   "evidence": "Passage 1: \"withdrew from the study due to adverse events was 5.3% and 4.7% for the zoledronic acid injection and placebo groups\"",
+   "reason": ""
+  },
+  "a0081#1": {
+   "key": "a0081#1",
+   "label": "supported",
+   "evidence": "Passage 2: \"withdrew from the study due to adverse events was 5.4% and 4.8% for the zoledronic acid injection and placebo groups\"",
+   "reason": ""
+  },
+  "a0081#2": {
+   "key": "a0081#2",
+   "label": "supported",
+   "evidence": "Passage 3: \"withdrew from the study due to adverse events was 1.7% and 1.2% for the zoledronic acid injection and risedronate groups\"",
+   "reason": ""
+  },
+  "a0096#0": {
+   "key": "a0096#0",
+   "label": "supported",
+   "evidence": "most common adverse reactions reported in ≥20% of patients treated with OPDIVO in combination with ipilimumab were rash, fatigue, pyrexia, nausea, diarrhea, and constipation [3]",
+   "reason": ""
+  },
+  "a0096#1": {
+   "key": "a0096#1",
+   "label": "supported",
+   "evidence": "The most common (≥20%) adverse reactions in the OPDIVO and ipilimumab arm were fatigue, diarrhea, rash, nausea, pyrexia... increased transaminases [4]",
+   "reason": ""
+  },
+  "a0103#0": {
+   "key": "a0103#0",
+   "label": "wrong_citation",
+   "evidence": "[1] In ARISTOTLE, concomitant use of aspirin increased the bleeding risk on ELIQUIS from 1.8% per year to 3.4% per year",
+   "reason": "Stated in passage 1, not in cited passage 2 (boxed warning)."
+  },
+  "a0103#1": {
+   "key": "a0103#1",
+   "label": "wrong_citation",
+   "evidence": "[1] concomitant use of aspirin and warfarin increased the bleeding risk from 2.7% per year to 4.6% per year",
+   "reason": "Stated in passage 1, not in cited passage 2."
+  },
+  "a0103#2": {
+   "key": "a0103#2",
+   "label": "supported",
+   "evidence": "[4] AVERROES was stopped early on the basis of a prespecified interim analysis showing a significant reduction ... associated with a modest increase in major bleeding",
+   "reason": ""
+  },
+  "a0104#0": {
+   "key": "a0104#0",
+   "label": "supported",
+   "evidence": "P1: Vestronidase alfa-vjbk is a recombinant human enzyme and is therefore eliminated by proteolytic degradation into small peptides and amino acids.",
+   "reason": ""
+  },
+  "a0104#1": {
+   "key": "a0104#1",
+   "label": "supported",
+   "evidence": "P1: No excretion studies have been conducted in humans. Vestronidase alfa-vjbk is not expected to be eliminated through renal or fecal excretion.",
+   "reason": ""
+  },
+  "a0110#0": {
+   "key": "a0110#0",
+   "label": "supported",
+   "evidence": "Passage 5: \"The recommended dosage of IBTROZI is 600 mg orally once daily on an empty stomach\"",
+   "reason": ""
+  },
+  "a0110#1": {
+   "key": "a0110#1",
+   "label": "supported",
+   "evidence": "Passage 5: \"Take IBTROZI at approximately the same time each day.\"",
+   "reason": ""
+  },
+  "a0110#2": {
+   "key": "a0110#2",
+   "label": "not_a_claim",
+   "evidence": "",
+   "reason": "List lead-in with no factual content."
+  },
+  "a0110#3": {
+   "key": "a0110#3",
+   "label": "supported",
+   "evidence": "Passage 2: \"First Dose Reduction | Recommended Dosage: 400 mg once daily\"",
+   "reason": ""
+  },
+  "a0110#4": {
+   "key": "a0110#4",
+   "label": "supported",
+   "evidence": "Passage 2: \"Second Dose Reduction | Recommended Dosage: 200 mg once daily\"",
+   "reason": ""
+  },
+  "a0110#5": {
+   "key": "a0110#5",
+   "label": "supported",
+   "evidence": "Passage 2: \"Permanently discontinue IBTROZI capsules in patients unable to tolerate 200 mg once daily.\"",
+   "reason": ""
+  },
+  "a0122#0": {
+   "key": "a0122#0",
+   "label": "supported",
+   "evidence": "[1] The adverse reactions observed with ZEPBOUND 10 mg or 15 mg ... were similar to those reported in the two pooled placebo controlled clinical trials",
+   "reason": ""
+  },
+  "a0122#1": {
+   "key": "a0122#1",
+   "label": "supported",
+   "evidence": "[2] The mean age of patients was 47 years and 37% were male.",
+   "reason": ""
+  },
+  "a0122#2": {
+   "key": "a0122#2",
+   "label": "supported",
+   "evidence": "[2] The population was 72% White, 12% Asian, 8% Black or African American, and 7% American Indian or Alaska Native; 51% identified as Hispanic",
+   "reason": ""
+  },
+  "a0122#3": {
+   "key": "a0122#3",
+   "label": "supported",
+   "evidence": "[1] Adverse Reactions in Patients with Obstructive Sleep Apnea ... were similar to those reported in the two pooled placebo controlled clinical trials for weight reduction",
+   "reason": ""
+  },
+  "a0124#0": {
+   "key": "a0124#0",
+   "label": "supported",
+   "evidence": "[1] No adverse reactions have been reported for Sodium Fluoride F 18 Injection based on a review of the published literature",
+   "reason": ""
+  },
+  "a0124#1": {
+   "key": "a0124#1",
+   "label": "supported",
+   "evidence": "[1] However, the completeness of these sources is not known.",
+   "reason": ""
+  },
+  "a0127#0": {
+   "key": "a0127#0",
+   "label": "supported",
+   "evidence": "Passage 1: \"the minimum lethal dose was found to be 2 to 3 grams for adults\"",
+   "reason": ""
+  },
+  "a0131#0": {
+   "key": "a0131#0",
+   "label": "supported",
+   "evidence": "[1] Matulane can cause myelosuppression, including severe neutropenia, anemia, and thrombocytopenia.",
+   "reason": ""
+  },
+  "a0131#1": {
+   "key": "a0131#1",
+   "label": "supported",
+   "evidence": "[1] Myelosuppression often occurs 2 to 8 weeks after the start of MATULANE treatment.",
+   "reason": ""
+  },
+  "a0131#2": {
+   "key": "a0131#2",
+   "label": "supported",
+   "evidence": "[3] The most common adverse reactions for MATULANE are neutropenia, anemia, thrombocytopenia, nausea, and vomiting.",
+   "reason": ""
+  },
+  "a0131#3": {
+   "key": "a0131#3",
+   "label": "supported",
+   "evidence": "[4] Myelosuppression: Severe neutropenia, anemia, and thrombocytopenia can occur.",
+   "reason": ""
+  },
+  "a0132#0": {
+   "key": "a0132#0",
+   "label": "supported",
+   "evidence": "safety and effectiveness of ABRILADA for ... Crohn's disease have been established in pediatric patients 6 years of age and older [1]",
+   "reason": ""
+  },
+  "a0132#1": {
+   "key": "a0132#1",
+   "label": "supported",
+   "evidence": "The safety and effectiveness of ABRILADA have not been established in pediatric patients with Crohn's disease less than 6 years of age [1]",
+   "reason": ""
+  },
+  "a0132#2": {
+   "key": "a0132#2",
+   "label": "supported",
+   "evidence": "ABRILADA is indicated for the treatment of moderately to severely active Crohn's disease in adults and pediatric patients 6 years of age and older [2]",
+   "reason": ""
+  },
+  "a0140#0": {
+   "key": "a0140#0",
+   "label": "misattributed",
+   "evidence": "Passage 1: \"In order to minimize the incidence of dermal and subdermal atrophy... Multiple small injections into the area of the lesion should be made whenever possible.\"",
+   "reason": "Skin depression risk is from injection generally; multiple small injections are the recommended mitigation, not the cause."
+  },
+  "a0140#1": {
+   "key": "a0140#1",
+   "label": "supported",
+   "evidence": "Passage 1: \"In order to minimize the incidence of dermal and subdermal atrophy, care must be exercised not to exceed recommended doses in injections.\"",
+   "reason": ""
+  },
+  "a0143#0": {
+   "key": "a0143#0",
+   "label": "wrong_citation",
+   "evidence": "P2: consistent with the need for higher dosing in adult liver transplant patients compared to kidney transplant patients to achieve the same exposure.",
+   "reason": "Supported by passage 2 but cites nothing."
+  },
+  "a0143#1": {
+   "key": "a0143#1",
+   "label": "supported",
+   "evidence": "P2: at the same dose, there were on average 23% lower AUC values in the pediatric liver compared to pediatric kidney patients.",
+   "reason": ""
+  },
+  "a0143#2": {
+   "key": "a0143#2",
+   "label": "supported",
+   "evidence": "P2: This is consistent with the need for higher dosing in adult liver transplant patients compared to kidney transplant patients to achieve the same exposure.",
+   "reason": ""
+  },
+  "a0143#3": {
+   "key": "a0143#3",
+   "label": "unsupported",
+   "evidence": "P5: In liver transplant patients, ...1.5 g twice daily oral... resulted in mean MPA AUC estimates similar to those found in kidney transplant patients administered 1 g",
+   "reason": "The 'no direct comparison with liver' part is false; passage 5 compares liver and kidney exposure."
+  },
+  "a0143#4": {
+   "key": "a0143#4",
+   "label": "unsupported",
+   "evidence": "P5: liver transplant patients... 1.5 g twice daily oral... similar to those found in kidney transplant patients administered 1 g Mycophenolate Mofetil twice daily.",
+   "reason": "False claim that the sources give no direct liver-vs-kidney dose comparison."
+  },
+  "a0144#0": {
+   "key": "a0144#0",
+   "label": "not_a_claim",
+   "evidence": "",
+   "reason": "Lead-in restating the question."
+  },
+  "a0144#1": {
+   "key": "a0144#1",
+   "label": "supported",
+   "evidence": "Passage 3: \"In patients taking concomitant moderate CYP3A inhibitors, reduce the dose of JYNARQUE per Table 1.\"",
+   "reason": ""
+  },
+  "a0144#2": {
+   "key": "a0144#2",
+   "label": "not_a_claim",
+   "evidence": "",
+   "reason": "List lead-in with no factual content."
+  },
+  "a0144#3": {
+   "key": "a0144#3",
+   "label": "supported",
+   "evidence": "Passage 1: \"90 mg and 30 mg | Dose (mg) with Moderate CYP3A Inhibitors: 45 mg and 15 mg\"",
+   "reason": ""
+  },
+  "a0144#4": {
+   "key": "a0144#4",
+   "label": "supported",
+   "evidence": "Passage 1: \"60 mg and 30 mg | Dose (mg) with Moderate CYP3A Inhibitors: 30 mg and 15 mg\"",
+   "reason": ""
+  },
+  "a0144#5": {
+   "key": "a0144#5",
+   "label": "supported",
+   "evidence": "Passage 1: \"45 mg and 15 mg | Dose (mg) with Moderate CYP3A Inhibitors: 15 mg and 15 mg\"",
+   "reason": ""
+  },
+  "a0144#6": {
+   "key": "a0144#6",
+   "label": "supported",
+   "evidence": "Passage 5: \"Dose reduction of JYNARQUE is recommended for patients while taking moderate CYP3A inhibitors\"",
+   "reason": ""
+  },
+  "a0145#0": {
+   "key": "a0145#0",
+   "label": "supported",
+   "evidence": "[1] the administration of a non-steroidal anti-inflammatory agent can reduce the diuretic, natriuretic, and antihypertensive effects of loop, potassium-sparing and thiazide diuretics.",
+   "reason": ""
+  },
+  "a0145#1": {
+   "key": "a0145#1",
+   "label": "supported",
+   "evidence": "[1] the patient should be observed closely to determine if the desired effect of the diuretic is obtained.",
+   "reason": ""
+  },
+  "a0150#0": {
+   "key": "a0150#0",
+   "label": "supported",
+   "evidence": "P1: The potential clinical impact of EBGLYSS exposure in infants exposed in utero should be considered.",
+   "reason": ""
+  },
+  "a0150#1": {
+   "key": "a0150#1",
+   "label": "supported",
+   "evidence": "P1: no malformations or embryofetal toxicity were observed in fetuses from pregnant cynomolgus monkeys... up to 150 mg/kg initial dose followed by 50 mg/kg per week",
+   "reason": ""
+  },
+  "a0150#2": {
+   "key": "a0150#2",
+   "label": "supported",
+   "evidence": "P1: Lebrikizumab-lbkz crossed the placenta in monkeys.",
+   "reason": ""
+  },
+  "a0150#3": {
+   "key": "a0150#3",
+   "label": "supported",
+   "evidence": "P1: In a prenatal and postnatal development study... plasma exposure (C avg,ss ) approximately 18 times the human exposure at the MRHD.",
+   "reason": ""
+  },
+  "a0150#4": {
+   "key": "a0150#4",
+   "label": "supported",
+   "evidence": "P1: No embryofetal toxicity or malformations... were observed in the infants from birth through 6 months of age.",
+   "reason": ""
+  },
+  "a0150#5": {
+   "key": "a0150#5",
+   "label": "supported",
+   "evidence": "P2: Monoclonal antibodies are actively transported across the placenta",
+   "reason": ""
+  },
+  "a0150#6": {
+   "key": "a0150#6",
+   "label": "supported",
+   "evidence": "P2: no effects on embryo-fetal development were observed after subcutaneous administration... at doses up to 18 times the human exposure at the MRHD",
+   "reason": ""
+  },
+  "a0150#7": {
+   "key": "a0150#7",
+   "label": "supported",
+   "evidence": "P2: Therefore, EBGLYSS may be present in infants exposed in utero.",
+   "reason": ""
+  },
+  "a0152#0": {
+   "key": "a0152#0",
+   "label": "supported",
+   "evidence": "[1] Allowing for an infant milk consumption of 150 mL/kg/day, the estimated breastfed infant dose would be less than 1% of the adult dose",
+   "reason": ""
+  },
+  "a0155#0": {
+   "key": "a0155#0",
+   "label": "supported",
+   "evidence": "HERCEPTIN HYLECTA can cause fetal harm when administered to a pregnant woman. (passage 1)",
+   "reason": ""
+  },
+  "a0155#1": {
+   "key": "a0155#1",
+   "label": "supported",
+   "evidence": "use of trastuzumab during pregnancy resulted in cases of oligohydramnios and oligohydramnios sequence manifesting as pulmonary hypoplasia, skeletal abnormalities, and neonatal death (passage 1)",
+   "reason": ""
+  },
+  "a0155#2": {
+   "key": "a0155#2",
+   "label": "supported",
+   "evidence": "concentrations of trastuzumab in fetal serum and amniotic fluid were approximately 33% and 25%, respectively, of those present in the maternal serum (passage 2)",
+   "reason": ""
+  },
+  "a0155#3": {
+   "key": "a0155#3",
+   "label": "supported",
+   "evidence": "If oligohydramnios occurs, perform fetal/neonatal testing that is appropriate for gestational age (passage 3)",
+   "reason": ""
+  },
+  "a0157#0": {
+   "key": "a0157#0",
+   "label": "supported",
+   "evidence": "[1] Based on findings from animal studies, JAYPIRCA can cause fetal harm when administered to a pregnant woman.",
+   "reason": ""
+  },
+  "a0157#1": {
+   "key": "a0157#1",
+   "label": "supported",
+   "evidence": "[1] resulted in adverse developmental outcomes, including structural abnormalities, altered fetal growth, and embryo-fetal mortality",
+   "reason": ""
+  },
+  "a0157#2": {
+   "key": "a0157#2",
+   "label": "supported",
+   "evidence": "[2] caused embryo-fetal toxicity including embryo-fetal mortality and malformations",
+   "reason": ""
+  },
+  "a0157#3": {
+   "key": "a0157#3",
+   "label": "supported",
+   "evidence": "[1] the maternal systemic exposures (AUC) were approximately 3 times the human exposure at 200 mg once daily.",
+   "reason": ""
+  },
+  "a0158#0": {
+   "key": "a0158#0",
+   "label": "supported",
+   "evidence": "P2: Monitor liver tests, including ALT and AST, every 2 weeks during the first month of treatment, then monthly thereafter, and as clinically indicated.",
+   "reason": ""
+  },
+  "a0159#0": {
+   "key": "a0159#0",
+   "label": "supported",
+   "evidence": "[1] There is a potential for an additive effect on the known systemic effects of carbonic anhydrase inhibition in patients receiving an oral carbonic anhydrase inhibitor",
+   "reason": ""
+  },
+  "a0159#1": {
+   "key": "a0159#1",
+   "label": "supported",
+   "evidence": "[1] The concomitant administration of dorzolamide hydrochloride and timolol maleate and oral carbonic anhydrase inhibitors is not recommended.",
+   "reason": ""
+  },
+  "a0159#2": {
+   "key": "a0159#2",
+   "label": "supported",
+   "evidence": "[2] Potential additive effect of oral carbonic anhydrase inhibitor with dorzolamide hydrochloride and timolol maleate. (7.1)",
+   "reason": ""
+  },
+  "a0162#0": {
+   "key": "a0162#0",
+   "label": "supported",
+   "evidence": "P2: AUC 0-inf and C max of ramelteon increased by approximately 84% and 36%... fourth day of ketoconazole 200 mg twice daily",
+   "reason": ""
+  },
+  "a0162#1": {
+   "key": "a0162#1",
+   "label": "supported",
+   "evidence": "P2: Ramelteon should be administered with caution in subjects taking strong CYP3A4 inhibitors such as ketoconazole",
+   "reason": ""
+  },
+  "a0162#2": {
+   "key": "a0162#2",
+   "label": "supported",
+   "evidence": "P4: AUC 0-inf and C max of ramelteon increased by approximately 84% and 36% upon coadministration of ketoconazole",
+   "reason": ""
+  },
+  "a0162#3": {
+   "key": "a0162#3",
+   "label": "supported",
+   "evidence": "P4: Ramelteon should be administered with caution in subjects taking strong CYP3A4 inhibitors such as ketoconazole",
+   "reason": ""
+  },
+  "a0171#0": {
+   "key": "a0171#0",
+   "label": "contradicted",
+   "evidence": "[3] The mean C max ... were 1.14 ± 0.14 mcg/mL ... receiving a 3-hour intravenous infusion",
+   "reason": "Passage gives SD 0.14, not 0.13 (0.13 is the 2-hour table concentration)."
+  },
+  "a0173#0": {
+   "key": "a0173#0",
+   "label": "supported",
+   "evidence": "P1: Glycopyrrolate reduces gastrointestinal motility and may result in delayed gastric emptying, constipation, and intestinal pseudo-obstruction",
+   "reason": ""
+  },
+  "a0173#1": {
+   "key": "a0173#1",
+   "label": "supported",
+   "evidence": "P1: The risk of gastrointestinal adverse reactions is further increased with the use of other anticholinergics",
+   "reason": ""
+  },
+  "a0173#2": {
+   "key": "a0173#2",
+   "label": "supported",
+   "evidence": "P1: Concomitant use of glycopyrrolate and other anticholinergics or other medications that decrease GI peristalsis is not recommended",
+   "reason": ""
+  },
+  "a0173#3": {
+   "key": "a0173#3",
+   "label": "supported",
+   "evidence": "P4: potential for an additive interaction between glycopyrrolate and concomitantly used anticholinergic drugs... resulting in increased anticholinergic adverse reactions.",
+   "reason": ""
+  },
+  "a0176#0": {
+   "key": "a0176#0",
+   "label": "supported",
+   "evidence": "P1: Concomitant use of benzodiazepines, including chlordiazepoxide, and opioids may result in profound sedation, respiratory depression, coma, and death.",
+   "reason": ""
+  },
+  "a0176#1": {
+   "key": "a0176#1",
+   "label": "supported",
+   "evidence": "P1: concomitant use of opioid analgesics and benzodiazepines increases the risk of drug-related mortality compared to use of opioids alone.",
+   "reason": ""
+  },
+  "a0176#2": {
+   "key": "a0176#2",
+   "label": "supported",
+   "evidence": "P1: Observational studies have demonstrated that concomitant use of opioid analgesics and benzodiazepines increases the risk of drug-related mortality",
+   "reason": ""
+  },
+  "a0176#3": {
+   "key": "a0176#3",
+   "label": "supported",
+   "evidence": "P4: the potential for benzodiazepines to significantly worsen opioid-related respiratory depression exists.",
+   "reason": ""
+  },
+  "a0176#4": {
+   "key": "a0176#4",
+   "label": "supported",
+   "evidence": "P4: Limit dosage and duration of concomitant use of benzodiazepines and opioids, and monitor patients closely for respiratory depression and sedation.",
+   "reason": ""
+  },
+  "a0180#0": {
+   "key": "a0180#0",
+   "label": "supported",
+   "evidence": "P2: can induce malignant hyperthermia in patients with known or suspected susceptibility based on genetic factors or family history, including ... RYR1 or ... CACNA1S variants.",
+   "reason": ""
+  },
+  "a0180#1": {
+   "key": "a0180#1",
+   "label": "supported",
+   "evidence": "P2: The risk of developing malignant hyperthermia increases with the concomitant administration of succinylcholine and volatile anesthetic agents.",
+   "reason": ""
+  },
+  "a0180#2": {
+   "key": "a0180#2",
+   "label": "supported",
+   "evidence": "P3: in patients with personal or familial history of malignant hyperthermia",
+   "reason": ""
+  },
+  "a0180#3": {
+   "key": "a0180#3",
+   "label": "supported",
+   "evidence": "P2: Signs consistent with malignant hyperthermia may include hyperthermia, hypoxia, hypercapnia, muscle rigidity (e.g., jaw muscle spasm), tachycardia",
+   "reason": ""
+  },
+  "a0180#4": {
+   "key": "a0180#4",
+   "label": "supported",
+   "evidence": "P2: If malignant hyperthermia is suspected, discontinue all triggering agents ..., administer intravenous dantrolene sodium, and initiate supportive therapies.",
+   "reason": ""
+  },
+  "a0181#0": {
+   "key": "a0181#0",
+   "label": "supported",
+   "evidence": "[1] Lactation: Advise not to breastfeed.",
+   "reason": ""
+  },
+  "a0181#1": {
+   "key": "a0181#1",
+   "label": "supported",
+   "evidence": "[2] There are no data on the presence of imlunestrant or its metabolites in human milk, its effects on the breastfed child, or on milk production.",
+   "reason": ""
+  },
+  "a0181#2": {
+   "key": "a0181#2",
+   "label": "supported",
+   "evidence": "[2] advise lactating women to not breastfeed during treatment with INLURIYO and for 1 week after the last dose.",
+   "reason": ""
+  },
+  "a0181#3": {
+   "key": "a0181#3",
+   "label": "supported",
+   "evidence": "[2] Refer to the Prescribing Information of abemaciclib when administered in combination with INLURIYO for lactation information.",
+   "reason": ""
+  },
+  "a0181#4": {
+   "key": "a0181#4",
+   "label": "supported",
+   "evidence": "[2] When used in combination, advise patients to not breastfeed during treatment and for the longest post-treatment duration recommended",
+   "reason": ""
+  },
+  "a0181#5": {
+   "key": "a0181#5",
+   "label": "supported",
+   "evidence": "[4] Advise women not to breastfeed during treatment with INLURIYO and for 1 week after the last dose",
+   "reason": ""
+  },
+  "a0182#0": {
+   "key": "a0182#0",
+   "label": "supported",
+   "evidence": "[1] CYP3A4 inhibitors such as cimetidine and ketoconazole, may prolong the half-life and decrease the plasma clearance of tinidazole, increasing the plasma concentrations",
+   "reason": ""
+  },
+  "a0182#1": {
+   "key": "a0182#1",
+   "label": "supported",
+   "evidence": "[1] CYP3A4 inducers such as phenobarbital, rifampin, phenytoin, and fosphenytoin ... may accelerate the elimination of tinidazole, decreasing the plasma level",
+   "reason": ""
+  },
+  "a0182#2": {
+   "key": "a0182#2",
+   "label": "supported",
+   "evidence": "[4] CYP3A4 inducers/inhibitors: Monitor for decreased tinidazole effect or increased adverse reactions",
+   "reason": ""
+  },
+  "a0183#0": {
+   "key": "a0183#0",
+   "label": "wrong_citation",
+   "evidence": "Passage 3: \"Cardiovascular : a fall in blood pressure with reflex tachycardia\"",
+   "reason": "Supported by passage 3 but cites nothing."
+  },
+  "a0183#1": {
+   "key": "a0183#1",
+   "label": "supported",
+   "evidence": "Passage 1: \"Special care is required if this drug is given to patients receiving ganglion blocking compounds because a critical fall in blood pressure may occur.\"",
+   "reason": ""
+  },
+  "a0183#2": {
+   "key": "a0183#2",
+   "label": "supported",
+   "evidence": "Passage 1: \"Usually, severe abdominal symptoms appear before there is such a fall in the blood pressure.\"",
+   "reason": ""
+  },
+  "a0183#3": {
+   "key": "a0183#3",
+   "label": "supported",
+   "evidence": "Passage 3: \"Cardiovascular : a fall in blood pressure with reflex tachycardia, vasomotor response\"",
+   "reason": ""
+  },
+  "a0185#0": {
+   "key": "a0185#0",
+   "label": "supported",
+   "evidence": "In rheumatoid arthritis patients penicillamine should be discontinued if unexplained gross hematuria or persistent microscopic hematuria develops. (passage 1)",
+   "reason": ""
+  },
+  "a0186#0": {
+   "key": "a0186#0",
+   "label": "supported",
+   "evidence": "[1] Diarrhea may be severe and may necessitate temporary withdrawal of dantrolene sodium therapy.",
+   "reason": ""
+  },
+  "a0186#1": {
+   "key": "a0186#1",
+   "label": "supported",
+   "evidence": "[1] Diarrhea may be severe and may necessitate temporary withdrawal of dantrolene sodium therapy.",
+   "reason": ""
+  },
+  "a0186#2": {
+   "key": "a0186#2",
+   "label": "supported",
+   "evidence": "[1] If diarrhea recurs upon readministration of dantrolene sodium , therapy should probably be withdrawn permanently.",
+   "reason": ""
+  },
+  "a0192#0": {
+   "key": "a0192#0",
+   "label": "supported",
+   "evidence": "[2] not exceeding the maximum recommended daily dose of 25 mg alogliptin and 2000 mg metformin hydrochloride (HCl).",
+   "reason": ""
+  },
+  "a0193#0": {
+   "key": "a0193#0",
+   "label": "supported",
+   "evidence": "Safety and efficacy of testosterone cypionate in men with \"age-related hypogonadism\"... have not been established. (passage 1)",
+   "reason": ""
+  },
+  "a0195#0": {
+   "key": "a0195#0",
+   "label": "supported",
+   "evidence": "[1] Temporarily discontinue pravastatin in patients experiencing an acute or serious condition at high risk of developing renal failure secondary to rhabdomyolysis",
+   "reason": ""
+  },
+  "a0195#1": {
+   "key": "a0195#1",
+   "label": "supported",
+   "evidence": "[1] e.g., sepsis; shock; severe hypovolemia; major surgery; trauma; severe metabolic, endocrine, or electrolyte disorders; or uncontrolled epilepsy.",
+   "reason": ""
+  },
+  "a0195#2": {
+   "key": "a0195#2",
+   "label": "supported",
+   "evidence": "[2] Inform patients of the risk of myopathy and rhabdomyolysis when starting or increasing pravastatin dosage.",
+   "reason": ""
+  },
+  "a0195#3": {
+   "key": "a0195#3",
+   "label": "supported",
+   "evidence": "[2] Instruct patients to promptly report unexplained muscle pain, tenderness, or weakness, particularly if accompanied by malaise or fever.",
+   "reason": ""
+  },
+  "a0198#0": {
+   "key": "a0198#0",
+   "label": "supported",
+   "evidence": "Passage 1: \"dose selection for an elderly patient should be cautious, usually starting at the low end of the dosing range\"",
+   "reason": ""
+  },
+  "a0198#1": {
+   "key": "a0198#1",
+   "label": "supported",
+   "evidence": "Passage 1: \"elderly patients generally should be started on low doses of promethazine hydrochloride and phenylephrine hydrochloride oral solution and observed closely.\"",
+   "reason": ""
+  },
+  "a0199#0": {
+   "key": "a0199#0",
+   "label": "supported",
+   "evidence": "cases of drug-induced hepatotoxicity have been reported in the first month, and in some cases, the first 2 months of therapy (passage 6)",
+   "reason": ""
+  },
+  "a0199#1": {
+   "key": "a0199#1",
+   "label": "supported",
+   "evidence": "Postmarketing surveillance has reported cases of severe hepatic reactions, including liver necrosis, jaundice, fulminant hepatitis (passage 6)",
+   "reason": ""
+  },
+  "a0199#2": {
+   "key": "a0199#2",
+   "label": "supported",
+   "evidence": "associated with a statistically significant 4-fold adjusted odds ratio of liver injury (passage 6)",
+   "reason": ""
+  },
+  "a0199#3": {
+   "key": "a0199#3",
+   "label": "supported",
+   "evidence": "the adjusted odds ratio increased further with female gender, doses of 150 mg or more, and duration of use for more than 90 days (passage 6)",
+   "reason": ""
+  },
+  "a0199#4": {
+   "key": "a0199#4",
+   "label": "supported",
+   "evidence": "Physicians should measure transaminases at baseline and periodically in patients receiving long-term therapy with diclofenac (passage 6)",
+   "reason": ""
+  },
+  "a0199#5": {
+   "key": "a0199#5",
+   "label": "supported",
+   "evidence": "The optimum times for making the first and subsequent transaminase measurements are not known. (passage 6)",
+   "reason": ""
+  },
+  "a0199#6": {
+   "key": "a0199#6",
+   "label": "supported",
+   "evidence": "transaminases should be monitored within 4 to 8 weeks after initiating treatment with diclofenac (passage 6)",
+   "reason": ""
+  },
+  "a0200#0": {
+   "key": "a0200#0",
+   "label": "wrong_citation",
+   "evidence": "P1: Acute hypersensitivity reactions, including dyspnea, rash, pruritus, and angioedema... have been reported with fidaxomicin.",
+   "reason": "Answer supported by passage 1 but cites nothing."
+  },
+  "a0200#1": {
+   "key": "a0200#1",
+   "label": "supported",
+   "evidence": "P1: Acute hypersensitivity reactions, including dyspnea, rash, pruritus, and angioedema of the mouth, throat, and face have been reported with fidaxomicin.",
+   "reason": ""
+  },
+  "a0200#2": {
+   "key": "a0200#2",
+   "label": "supported",
+   "evidence": "P1: Some patients with hypersensitivity reactions to fidaxomicin also reported a history of allergy to other macrolides.",
+   "reason": ""
+  },
+  "a0200#3": {
+   "key": "a0200#3",
+   "label": "supported",
+   "evidence": "P2: Fidaxomicin is contraindicated in patients who have known hypersensitivity to fidaxomicin or any other ingredient in fidaxomicin tablets",
+   "reason": ""
+  },
+  "a0200#4": {
+   "key": "a0200#4",
+   "label": "supported",
+   "evidence": "P3: Acute hypersensitivity reactions (angioedema, dyspnea, pruritus, and rash) have been reported.",
+   "reason": ""
+  },
+  "a0200#5": {
+   "key": "a0200#5",
+   "label": "supported",
+   "evidence": "P4: identified during post-approval use of fidaxomicin... Hypersensitivity reactions (dyspnea, angioedema, rash, pruritus)",
+   "reason": ""
+  },
+  "a0200#6": {
+   "key": "a0200#6",
+   "label": "not_a_claim",
+   "evidence": "",
+   "reason": "List lead-in with no factual content."
+  },
+  "a0202#0": {
+   "key": "a0202#0",
+   "label": "supported",
+   "evidence": "Passage 1: \"Depending on other factors, absorption has varied from 48 to 79% of the administered dose.\"",
+   "reason": ""
+  },
+  "a0202#1": {
+   "key": "a0202#1",
+   "label": "supported",
+   "evidence": "Passage 1: \"Malabsorption syndromes, as well as dietary factors, ... cause excessive fecal loss.\"",
+   "reason": ""
+  },
+  "a0202#2": {
+   "key": "a0202#2",
+   "label": "supported",
+   "evidence": "Passage 1: \"(children's soybean formula, concomitant use of anionic exchange resins such as cholestyramine) cause excessive fecal loss.\"",
+   "reason": ""
+  },
+  "a0208#0": {
+   "key": "a0208#0",
+   "label": "supported",
+   "evidence": "P1: For Breast Imaging: The recommended dose range for I.V. administration of MIRALUMA is a single dose of 740 - 1110 MBq (20 - 30 mCi).",
+   "reason": ""
+  },
+  "a0208#1": {
+   "key": "a0208#1",
+   "label": "wrong_citation",
+   "evidence": "P2: For complete study, sets of images should be obtained five minutes after the injection, and in the following sequence",
+   "reason": "Factual lead-in supported by passage 2 but cites nothing."
+  },
+  "a0208#2": {
+   "key": "a0208#2",
+   "label": "supported",
+   "evidence": "P2: Beginning five minutes after the injection of Technetium Tc99m Sestamibi: ten-minute lateral image of breast with abnormality",
+   "reason": ""
+  },
+  "a0208#3": {
+   "key": "a0208#3",
+   "label": "supported",
+   "evidence": "P2: ten-minute lateral image of contralateral breast",
+   "reason": ""
+  },
+  "a0208#4": {
+   "key": "a0208#4",
+   "label": "supported",
+   "evidence": "P2: ten-minute anterior image of both breasts",
+   "reason": ""
+  },
+  "a0210#0": {
+   "key": "a0210#0",
+   "label": "supported",
+   "evidence": "Passage 1: \"Cyclobenzaprine Hydrochloride 5 mg ... Drowsiness 29% 38% 10%\"",
+   "reason": ""
+  },
+  "a0210#1": {
+   "key": "a0210#1",
+   "label": "supported",
+   "evidence": "Passage 1: \"Dry Mouth 21% 32% 7%\" (5 mg column first)",
+   "reason": ""
+  },
+  "a0210#2": {
+   "key": "a0210#2",
+   "label": "not_a_claim",
+   "evidence": "",
+   "reason": "List lead-in with no factual content."
+  },
+  "a0212#0": {
+   "key": "a0212#0",
+   "label": "wrong_citation",
+   "evidence": "[1] The penicillinase-resistant penicillins should not be used in infections caused by organisms susceptible to penicillin G.",
+   "reason": "Supported by passage 1 in the dicloxacillin label, but the claim cites nothing."
+  },
+  "a0212#1": {
+   "key": "a0212#1",
+   "label": "supported",
+   "evidence": "[1] The penicillinase-resistant penicillins should not be used in infections caused by organisms susceptible to penicillin G.",
+   "reason": ""
+  },
+  "a0212#2": {
+   "key": "a0212#2",
+   "label": "supported",
+   "evidence": "[1] If the susceptibility tests indicate ... organism other than a resistant staphylococcus, therapy should not be continued with a penicillinase-resistant penicillin.",
+   "reason": ""
+  },
+  "a0216#0": {
+   "key": "a0216#0",
+   "label": "supported",
+   "evidence": "[1] Haloperidol tablets are also effective in the short-term treatment of hyperactive children who show excessive motor activity with accompanying conduct disorders",
+   "reason": ""
+  },
+  "a0216#1": {
+   "key": "a0216#1",
+   "label": "misattributed",
+   "evidence": "[2] Nonpsychotic Behavior Disorders and Tourette's Disorder - 0.05 mg/kg/day to 0.075 mg/kg/day",
+   "reason": "The dose range is given for nonpsychotic behavior disorders and Tourette's, not stated for hyperactive children with conduct disorders."
+  },
+  "a0216#2": {
+   "key": "a0216#2",
+   "label": "supported",
+   "evidence": "[2] in hyperactive children with accompanying conduct disorders, who have failed to respond... short term administration of haloperidol may suffice",
+   "reason": ""
+  },
+  "a0216#3": {
+   "key": "a0216#3",
+   "label": "supported",
+   "evidence": "[2] There is no evidence establishing a maximum effective dosage.",
+   "reason": ""
+  },
+  "a0217#0": {
+   "key": "a0217#0",
+   "label": "wrong_citation",
+   "evidence": "P1: indicated for the treatment of CAR T cell-induced severe or life-threatening cytokine release syndrome in adults and pediatric patients 2 years of age and older.",
+   "reason": "Supported by passage 1 but the claim cites nothing."
+  },
+  "a0217#1": {
+   "key": "a0217#1",
+   "label": "supported",
+   "evidence": "P6: Patients less than 30 kg weight 12 mg per kg Patients at or above 30 kg weight 8 mg per kg",
+   "reason": ""
+  },
+  "a0217#2": {
+   "key": "a0217#2",
+   "label": "supported",
+   "evidence": "P2: Severe or life-threatening CAR T cell-induced cytokine release syndrome (CRS) in patients with 2 years of age and older.",
+   "reason": ""
+  },
+  "a0223#0": {
+   "key": "a0223#0",
+   "label": "supported",
+   "evidence": "Clinical studies of terbinafine tablets did not include sufficient numbers of subjects aged 65 years and over [1]",
+   "reason": ""
+  },
+  "a0223#1": {
+   "key": "a0223#1",
+   "label": "supported",
+   "evidence": "Other reported clinical experience has not identified differences in responses between the elderly and younger patients [1]",
+   "reason": ""
+  },
+  "a0223#2": {
+   "key": "a0223#2",
+   "label": "supported",
+   "evidence": "dose selection for an elderly patient should be cautious, usually starting at the low end of the dosing range [1]",
+   "reason": ""
+  },
+  "a0223#3": {
+   "key": "a0223#3",
+   "label": "supported",
+   "evidence": "No clinically relevant age-dependent changes in steady-state plasma concentrations of terbinafine have been reported [2]",
+   "reason": ""
+  },
+  "a0225#0": {
+   "key": "a0225#0",
+   "label": "supported",
+   "evidence": "[3] Administration of vecuronium bromide for injection results in paralysis, which may lead to respiratory arrest and death",
+   "reason": ""
+  },
+  "a0225#1": {
+   "key": "a0225#1",
+   "label": "supported",
+   "evidence": "[4] Accidental administration of neuromuscular blocking agents may be fatal.",
+   "reason": ""
+  },
+  "a0225#2": {
+   "key": "a0225#2",
+   "label": "supported",
+   "evidence": "[3] Severe anaphylactic reactions to neuromuscular blocking agents, including VECURONIUM BROMIDE, have been reported.",
+   "reason": ""
+  },
+  "a0225#3": {
+   "key": "a0225#3",
+   "label": "supported",
+   "evidence": "[2] Prolonged to profound extensions of paralysis and/or muscle weakness as well as muscle atrophy have been reported after long-term use",
+   "reason": ""
+  },
+  "a0236#0": {
+   "key": "a0236#0",
+   "label": "supported",
+   "evidence": "Pediatric patients at least 15 kg to less than 40 kg | Week 0: 100 mg [1]",
+   "reason": ""
+  },
+  "a0236#1": {
+   "key": "a0236#1",
+   "label": "supported",
+   "evidence": "Pediatric patients at least 15 kg to less than 40 kg | Week 0: 100 mg | Week 2: 50 mg [1]",
+   "reason": ""
+  },
+  "a0236#2": {
+   "key": "a0236#2",
+   "label": "supported",
+   "evidence": "Week 6 and every 4 weeks thereafter: 50 mg [1]",
+   "reason": ""
+  },
+  "a0239#0": {
+   "key": "a0239#0",
+   "label": "supported",
+   "evidence": "[1] Cases of rebound symptoms on sudden withdrawal of tizanidine have been reported... hypertension, tachycardia, hypertonia, tremor, and anxiety.",
+   "reason": ""
+  },
+  "a0239#1": {
+   "key": "a0239#1",
+   "label": "supported",
+   "evidence": "[1] Withdrawal symptoms are more likely to occur in cases where high doses are used, especially for prolonged periods",
+   "reason": ""
+  },
+  "a0239#2": {
+   "key": "a0239#2",
+   "label": "supported",
+   "evidence": "[1] If therapy needs to be discontinued, the dose should be decreased slowly to minimize the risk of withdrawal symptoms",
+   "reason": ""
+  },
+  "a0239#3": {
+   "key": "a0239#3",
+   "label": "supported",
+   "evidence": "[4] particularly in patients who have been receiving high doses of tizanidine (20 to 28 mg daily) for long periods of time (9 weeks or more)",
+   "reason": ""
+  },
+  "a0239#4": {
+   "key": "a0239#4",
+   "label": "supported",
+   "evidence": "[4] Tizanidine can cause withdrawal adverse reactions, which include rebound hypertension, tachycardia, and hypertonia.",
+   "reason": ""
+  },
+  "a0246#0": {
+   "key": "a0246#0",
+   "label": "wrong_citation",
+   "evidence": "P2: Concomitant use of tricyclic antidepressants with drugs that can inhibit cytochrome P450 2D6 may require lower doses",
+   "reason": "Supported by the supplied passages but the claim cites nothing."
+  },
+  "a0246#1": {
+   "key": "a0246#1",
+   "label": "supported",
+   "evidence": "P1: cytochrome P450 2D6 (debrisoquin hydroxylase) is reduced in a subset of the Caucasian population",
+   "reason": ""
+  },
+  "a0246#2": {
+   "key": "a0246#2",
+   "label": "supported",
+   "evidence": "P1: Poor metabolizers have higher than expected plasma concentrations of tricyclic antidepressants (TCAs) when given usual doses.",
+   "reason": ""
+  },
+  "a0246#3": {
+   "key": "a0246#3",
+   "label": "supported",
+   "evidence": "P2: The plasma concentration of imipramine may increase when the drug is given concomitantly with hepatic enzyme inhibitors (e.g., cimetidine, fluoxetine)",
+   "reason": ""
+  },
+  "a0246#4": {
+   "key": "a0246#4",
+   "label": "supported",
+   "evidence": "P2: Concomitant use of tricyclic antidepressants with drugs that can inhibit cytochrome P450 2D6 may require lower doses than usually prescribed",
+   "reason": ""
+  },
+  "a0246#5": {
+   "key": "a0246#5",
+   "label": "supported",
+   "evidence": "P2: and decrease by concomitant administration with hepatic enzyme inducers (e.g., barbiturates, phenytoin)",
+   "reason": ""
+  },
+  "a0246#6": {
+   "key": "a0246#6",
+   "label": "supported",
+   "evidence": "P1: The drugs that inhibit cytochrome P450 2D6 include some that are not metabolized by the enzyme (quinidine; cimetidine) and many that are substrates",
+   "reason": ""
+  },
+  "a0246#7": {
+   "key": "a0246#7",
+   "label": "supported",
+   "evidence": "P1: While all the selective serotonin reuptake inhibitors (SSRIs) ... inhibit P450 2D6, they may vary in the extent of inhibition.",
+   "reason": ""
+  },
+  "a0248#0": {
+   "key": "a0248#0",
+   "label": "supported",
+   "evidence": "[3] 0.25 mg for patients 2 to 17 years of age",
+   "reason": ""
+  },
+  "a0254#0": {
+   "key": "a0254#0",
+   "label": "supported",
+   "evidence": "P1: If NMS is suspected, immediately discontinue CAPLYTA and provide intensive symptomatic treatment and monitoring.",
+   "reason": ""
+  },
+  "a0254#1": {
+   "key": "a0254#1",
+   "label": "supported",
+   "evidence": "P1: Additional signs may include elevated creatine phosphokinase, myoglobinuria (rhabdomyolysis), and acute renal failure.",
+   "reason": ""
+  },
+  "a0254#2": {
+   "key": "a0254#2",
+   "label": "supported",
+   "evidence": "P3: Advise patients, family members, or caregivers to contact the healthcare provider or to report to the emergency room if they experience signs and symptoms of NMS",
+   "reason": ""
+  },
+  "a0257#0": {
+   "key": "a0257#0",
+   "label": "wrong_citation",
+   "evidence": "P1: These have included respiratory depression, airway obstruction, oxygen desaturation, apnea, respiratory arrest",
+   "reason": "Answer supported by passage 1 but cites nothing."
+  },
+  "a0257#1": {
+   "key": "a0257#1",
+   "label": "supported",
+   "evidence": "P1: Serious cardiorespiratory adverse events have occurred after administration of midazolam. These have included respiratory depression",
+   "reason": ""
+  },
+  "a0257#2": {
+   "key": "a0257#2",
+   "label": "supported",
+   "evidence": "P1: These have included respiratory depression, airway obstruction, oxygen desaturation, apnea, respiratory arrest and/or cardiac arrest",
+   "reason": ""
+  },
+  "a0257#3": {
+   "key": "a0257#3",
+   "label": "supported",
+   "evidence": "P1: Concomitant use of benzodiazepines, including midazolam, and opioids may result in profound sedation, respiratory depression, coma, and death.",
+   "reason": ""
+  },
+  "a0257#4": {
+   "key": "a0257#4",
+   "label": "supported",
+   "evidence": "P4: The sedative effect of intravenous midazolam is accentuated by any concomitantly administered medication, which depresses the central nervous system, particularly opioids",
+   "reason": ""
+  },
+  "a0257#5": {
+   "key": "a0257#5",
+   "label": "supported",
+   "evidence": "P1: If a decision is made to use midazolam concomitantly with opioids, monitor patients closely for respiratory depression and sedation",
+   "reason": ""
+  },
+  "a0257#6": {
+   "key": "a0257#6",
+   "label": "supported",
+   "evidence": "P5: occurring at an incidence of <1.0% in adult and pediatric patients... Respiratory: Laryngospasm, bronchospasm, dyspnea, hyperventilation, wheezing",
+   "reason": ""
+  },
+  "a0258#0": {
+   "key": "a0258#0",
+   "label": "supported",
+   "evidence": "[1] Instill one or two drops into the conjunctival sac(s) of the affected eye(s) every two to three hours initially.",
+   "reason": ""
+  },
+  "a0266#0": {
+   "key": "a0266#0",
+   "label": "supported",
+   "evidence": "[1] Itraconazole capsules should not be administered for the treatment of onychomycosis in patients with evidence of ventricular dysfunction such as congestive heart failure (CHF) or a history of CHF.",
+   "reason": ""
+  },
+  "a0266#1": {
+   "key": "a0266#1",
+   "label": "supported",
+   "evidence": "[2] should not be administered for the treatment of onychomycosis in patients with ... a history of CHF",
+   "reason": ""
+  },
+  "a0266#2": {
+   "key": "a0266#2",
+   "label": "supported",
+   "evidence": "[4] Itraconazole capsules should not be used for other indications in patients with evidence of ventricular dysfunction unless the benefit clearly outweighs the risk.",
+   "reason": ""
+  },
+  "a0269#0": {
+   "key": "a0269#0",
+   "label": "not_a_claim",
+   "evidence": "",
+   "reason": "List lead-in with no factual content."
+  },
+  "a0269#1": {
+   "key": "a0269#1",
+   "label": "supported",
+   "evidence": "P1: NDC 0121-0595-16: 16 fl oz (473 mL) bottle",
+   "reason": ""
+  },
+  "a0269#2": {
+   "key": "a0269#2",
+   "label": "supported",
+   "evidence": "P1: NDC 0121-0595-15: 15 mL unit dose cup.",
+   "reason": ""
+  },
+  "a0269#3": {
+   "key": "a0269#3",
+   "label": "supported",
+   "evidence": "P1: NDC 0121-1190-30: 30 mL unit dose cup.",
+   "reason": ""
+  },
+  "a0269#4": {
+   "key": "a0269#4",
+   "label": "supported",
+   "evidence": "P1: Case contains 100 unit-dose cups of 15 mL (NDC 0121-0595-00), packaged in 10 trays of 10 unit-dose cups each.",
+   "reason": ""
+  },
+  "a0269#5": {
+   "key": "a0269#5",
+   "label": "supported",
+   "evidence": "P1: Case contains 100 unit-dose cups of 30 mL (NDC 0121-1190-00) packaged in 10 trays of 10 unit-dose cups each.",
+   "reason": ""
+  },
+  "a0269#6": {
+   "key": "a0269#6",
+   "label": "supported",
+   "evidence": "P1: Case contains 100 unit-dose cups of 15 mL (NDC 0121-0595-00)",
+   "reason": ""
+  },
+  "a0269#7": {
+   "key": "a0269#7",
+   "label": "supported",
+   "evidence": "P1: Case contains 100 unit-dose cups of 30 mL (NDC 0121-1190-00)",
+   "reason": ""
+  },
+  "a0270#0": {
+   "key": "a0270#0",
+   "label": "supported",
+   "evidence": "[1] In cardiac arrest, a rapid intravenous dose of one to two 50 mL vials (44.6 to 100 mEq) may be given initially",
+   "reason": ""
+  },
+  "a0270#1": {
+   "key": "a0270#1",
+   "label": "supported",
+   "evidence": "[1] continued at a rate of 50 mL (44.6 to 50 mEq) every 5 to 10 minutes if necessary",
+   "reason": ""
+  },
+  "a0276#0": {
+   "key": "a0276#0",
+   "label": "supported",
+   "evidence": "[1] Evaluate patients for tuberculosis (TB) infection prior to initiating treatment with BIMZELX",
+   "reason": ""
+  },
+  "a0276#1": {
+   "key": "a0276#1",
+   "label": "supported",
+   "evidence": "[1] Test liver enzymes, alkaline phosphatase and bilirubin prior to initiating treatment with BIMZELX",
+   "reason": ""
+  },
+  "a0276#2": {
+   "key": "a0276#2",
+   "label": "supported",
+   "evidence": "[1] Complete all age-appropriate vaccinations as recommended by current immunization guidelines",
+   "reason": ""
+  },
+  "a0279#0": {
+   "key": "a0279#0",
+   "label": "misattributed",
+   "evidence": "P2: Mydriatics may produce a transient elevation of intraocular pressure.",
+   "reason": "A class statement about mydriatics is stated as a tropicamide-specific finding."
+  },
+  "a0279#1": {
+   "key": "a0279#1",
+   "label": "supported",
+   "evidence": "P1: Increased intraocular pressure has been reported following the use of mydriatics.",
+   "reason": ""
+  },
+  "a0283#0": {
+   "key": "a0283#0",
+   "label": "supported",
+   "evidence": "[1] Reproduction studies have been performed in mice, rats, and rabbits (200 to 400 mg/kg/day orally) and have revealed no evidence of impaired fertility or harm to the fetus",
+   "reason": ""
+  },
+  "a0286#0": {
+   "key": "a0286#0",
+   "label": "supported",
+   "evidence": "[1] Clinical manifestations of NMS are hyperpyrexia, muscle rigidity, altered mental status including delirium, and autonomic instability",
+   "reason": ""
+  },
+  "a0286#1": {
+   "key": "a0286#1",
+   "label": "supported",
+   "evidence": "[1] Additional signs may include elevated creatine phosphokinase, myoglobinuria (rhabdomyolysis), and acute renal failure.",
+   "reason": ""
+  },
+  "a0286#2": {
+   "key": "a0286#2",
+   "label": "misattributed",
+   "evidence": "[2] Patients with Parkinson's Disease or Dementia with Lewy Bodies can experience increased sensitivity to RISPERDAL. Manifestations can include confusion, obtundation...",
+   "reason": "These are manifestations of increased sensitivity in Parkinson's/Lewy body patients, presented as general NMS signs."
+  },
+  "a0286#3": {
+   "key": "a0286#3",
+   "label": "supported",
+   "evidence": "[3] signs and symptoms of NMS, including hyperpyrexia, muscle rigidity, altered mental status including delirium, and evidence of autonomic instability",
+   "reason": ""
+  },
+  "a0286#4": {
+   "key": "a0286#4",
+   "label": "wrong_citation",
+   "evidence": "[1] Clinical manifestations of NMS are hyperpyrexia, muscle rigidity, altered mental status including delirium, and autonomic instability",
+   "reason": "Passage 6 only lists NMS as a topic; the signs are in passages 1 and 3."
+  },
+  "a0287#0": {
+   "key": "a0287#0",
+   "label": "supported",
+   "evidence": "P1: Total body clearance of levetiracetam is reduced ... by 40% in the mild group (CLcr = 50 to 80 mL/min)",
+   "reason": ""
+  },
+  "a0287#1": {
+   "key": "a0287#1",
+   "label": "supported",
+   "evidence": "P1: 50% in the moderate group (CLcr = 30 to 50 mL/min)",
+   "reason": ""
+  },
+  "a0287#2": {
+   "key": "a0287#2",
+   "label": "supported",
+   "evidence": "P1: 60% in the severe renal impairment group (CLcr <30 mL/min)",
+   "reason": ""
+  },
+  "a0287#3": {
+   "key": "a0287#3",
+   "label": "supported",
+   "evidence": "P1: In anuric (end stage renal disease) patients, the total body clearance decreased 70% compared to normal subjects (CLcr >80 mL/min).",
+   "reason": ""
+  },
+  "a0287#4": {
+   "key": "a0287#4",
+   "label": "supported",
+   "evidence": "P1: Clearance of levetiracetam is correlated with creatinine clearance.",
+   "reason": ""
+  },
+  "a0287#5": {
+   "key": "a0287#5",
+   "label": "supported",
+   "evidence": "P1: Approximately 50% of the pool of levetiracetam in the body is removed during a standard 4-hour hemodialysis procedure",
+   "reason": ""
+  },
+  "a0290#0": {
+   "key": "a0290#0",
+   "label": "supported",
+   "evidence": "If symptomatic hypotension should occur, supportive treatment should be initiated [1]",
+   "reason": ""
+  },
+  "a0290#1": {
+   "key": "a0290#1",
+   "label": "supported",
+   "evidence": "If hypotension does occur, place the patient in the supine position and, if necessary, give an intravenous infusion of normal saline [2]",
+   "reason": ""
+  },
+  "a0290#2": {
+   "key": "a0290#2",
+   "label": "supported",
+   "evidence": "If hypotension remains unresponsive to these conservative measures, administration of vasopressors (such as phenylephrine) should be considered [1]",
+   "reason": ""
+  },
+  "a0291#0": {
+   "key": "a0291#0",
+   "label": "supported",
+   "evidence": "[1] The lowest known dose in a fatality case was 4.4 g",
+   "reason": ""
+  },
+  "a0297#0": {
+   "key": "a0297#0",
+   "label": "supported",
+   "evidence": "P1: Acetazolamide interferes with the HPLC method of assay for theophylline.",
+   "reason": ""
+  },
+  "a0300#0": {
+   "key": "a0300#0",
+   "label": "supported",
+   "evidence": "Factors to be considered in determining the dose are age, body weight, physical status, underlying pathological condition, use of other drugs [2]",
+   "reason": ""
+  },
+  "a0300#1": {
+   "key": "a0300#1",
+   "label": "supported",
+   "evidence": "Use in the elderly, patients with hepatic or renal disease, or in labor requires extra caution [2]",
+   "reason": ""
+  },
+  "a0300#2": {
+   "key": "a0300#2",
+   "label": "supported",
+   "evidence": "The initial dose in the elderly and in patients with renal or hepatic impairment should generally be half the recommended adult dose [3]",
+   "reason": ""
+  },
+  "a0304#0": {
+   "key": "a0304#0",
+   "label": "wrong_citation",
+   "evidence": "cevimeline was administered to pregnant rabbits during the period of organogenesis at oral doses of 0.2, 3, and 45 mg/kg/day [1]",
+   "reason": "Supported by passage 1 but the claim cites nothing."
+  },
+  "a0304#1": {
+   "key": "a0304#1",
+   "label": "wrong_citation",
+   "evidence": "Increased salivation and tachypnea were noted at 45 mg/kg/day (10 times the MRHD based on mg/m 2 dose comparison) [1]",
+   "reason": "Supported by passage 1 but the claim cites nothing."
+  },
+  "a0304#2": {
+   "key": "a0304#2",
+   "label": "supported",
+   "evidence": "No significant embryofetal toxicity was noted at doses up to 45 mg/kg/day [1]",
+   "reason": ""
+  },
+  "a0304#3": {
+   "key": "a0304#3",
+   "label": "wrong_citation",
+   "evidence": "In another embryofetal development study, cevimeline was administered to pregnant rabbits ... 0.2, 3, and 45 mg/kg/day [1]",
+   "reason": "Supported by passage 1 but the claim cites nothing."
+  },
+  "a0304#4": {
+   "key": "a0304#4",
+   "label": "wrong_citation",
+   "evidence": "Increased salivation and tachypnea were noted at 45 mg/kg/day (10 times the MRHD based on mg/m 2 dose comparison) [1]",
+   "reason": "Supported by passage 1 but the claim cites nothing."
+  },
+  "a0304#5": {
+   "key": "a0304#5",
+   "label": "supported",
+   "evidence": "No significant embryofetal toxicity was noted at doses up to 45 mg/kg/day [1]",
+   "reason": ""
+  },
+  "a0304#6": {
+   "key": "a0304#6",
+   "label": "unsupported",
+   "evidence": "Increased salivation and tachypnea were noted at 45 mg/kg/day ... No significant embryofetal toxicity was noted at doses up to 45 mg/kg/day [1]",
+   "reason": "No passage calls any dose a 'maximum safe dose'. 45 mg/kg/day was the highest dose tested, and it produced maternal toxicity."
+  },
+  "a0307#0": {
+   "key": "a0307#0",
+   "label": "supported",
+   "evidence": "Ceftriaxone is contraindicated in neonates (≤ 28 days) if they require (or are expected to require) treatment with calcium‑containing IV solutions [3]",
+   "reason": ""
+  },
+  "a0307#1": {
+   "key": "a0307#1",
+   "label": "supported",
+   "evidence": "Cases of fatal outcomes in which a crystalline material was observed in the lungs and kidneys at autopsy have been reported in neonates [3]",
+   "reason": ""
+  },
+  "a0307#2": {
+   "key": "a0307#2",
+   "label": "supported",
+   "evidence": "In vitro studies using adult and neonatal plasma from umbilical cord blood demonstrated that neonates have an increased risk of precipitation [2]",
+   "reason": ""
+  },
+  "a0309#0": {
+   "key": "a0309#0",
+   "label": "supported",
+   "evidence": "Patients should be hospitalized for 48 hours after administration of the first step-up dose (passage 1)",
+   "reason": ""
+  },
+  "a0309#1": {
+   "key": "a0309#1",
+   "label": "supported",
+   "evidence": "Patients should be hospitalized for 48 hours after administration of the first step-up dose (passage 1)",
+   "reason": ""
+  },
+  "a0309#2": {
+   "key": "a0309#2",
+   "label": "supported",
+   "evidence": "and for 24 hours after administration of the second step-up dose (passage 1)",
+   "reason": ""
+  },
+  "a0309#3": {
+   "key": "a0309#3",
+   "label": "supported",
+   "evidence": "Advise patients that they will be hospitalized for 48 hours after administration of the first step-up dose, and for 24 hours after... second (passage 2)",
+   "reason": ""
+  },
+  "a0310#0": {
+   "key": "a0310#0",
+   "label": "supported",
+   "evidence": "[2] Place the needle tip on the side of the target plaque in alignment with the point of maximal concavity.",
+   "reason": ""
+  },
+  "a0310#1": {
+   "key": "a0310#1",
+   "label": "supported",
+   "evidence": "[1] Do not advance the needle beneath the plaque nor perpendicularly towards the corpora cavernosum... without passing completely through it.",
+   "reason": ""
+  },
+  "a0310#2": {
+   "key": "a0310#2",
+   "label": "supported",
+   "evidence": "[1] Withdraw the needle slowly so as to deposit the full dose along the needle track within the plaque.",
+   "reason": ""
+  },
+  "a0310#3": {
+   "key": "a0310#3",
+   "label": "supported",
+   "evidence": "[6] place the needle into the cord, using caution to keep the needle within the cord. Avoid having the needle tip pass completely through the cord",
+   "reason": ""
+  },
+  "a0311#0": {
+   "key": "a0311#0",
+   "label": "supported",
+   "evidence": "The recommended maximum total daily dose is 18 mg/day in patients receiving regular dialysis [1]",
+   "reason": ""
+  },
+  "a0311#1": {
+   "key": "a0311#1",
+   "label": "supported",
+   "evidence": "Renal Impairment: The maximum recommended dose is 18 mg/day in patients with end-stage renal disease on hemodialysis [2]",
+   "reason": ""
+  },
+  "a0311#2": {
+   "key": "a0311#2",
+   "label": "misattributed",
+   "evidence": "Restless Legs Syndrome: ... Renal Impairment: The maximum recommended dose is 3 mg/day in patients with end-stage renal disease on hemodialysis [2]",
+   "reason": "The 3 mg/day maximum applies to restless legs syndrome only, but the claim states it without that indication."
+  },
+  "a0312#0": {
+   "key": "a0312#0",
+   "label": "supported",
+   "evidence": "should be used during pregnancy only if the potential benefit justifies the potential risk to the fetus [2]",
+   "reason": ""
+  },
+  "a0312#1": {
+   "key": "a0312#1",
+   "label": "supported",
+   "evidence": "There are no adequate and well-controlled studies of the teratogenic potential of clobetasol propionate in pregnant women [2]",
+   "reason": ""
+  },
+  "a0312#2": {
+   "key": "a0312#2",
+   "label": "misattributed",
+   "evidence": "Mice: Abnormalities seen included cleft palate and skeletal abnormalities. Rabbits: cleft palate, cranioschisis, and other skeletal abnormalities [2]",
+   "reason": "Cranioschisis was seen only in rabbits, but the claim attributes the rabbit list to mice and rabbits."
+  },
+  "a0312#3": {
+   "key": "a0312#3",
+   "label": "misattributed",
+   "evidence": "Teratogenicity studies in mice ... fetotoxicity at 1 mg/kg and teratogenicity down to 0.03 mg/kg. These doses are approximately 1.4 and 0.04 times [2]",
+   "reason": "The 1.4 and 0.04 multiples are for the mouse doses only, not the combined mouse/rabbit abnormalities (rabbit multiples were 0.02 and 0.05)."
+  },
+  "a0316#0": {
+   "key": "a0316#0",
+   "label": "supported",
+   "evidence": "rate of cardiovascular malformations ... from the international Pregnancy Registry was 1.3% (9 cardiovascular malformations/675 ...), similar to the background rate [1]",
+   "reason": ""
+  },
+  "a0316#1": {
+   "key": "a0316#1",
+   "label": "supported",
+   "evidence": "Data from the United Healthcare database ... and a case-control study ... did not show an increased risk for cardiovascular malformations overall [1]",
+   "reason": ""
+  },
+  "a0316#2": {
+   "key": "a0316#2",
+   "label": "supported",
+   "evidence": "The Slone Epidemiology Study found an increased risk for VSD ... (n = 17; adjusted OR = 2.5; 95% CI: 1.3, 5.0) [2]",
+   "reason": ""
+  },
+  "a0316#3": {
+   "key": "a0316#3",
+   "label": "supported",
+   "evidence": "No increased risk for cardiovascular malformations overall has been observed after bupropion exposure during the first trimester [3]",
+   "reason": ""
+  },
+  "a0321#0": {
+   "key": "a0321#0",
+   "label": "misattributed",
+   "evidence": "P1: Pooled analyses of 199 placebo-controlled clinical trials ... of 11 different AEDs showed that patients randomized to one of the AEDs had approximately twice the risk",
+   "reason": "Pooled 11-AED result stated as primidone-specific."
+  },
+  "a0321#1": {
+   "key": "a0321#1",
+   "label": "supported",
+   "evidence": "P1: the estimated incidence rate of suicidal behavior or ideation among 27,863 AED-treated patients was 0.43%, compared to 0.24% among 16,029 placebo-treated patients",
+   "reason": ""
+  },
+  "a0321#2": {
+   "key": "a0321#2",
+   "label": "supported",
+   "evidence": "P2: The relative risk for suicidal thoughts or behavior was higher in clinical trials for epilepsy than in clinical trials for psychiatric or other conditions",
+   "reason": ""
+  },
+  "a0321#3": {
+   "key": "a0321#3",
+   "label": "supported",
+   "evidence": "P2: Epilepsy 1.0 3.4 3.5 2.4 Psychiatric 5.7 8.5 1.5 2.9 Other 1.0 1.8 1.9 0.9",
+   "reason": ""
+  },
+  "a0321#4": {
+   "key": "a0321#4",
+   "label": "supported",
+   "evidence": "P3: The risk of suicidal thoughts or behavior was generally consistent among drugs in the data analyzed.",
+   "reason": ""
+  },
+  "a0321#5": {
+   "key": "a0321#5",
+   "label": "supported",
+   "evidence": "P3: The increased risk of suicidal thoughts or behavior with AEDs was observed as early as one week after starting drug treatment",
+   "reason": ""
+  },
+  "a0322#0": {
+   "key": "a0322#0",
+   "label": "not_a_claim",
+   "evidence": "",
+   "reason": "List lead-in with no factual content."
+  },
+  "a0322#1": {
+   "key": "a0322#1",
+   "label": "supported",
+   "evidence": "Abnormal liver function tests | 3.0 | 1.6 (passage 5, Table 6 adult cSSSI)",
+   "reason": ""
+  },
+  "a0322#2": {
+   "key": "a0322#2",
+   "label": "supported",
+   "evidence": "The safety profile in the clinical trial of cSSSI pediatric patients was similar to that observed in the cSSSI adult patients. (passage 1)",
+   "reason": ""
+  },
+  "a0323#0": {
+   "key": "a0323#0",
+   "label": "supported",
+   "evidence": "P1: The most common adverse reactions in infantile-onset SMA were similar to those observed in later-onset SMA patients.",
+   "reason": ""
+  },
+  "a0323#1": {
+   "key": "a0323#1",
+   "label": "supported",
+   "evidence": "P2: The most frequent adverse reactions reported in infantile-onset SMA patients treated with EVRYSDI in Study 1 were similar to those observed in later-onset SMA patients in Study 2.",
+   "reason": ""
+  },
+  "a0323#2": {
+   "key": "a0323#2",
+   "label": "supported",
+   "evidence": "P2: the following adverse reactions reported in ≥ 10% of patients were: upper respiratory tract infection ..., lower respiratory tract infection ..., constipation, vomiting, and cough.",
+   "reason": ""
+  },
+  "a0323#3": {
+   "key": "a0323#3",
+   "label": "supported",
+   "evidence": "P2: The patient population ranged in age from 2 to 7 months at the time of the first EVRYSDI dose (weight range: 4.1 to 10.6 kg).",
+   "reason": ""
+  },
+  "a0323#4": {
+   "key": "a0323#4",
+   "label": "misattributed",
+   "evidence": "P1: The most common adverse reactions in later-onset SMA ... were fever, diarrhea, and rash.",
+   "reason": "Later-onset figures stated as the infantile-onset ≥10% reactions."
+  },
+  "a0325#0": {
+   "key": "a0325#0",
+   "label": "supported",
+   "evidence": "systemic clearance and C max of subcutaneous sumatriptan were similar in black (n=34) and Caucasian (n=38) healthy male subjects [1]",
+   "reason": ""
+  },
+  "a0325#1": {
+   "key": "a0325#1",
+   "label": "supported",
+   "evidence": "Racial Groups: The systemic clearance and C max of subcutaneous sumatriptan were similar in black (n = 34) and Caucasian (n = 38) [2]",
+   "reason": ""
+  },
+  "a0328#0": {
+   "key": "a0328#0",
+   "label": "supported",
+   "evidence": "[3] Screen all patients for HBV infection by measuring HBsAg and anti-HBc before initiating treatment with a rituximab-containing product.",
+   "reason": ""
+  },
+  "a0328#1": {
+   "key": "a0328#1",
+   "label": "supported",
+   "evidence": "[3] For patients who show evidence of prior hepatitis B infection ... consult with physicians with expertise in managing hepatitis B",
+   "reason": ""
+  },
+  "a0330#0": {
+   "key": "a0330#0",
+   "label": "supported",
+   "evidence": "[3] Anorexia, nausea, vomiting, and constipation may occur especially if high doses are given.",
+   "reason": ""
+  },
+  "a0330#1": {
+   "key": "a0330#1",
+   "label": "supported",
+   "evidence": "[3] Large doses in elderly individuals may cause fecal impaction",
+   "reason": ""
+  },
+  "a0330#2": {
+   "key": "a0330#2",
+   "label": "supported",
+   "evidence": "[3] Rare instances of intestinal necrosis have been reported.",
+   "reason": ""
+  },
+  "a0330#3": {
+   "key": "a0330#3",
+   "label": "supported",
+   "evidence": "[3] Intestinal obstruction due to concretions of aluminum hydroxide, when used in combination with sodium polystyrene sulfonate, has been reported.",
+   "reason": ""
+  },
+  "a0330#4": {
+   "key": "a0330#4",
+   "label": "supported",
+   "evidence": "[3] Fecal impaction following rectal administration, particularly in children",
+   "reason": ""
+  },
+  "a0330#5": {
+   "key": "a0330#5",
+   "label": "supported",
+   "evidence": "[3] Gastrointestinal concretions (bezoars) following oral administration",
+   "reason": ""
+  },
+  "a0330#6": {
+   "key": "a0330#6",
+   "label": "supported",
+   "evidence": "[3] Ischemic colitis, gastrointestinal tract ulceration or necrosis which could lead to intestinal perforation",
+   "reason": ""
+  },
+  "a0330#7": {
+   "key": "a0330#7",
+   "label": "supported",
+   "evidence": "[3] Rare cases of acute bronchitis and/or bronchopneumonia associated with inhalation of particles of polystyrene sulfonate",
+   "reason": ""
+  },
+  "a0333#0": {
+   "key": "a0333#0",
+   "label": "supported",
+   "evidence": "P1: The most common adverse reactions occurring in ≥ 5% of patients and with a between-group difference of ≥ 5% higher in the pegfilgrastim arm ... are bone pain and pain in extremity.",
+   "reason": ""
+  },
+  "a0333#1": {
+   "key": "a0333#1",
+   "label": "supported",
+   "evidence": "P2: Bone pain | Placebo (N = 461): 26% | Pegfilgrastim 6 mg SC on Day 2 (N = 467): 31%",
+   "reason": ""
+  },
+  "a0333#2": {
+   "key": "a0333#2",
+   "label": "supported",
+   "evidence": "P2: Pain in extremity | Placebo (N = 461): 4% | Pegfilgrastim 6 mg SC on Day 2 (N = 467): 9%",
+   "reason": ""
+  },
+  "a0333#3": {
+   "key": "a0333#3",
+   "label": "supported",
+   "evidence": "P3: The most common adverse reaction reported was bone pain.",
+   "reason": ""
+  },
+  "a0333#4": {
+   "key": "a0333#4",
+   "label": "supported",
+   "evidence": "P4: Most common adverse reactions (≥ 5% difference in incidence compared to placebo) are bone pain and pain in extremity.",
+   "reason": ""
+  },
+  "a0334#0": {
+   "key": "a0334#0",
+   "label": "supported",
+   "evidence": "Thyroid stimulating hormone (TSH) was measured every 12 weeks. [1]",
+   "reason": ""
+  },
+  "a0335#0": {
+   "key": "a0335#0",
+   "label": "supported",
+   "evidence": "Passage 1: \"The recommended starting dose for patients with congestive heart failure (NYHA Class I or II) is 15 mg once daily.\"",
+   "reason": ""
+  },
+  "a0336#0": {
+   "key": "a0336#0",
+   "label": "wrong_citation",
+   "evidence": "Passage 2: \"Nausea 6.1 15.8 20.3\" (placebo vs OZEMPIC 0.5 mg, 1 mg)",
+   "reason": "Supported by passages 2/3 but cites nothing."
+  },
+  "a0336#1": {
+   "key": "a0336#1",
+   "label": "supported",
+   "evidence": "Passage 1: \"gastrointestinal adverse reactions occurred more frequently among patients receiving OZEMPIC than placebo (placebo 15.3%, OZEMPIC 0.5 mg 32.7%...\"",
+   "reason": ""
+  },
+  "a0336#2": {
+   "key": "a0336#2",
+   "label": "supported",
+   "evidence": "Passage 1: \"The majority of reports of nausea, vomiting, and/or diarrhea occurred during dose escalation.\"",
+   "reason": ""
+  },
+  "a0336#3": {
+   "key": "a0336#3",
+   "label": "supported",
+   "evidence": "Passage 1: \"occurred more frequently among patients receiving OZEMPIC 2 mg (34%) vs OZEMPIC 1 mg (30.8%)\"",
+   "reason": ""
+  },
+  "a0336#4": {
+   "key": "a0336#4",
+   "label": "supported",
+   "evidence": "Passage 3: \"Nausea | Placebo (N=262) %: 6.1 | OZEMPIC 0.5 mg (N=260) %: 15.8 | OZEMPIC 1 mg (N=261) %: 20.3\"",
+   "reason": ""
+  },
+  "a0338#0": {
+   "key": "a0338#0",
+   "label": "supported",
+   "evidence": "P1: OMLYCLO prefilled syringe should be shipped and stored under refrigerated conditions 36°F to 46°F (2°C to 8°C) in the original carton.",
+   "reason": ""
+  },
+  "a0338#1": {
+   "key": "a0338#1",
+   "label": "supported",
+   "evidence": "P1: Protect from direct sunlight.",
+   "reason": ""
+  },
+  "a0338#2": {
+   "key": "a0338#2",
+   "label": "supported",
+   "evidence": "P1: The total combined time out of the refrigerator may not be more than 7 days.",
+   "reason": ""
+  },
+  "a0338#3": {
+   "key": "a0338#3",
+   "label": "supported",
+   "evidence": "P1: Do not use if prefilled syringe is left at temperatures above 77°F (25°C ).",
+   "reason": ""
+  },
+  "a0338#4": {
+   "key": "a0338#4",
+   "label": "supported",
+   "evidence": "P1: Do not freeze.",
+   "reason": ""
+  },
+  "a0338#5": {
+   "key": "a0338#5",
+   "label": "supported",
+   "evidence": "P1: Do not use if the prefilled syringe has been frozen.",
+   "reason": ""
+  },
+  "a0340#0": {
+   "key": "a0340#0",
+   "label": "supported",
+   "evidence": "[1] indicated for the maintenance of normal sinus rhythm (delay in time to recurrence of AFIB/AFL) in patients with highly symptomatic AFIB/AFL",
+   "reason": ""
+  },
+  "a0340#1": {
+   "key": "a0340#1",
+   "label": "supported",
+   "evidence": "[1] Limitation of Use: Because sotalol hydrochloride tablets can cause life-threatening ventricular arrhythmias, reserve its use for patients in whom AFIB/AFL is highly symptomatic.",
+   "reason": ""
+  },
+  "a0340#2": {
+   "key": "a0340#2",
+   "label": "supported",
+   "evidence": "[1] Patients with paroxysmal AFIB that is easily reversed ... should usually not be given sotalol hydrochloride tablets.",
+   "reason": ""
+  },
+  "a0340#3": {
+   "key": "a0340#3",
+   "label": "supported",
+   "evidence": "[2] the maintenance of normal sinus rhythm in patients with atrial fibrillation or flutter (AFIB/AFL)",
+   "reason": ""
+  },
+  "a0345#0": {
+   "key": "a0345#0",
+   "label": "supported",
+   "evidence": "[1] TUDRIQEV DNA was present at the injection site up to 15 days post injection in approximately 20% of patients.",
+   "reason": ""
+  },
+  "a0345#1": {
+   "key": "a0345#1",
+   "label": "supported",
+   "evidence": "[2] No sample had detectable TUDRIQEV DNA 30-days after the end of treatment in blood, urine, swab samples",
+   "reason": ""
+  },
+  "a0352#0": {
+   "key": "a0352#0",
+   "label": "supported",
+   "evidence": "it may be prudent not to discontinue therapy with labetalol hydrochloride abruptly in patients being treated for hypertension (passage 1)",
+   "reason": ""
+  },
+  "a0352#1": {
+   "key": "a0352#1",
+   "label": "supported",
+   "evidence": "Do not routinely withdraw chronic beta-blocker therapy prior to surgery. (passage 1)",
+   "reason": ""
+  },
+  "a0352#2": {
+   "key": "a0352#2",
+   "label": "supported",
+   "evidence": "the dosage should be gradually reduced over a period of 1 to 2 weeks and the patient should be carefully monitored (passage 3)",
+   "reason": ""
+  },
+  "a0353#0": {
+   "key": "a0353#0",
+   "label": "not_a_claim",
+   "evidence": "",
+   "reason": "List lead-in restating the question."
+  },
+  "a0353#1": {
+   "key": "a0353#1",
+   "label": "supported",
+   "evidence": "[2] Symptoms attributable to acute barbiturate poisoning include drowsiness, confusion, and coma; respiratory depression; hypotension; hypovolemic shock.",
+   "reason": ""
+  },
+  "a0353#2": {
+   "key": "a0353#2",
+   "label": "supported",
+   "evidence": "[2] Symptoms attributable to acute aspirin poisoning include hyperpnea; acid-base disturbances with development of metabolic acidosis; vomiting and abdominal pain; tinnitus...",
+   "reason": ""
+  },
+  "a0353#3": {
+   "key": "a0353#3",
+   "label": "supported",
+   "evidence": "[2] Acute caffeine poisoning may cause insomnia, restlessness, tremor, and delirium; tachycardia and extrasystoles.",
+   "reason": ""
+  },
+  "a0357#0": {
+   "key": "a0357#0",
+   "label": "supported",
+   "evidence": "P1: The most frequent adverse reactions reported in ≥ 20% of patients treated with ULTOMIRIS were upper respiratory tract infection, diarrhea, nausea, vomiting, headache, hypertension, and pyrexia.",
+   "reason": ""
+  },
+  "a0357#1": {
+   "key": "a0357#1",
+   "label": "supported",
+   "evidence": "P1: The most frequent serious adverse reactions reported in more than 2 patients (2.7%) treated with ULTOMIRIS were hypertension, pneumonia, and abdominal pain.",
+   "reason": ""
+  },
+  "a0357#2": {
+   "key": "a0357#2",
+   "label": "wrong_citation",
+   "evidence": "P1: Table 9, Table 10 and Table 11 describe adverse reactions that occurred at a rate of 10% or more among patients treated with ULTOMIRIS in aHUS studies.",
+   "reason": "Content is stated in passage 1 but the claim cites nothing."
+  },
+  "a0357#3": {
+   "key": "a0357#3",
+   "label": "supported",
+   "evidence": "P1: ...reported in ≥ 20% of patients treated with ULTOMIRIS were upper respiratory tract infection...",
+   "reason": ""
+  },
+  "a0359#0": {
+   "key": "a0359#0",
+   "label": "supported",
+   "evidence": "[2] Nausea | 16 | 0.7 | 49 | 3.7",
+   "reason": ""
+  },
+  "a0359#1": {
+   "key": "a0359#1",
+   "label": "supported",
+   "evidence": "[2] Nausea | 16 | 0.7 | 49 | 3.7",
+   "reason": ""
+  },
+  "a0369#0": {
+   "key": "a0369#0",
+   "label": "wrong_citation",
+   "evidence": "P1: One controlled clinical trial evaluated naratriptan tablets (0.25 to 2.5 mg) in 300 adolescent migraineurs aged 12 to 17 years",
+   "reason": "Supported by passage 1 but cites nothing."
+  },
+  "a0369#1": {
+   "key": "a0369#1",
+   "label": "wrong_citation",
+   "evidence": "P1: In this study, 54% of the patients were female and 89% were Caucasian.",
+   "reason": "Supported by passage 1 but cites nothing."
+  },
+  "a0369#2": {
+   "key": "a0369#2",
+   "label": "wrong_citation",
+   "evidence": "P1: There were no statistically significant differences between any of the treatment groups.",
+   "reason": "Supported by passage 1 but cites nothing."
+  },
+  "a0369#3": {
+   "key": "a0369#3",
+   "label": "wrong_citation",
+   "evidence": "P1: The headache response rates at 4 hours (n) were 65% (n = 74), 67% (n = 78), and 64% (n = 70)",
+   "reason": "Supported by passage 1 but cites nothing."
+  },
+  "a0369#4": {
+   "key": "a0369#4",
+   "label": "supported",
+   "evidence": "P1: This trial did not establish the efficacy of naratriptan compared with placebo in the treatment of migraine in adolescents.",
+   "reason": ""
+  },
+  "a0371#0": {
+   "key": "a0371#0",
+   "label": "contradicted",
+   "evidence": "[2] Glucose increased 44 2.9 54 6 Triglycerides increased 35 2 36 0.7",
+   "reason": "Glucose increased (44%) is more common than triglycerides increased (35%), so triglycerides is not the most common abnormality."
+  },
+  "a0371#1": {
+   "key": "a0371#1",
+   "label": "supported",
+   "evidence": "[2] Triglycerides increased 35 2 36 0.7",
+   "reason": ""
+  },
+  "a0371#2": {
+   "key": "a0371#2",
+   "label": "supported",
+   "evidence": "[4] hot flush (54%), glucose increased (44%), triglycerides increased (35%), ... hemoglobin decreased (28%)",
+   "reason": ""
+  },
+  "a0372#0": {
+   "key": "a0372#0",
+   "label": "supported",
+   "evidence": "P1: At a dose of 40 IU/kg the mean (SD) half-life and mean residence time (MRT) in adults and adolescents were 47.8 (13.7) hours",
+   "reason": ""
+  },
+  "a0372#1": {
+   "key": "a0372#1",
+   "label": "supported",
+   "evidence": "P1: At a dose of 40 IU/kg the mean (SD) half-life ... in adults and adolescents were 47.8 (13.7) hours",
+   "reason": ""
+  },
+  "a0372#2": {
+   "key": "a0372#2",
+   "label": "supported",
+   "evidence": "P2: t ½ (h) 47.8 (13.70) 30.1; 90.8",
+   "reason": ""
+  },
+  "a0375#0": {
+   "key": "a0375#0",
+   "label": "supported",
+   "evidence": "TREATMENT of hyperhomocysteinemia due to vitamin B12 and/or folate deficiency (passage 2)",
+   "reason": ""
+  },
+  "a0375#1": {
+   "key": "a0375#1",
+   "label": "supported",
+   "evidence": "Repletion of vitamin B12 and l-methylfolate restores the remethylation of homocysteine to methionine, thereby reducing elevated plasma homocysteine levels (passage 1)",
+   "reason": ""
+  },
+  "a0378#0": {
+   "key": "a0378#0",
+   "label": "supported",
+   "evidence": "data are inadequate to perform an analysis of the adverse reaction incidence related to clinically-relevant age groups [1]",
+   "reason": ""
+  },
+  "a0378#1": {
+   "key": "a0378#1",
+   "label": "supported",
+   "evidence": "Consequently, data are inadequate to perform an analysis of the adverse reaction incidence related to clinically-relevant age subgroups [3]",
+   "reason": ""
+  },
+  "a0378#2": {
+   "key": "a0378#2",
+   "label": "misattributed",
+   "evidence": "were analyzed to evaluate differences based on sex. No clinically-significant differences were identified [5]",
+   "reason": "The no-difference finding was for sex, not age."
+  },
+  "a0381#0": {
+   "key": "a0381#0",
+   "label": "supported",
+   "evidence": "[1] IMJUDO can cause fetal harm when administered to a pregnant woman",
+   "reason": ""
+  },
+  "a0381#1": {
+   "key": "a0381#1",
+   "label": "supported",
+   "evidence": "[1] In animal studies, CTLA-4 blockade is associated with increased risk of immune-mediated rejection of the developing fetus and fetal death",
+   "reason": ""
+  },
+  "a0381#2": {
+   "key": "a0381#2",
+   "label": "supported",
+   "evidence": "[3] In animal studies, CTLA-4 blockade is associated with higher incidence of pregnancy loss.",
+   "reason": ""
+  },
+  "a0381#3": {
+   "key": "a0381#3",
+   "label": "supported",
+   "evidence": "[2] fetal exposure to tremelimumab-actl may increase the risk of developing immune-mediated disorders or altering the normal immune response.",
+   "reason": ""
+  },
+  "a0381#4": {
+   "key": "a0381#4",
+   "label": "supported",
+   "evidence": "[2] In a murine model of pregnancy, CTLA-4 blockade resulted in increased resorptions and reduced live fetuses.",
+   "reason": ""
+  },
+  "a0381#5": {
+   "key": "a0381#5",
+   "label": "supported",
+   "evidence": "[2] The CTLA-4-/- homozygous negative offspring developed signs of a lymphoproliferative disorder and died by 3 to 4 weeks of age",
+   "reason": ""
+  },
+  "a0383#0": {
+   "key": "a0383#0",
+   "label": "supported",
+   "evidence": "There have been reports of hyperglycemia in patients following initiation of varenicline. (passage 1)",
+   "reason": ""
+  },
+  "a0383#1": {
+   "key": "a0383#1",
+   "label": "supported",
+   "evidence": "There have been reports of hyperglycemia in patients following initiation of varenicline. (passage 1)",
+   "reason": ""
+  },
+  "a0383#2": {
+   "key": "a0383#2",
+   "label": "wrong_citation",
+   "evidence": "Metabolism and Nutrition Disorders. Infrequent: diabetes mellitus, hypoglycemia. (passage 3)",
+   "reason": "Hypoglycemia appears in passage 3, not the cited passage 5."
+  },
+  "a0383#3": {
+   "key": "a0383#3",
+   "label": "not_a_claim",
+   "evidence": "",
+   "reason": "A bare heading with no factual content."
+  },
+  "a0385#0": {
+   "key": "a0385#0",
+   "label": "supported",
+   "evidence": "P2: Ovarian Hyperstimulation Syndrome * | Cetrorelix Acetate N=949 % (n): 3.5 (33)",
+   "reason": ""
+  },
+  "a0387#0": {
+   "key": "a0387#0",
+   "label": "supported",
+   "evidence": "Clinically relevant increases in serum cholesterol were recorded in 5.3% of venlafaxine-treated patients (passage 1)",
+   "reason": ""
+  },
+  "a0387#1": {
+   "key": "a0387#1",
+   "label": "supported",
+   "evidence": "were recorded in 5.3% of venlafaxine-treated patients and 0.0% of placebo-treated patients (passage 2)",
+   "reason": ""
+  },
+  "a0387#2": {
+   "key": "a0387#2",
+   "label": "supported",
+   "evidence": "defined as 1) a final on-therapy increase in serum cholesterol ≥50 mg/dL from baseline and to a value ≥261 mg/dL, or 2) an average (passage 2)",
+   "reason": ""
+  },
+  "a0387#3": {
+   "key": "a0387#3",
+   "label": "supported",
+   "evidence": "treatment for up to 12 weeks in premarketing placebo-controlled trials for MDD... increase in serum cholesterol of approximately 1.5 mg/dL (passage 6)",
+   "reason": ""
+  },
+  "a0387#4": {
+   "key": "a0387#4",
+   "label": "supported",
+   "evidence": "in other premarketing placebo-controlled trials... increases in serum cholesterol concentration of approximately 7.9 mg/dL (passage 6)",
+   "reason": ""
+  },
+  "a0393#0": {
+   "key": "a0393#0",
+   "label": "wrong_citation",
+   "evidence": "Passage 1: \"The following serious adverse reactions are described below and elsewhere in the labeling: Paradoxical bronchospasm\"",
+   "reason": "Supported by passage 1 but cites nothing."
+  },
+  "a0393#1": {
+   "key": "a0393#1",
+   "label": "supported",
+   "evidence": "Passage 1: \"serious adverse reactions ...: Paradoxical bronchospasm ... Cardiovascular effects ... Immediate hypersensitivity reactions ... Hypokalemia\"",
+   "reason": ""
+  },
+  "a0393#2": {
+   "key": "a0393#2",
+   "label": "supported",
+   "evidence": "Passage 1: \"Most common adverse reactions are: palpitations, chest pain, tachycardia, headache, dizziness, tremor and nervousness.\"",
+   "reason": ""
+  },
+  "a0393#3": {
+   "key": "a0393#3",
+   "label": "supported",
+   "evidence": "Passage 2: \"a slightly greater number of serious adverse events, discontinuations due to adverse events, and clinically significant ECG changes were reported\"",
+   "reason": ""
+  },
+  "a0393#4": {
+   "key": "a0393#4",
+   "label": "unsupported",
+   "evidence": "Passage 5: \"These events have been chosen for inclusion due to their seriousness, their frequency of reporting, or their likely beta-mediated mechanism\"",
+   "reason": "Passage does not label all these postmarketing events as serious; over-generalisation."
+  },
+  "a0399#0": {
+   "key": "a0399#0",
+   "label": "supported",
+   "evidence": "[2] In addition, moxifloxacin was shown not to affect the pharmacokinetics of itraconazole.",
+   "reason": ""
+  },
+  "a0399#1": {
+   "key": "a0399#1",
+   "label": "supported",
+   "evidence": "[2] no significant effect of itraconazole (200 mg once daily for 9 days) ... on the pharmacokinetics of moxifloxacin (a single 400 mg dose given on the 7th day",
+   "reason": ""
+  }
+ }
+}

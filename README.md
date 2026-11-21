@@ -34,6 +34,7 @@ question ─► entity scope ─► BM25 (FTS5) ─┐
 | **Cross-encoder rerank** | Re-scores the fused top-30 with an ONNX `ms-marco-MiniLM` model. | Retrieve wide, rerank narrow. No PyTorch in the serving image. |
 | **Near-duplicate collapse** | Keeps the best copy of passages with ≥ 0.85 Jaccard overlap, and records what it suppressed. | Six distinct pieces of evidence, not one paragraph six times. |
 | **Abstention gates** | Refuses before generation on (a) a word found nowhere in the corpus or (b) a reranker score below a threshold calibrated on held-out data. The model can also refuse with `INSUFFICIENT_EVIDENCE`. | A refusal is the cheapest path, not the most expensive one. |
+| **Sentence-level verification** | Each answer sentence is checked against the passages by a small ONNX entailment model. A sentence that only an uncited passage supports gets that citation added; a sentence no passage supports, or whose supporting passage never names the population or trial it states, is marked "not verified". | The checks below verify citations and numbers. This is the layer that looks at what a sentence *says*. It repairs 88% of wrong citations; it catches about a third of false sentences (measured below). |
 | **Grounding checks** | Citations must point at supplied sources. Every number must appear in the passage it cites, with its unit when it has one ("2 days" is not supported by "2 weeks"). Uncited closing claims that "the sources do not cover X" are removed. | Catches a wrong dose deterministically, with no second LLM call. It cannot catch a sentence that reverses or misattributes its source without changing a number; that is measured offline below, not blocked. |
 
 ## Results
@@ -131,6 +132,44 @@ Latency with the local GPU model (RTX 4060 laptop): p50 4.3–5.5 s / p95 9.3–
 - **The checker has been corrected three times, never to hide a failure.** Each time, the stored answers were re-scored deterministically (`python -m labellens.evalkit.rescore`) without regenerating them. The re-scorer now appends each correction, with its reason and before and after figures, to a history in `generation.json`; earlier corrections are in the git history of that file. The first correction covered real label formats (`47.8 (13.7) hours`, `µg` for `mcg`, the `%` in a table header). The second covered numbers glued to a word in the label text ("younger than18 years"). The third covered a number used as a label ("Week 2 dose" is not a claim about "2 doses"), trailing zeros ("13.7" in a "13.70" cell) and a "%" stated once in a table's caption or header row. An independent review of that third change showed the first version was too loose (it accepted "20%" read off a "20 mg" column header, and a mg dose after "per day" with the wrong unit); the version shipped accepts only a cell value in the row the sentence names, and never drops a mass, volume or percentage unit.
 - An 8B model is a lenient judge. Treat judge scores as relative signals for comparing versions, not absolute truth.
 
+### Sentence-level claim verification
+
+The grounding checks catch a wrong number. They cannot catch a sentence that attaches a real fact to the wrong trial, population or drug, which the stronger judge found in about 1 answer in 10. This layer checks each sentence against the passages with a small natural-language-inference model (`cross-encoder/nli-deberta-v3-small`, ONNX, CPU, no PyTorch), plus a deterministic check that every population, species or trial name a sentence states appears in the passage that supports it.
+
+**How it was measured.** Two sets of real answers were labelled sentence by sentence by a stronger model, against the exact passages the system had been given: 118 answers / 461 sentences from the *calibration* questions (for choosing) and 119 answers / 428 sentences from the *test* questions (for reporting). Each sentence is *supported*, *wrong citation* (true, but the cited passage does not say it), or *false* (misattributed, contradicted or unsupported). Ten variants were compared. The selection rule was written down before any result was seen: the highest recall of false sentences on calibration, with at most 5% of true sentences flagged. The chosen configuration was saved with a timestamp ([`eval/claims/selection.json`](eval/claims/selection.json)) before its test score was computed.
+
+| Shipped: small NLI model + drug name + qualifier check | Calibration | **Test** |
+|---|---:|---:|
+| False sentences caught | 48% (11/23) | **32% (6/19)** |
+| True sentences wrongly flagged | 4.1% | **4.3%** |
+| Wrong citations repaired by adding the right passage | 77% | **88% (22/25)** |
+
+What the comparison showed ([`eval/results/claims.json`](eval/results/claims.json)):
+
+- **The verifier's input mattered more than its size.** NLI models are trained on sentence pairs. A sentence copied word for word from a passage scored 0.986 entailment on its own and 0.003 with the next sentence appended, so the first version, which compared claims with two-sentence windows, flagged 8 to 10% of true sentences at any threshold. Comparing single sentences, prefixed with the drug name because passages say "it" or the brand, fixed most of that. The larger base model did not do better.
+- **An LLM verifier was worse and slower.** Asking `llama3.1:8b` to quote the supporting sentence (with the quote then checked to exist) caught 53% of false sentences but flagged 23% of true ones, at 6.5 s per answer. The NLI verifier takes about 1 s per answer on CPU.
+- **Test differs from calibration, and that is reported as is.** Another variant (1 to 2 sentence windows) caught 42% of false sentences on test, more than the shipped one, but less on calibration, where the choice was made. With 19 false sentences in the test set, these differences are within noise.
+- **What it still misses.** Most misattributions read as entailed: "patients randomized to one of the AEDs" and "patients randomized to primidone" differ by one noun phrase. It catches about a third of false sentences, so it is a warning layer, not a filter. Flagged sentences are underlined in the UI and kept, not deleted.
+
+### External benchmark: FDARxBench
+
+[FDARxBench](https://github.com/xiongbetty/FDARxBench) (2026, Apache-2.0) is an expert-reviewed set of 17,207 questions over 685 FDA labels, written by others, with factual, multi-hop (two sections of one label) and refusal (the label does not contain it) questions. LabelLens was run **unchanged** on a stratified sample of 400 (200 factual, 100 multi-hop, 100 refusal; seed 13; one question per label where possible). The index was built from **the benchmark's own label text**, converted to the openFDA format, so answers and references come from the same label versions. Every answer was graded by hand against the reference with the benchmark's scheme: CORRECT / INCORRECT / NOT_ATTEMPTED. A multi-hop answer counts as correct only if both parts are right. Grades and reasons: [`eval/results/fdarxbench.json`](eval/results/fdarxbench.json).
+
+| FDARxBench (sample of 400) | LabelLens (local, 8B) | 95% CI |
+|---|---:|---:|
+| Factual accuracy (n = 200) | **89.5%** | 84.5 - 93.0% |
+| Multi-hop accuracy (n = 100) | **58.0%** | 48.2 - 67.2% |
+| Refusal questions declined (n = 100) | **97%** | 91.5 - 99.0% |
+| Refusal F1 / answerable questions wrongly refused | **0.98** / 0.3% | |
+
+For context, the paper reports its best models at about 0.56 factual and 0.47 multi-hop accuracy and 0.71 to 0.80 refusal F1, with the whole label in the prompt and an LLM grader. **These numbers are not directly comparable**: a sample of 400, a different grader (by hand here), and a retrieval setting rather than the whole label. They do show that the system holds up on questions it was not built around, written by people who never saw it.
+
+What the benchmark found:
+
+- **Multi-hop is the weak spot.** Of the 41 wrong multi-hop answers, 28 answered one half of a two-part question and dropped the other ("What is the dose, and what did the carcinogenicity studies show?"). Of the rest, 3 wrongly said the label does not cover the second part, 1 invented a fact, and the others missed the key detail. Retrieval returns six passages ranked for the question as a whole, and an 8B model tends to answer the first part. Splitting compound questions and retrieving for each part is the obvious next step.
+- **4 of 21 wrong factual answers have defective references** (a reference that is only section numbers, or a lactation note for a dosing question). They were still counted as wrong.
+- **Refusals transfer.** The gate and the model declined 97 of 100 questions the labels cannot answer, and wrongly refused 1 of 300 answerable ones. The three misses answered with nearby label text (thyroid replacement, liver monitoring) instead of declining.
+
 ### Live check against today's FDA labels
 
 Fourteen new, hand-written everyday questions (maximum acetaminophen dose, ibuprofen in the third trimester, warfarin's boxed warning, omeprazole for GERD, an Ozempic price question, "can I double my pills"…) were answered locally. Every cited passage and every number was then compared with the **current** label fetched from the openFDA API ([`eval/results/livecheck.json`](eval/results/livecheck.json)). This is a spot check: 14 questions cannot estimate an error rate.
@@ -163,7 +202,7 @@ After the fixes: 6 of 16 questions correctly refused (cost, probability, patient
 - **Observability.** Prometheus metrics with per-stage latency histograms (scope, BM25, embed, dense, rerank, first token, generation), grounding-failure counters, structured JSON logs with request ids, and `/healthz` and `/readyz`.
 - **Failure handling.** Retries with backoff for model backends, a `503` with `Retry-After` when a backend is down, and empty or truncated completions flagged and never cached.
 - **Swappable providers.** Embedder, reranker and LLM are three small protocols. The generator runs locally on Ollama or on Claude (`LABELLENS_LLM_PROVIDER=anthropic`) with no code change.
-- **Tests that need no GPU.** 130 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
+- **Tests that need no GPU.** 136 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
 
 ## Quick start
 
@@ -262,19 +301,22 @@ src/labellens/
   ingest.py        incremental, idempotent ingestion and embedding
   retrieval.py     entity linking, hybrid search, RRF, rerank, near-dup collapse
   generation.py    prompt, citation and number grounding checks
+  verify.py        sentence-level claim verification (NLI + qualifier check)
   service.py       gates, streaming, cache, hot reload
   api.py           FastAPI app;  static/index.html  web UI
 streamlit_app.py   free hosted demo (CPU embeddings, Groq answers)
-  evalkit/         golden-set synthesis, ablation, gate calibration, LLM judge
+  evalkit/         golden-set synthesis, ablation, gate calibration, LLM judge,
+                   claim-verifier study (claims.py), FDARxBench runner (fdarx.py)
 docs/DECISIONS.md  every design decision, the constraint behind it, what was rejected
-tests/             130 tests, including regression tests for every review and audit finding
+tests/             136 tests, including regression tests for every review and audit finding
 ```
 
 ## Limitations
 
 - **Synthetic questions.** The golden set is generated by an 8B model from label passages, so it inherits the chunker's view of a label: questions come from prose passages the chunker produced, and real users ask differently. The 16 outside questions and the 14 live-check questions are hand-written, but 30 questions is a spot check. A few hundred clinician-written questions would be the real test.
 - **The answer judges.** The 8B judge scored 95.8% correct; a stronger blind judge scored 91.7%. Neither is a pharmacist. A human review of a sample is the next step before trusting either number.
-- **Misattribution is not blocked.** The deterministic checks verify citations and numbers. They cannot see a sentence that reverses its source ("safe" for "contraindicated") or attaches a real fact to the wrong population, trial or drug. The stronger judge found this in about 1 answer in 10, mostly the wrong-population or wrong-trial kind. A larger generator, or a second-pass entailment check per sentence, is the obvious next step; both cost latency.
+- **Misattribution is only partly caught.** The sentence verifier catches about a third of false sentences on held-out data (with 4% of true sentences flagged) and repairs most wrong citations, but a sentence that swaps one noun phrase ("one of the AEDs" for "primidone") usually reads as entailed. A larger generator is the next lever. The verifier needs a second model in memory, so it is off on the 1 GB hosted demo.
+- **Two-part questions.** On FDARxBench, multi-hop accuracy was 58% against 89.5% for single-part questions: the model often answers one half. Question decomposition is the planned fix.
 - **Ranking, not just recall.** The right passage is in the top 5 for 90.1% of questions but ranked first for only 58.3%. The model sees six passages (91.1% contain the gold one), so this costs little in answers, but a section-aware query router would raise it.
 - **The refusal gate is tuned on easy negatives.** Its threshold allows zero false refusals on calibration data, and AUROC is 0.997, but the unanswerable questions are invented drugs or facts no label states (price, patents). A question with a false premise about a real drug ("why is X contraindicated in asthma?" when it is not) would score as answerable, and only the model and the checks stand behind it.
 - **Re-ingesting under a running server.** During an ingest, chunks are replaced immediately but their vectors arrive only when embedding finishes (minutes for a full rebuild). Until the index version is bumped, a running server keeps its old vector snapshot, whose row ids no longer exist, so dense search returns nothing for re-ingested labels and answers come from BM25 alone. Restart-free updates should build into a second file and switch. The hosted demo already works that way (it downloads a finished index).

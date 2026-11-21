@@ -22,4 +22,6 @@ def build_service(settings: Settings) -> RagService:
     llm = build_llm(settings.llm_provider, settings.llm_model, settings.ollama_url,
                     settings.llm_timeout_s,
                     [m.strip() for m in settings.llm_fallback_models.split(",") if m.strip()])
-    return RagService(retriever, llm, settings)
+    from .verify import build_verifier
+
+    return RagService(retriever, llm, settings, verifier=build_verifier(settings))

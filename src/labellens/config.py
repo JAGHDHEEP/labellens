@@ -68,6 +68,12 @@ class Settings:
     # spends a rate-limited API key, so one visitor must not exhaust it for all.
     rate_limit_per_minute: int = 0
     strict_grounding: bool = False  # True: replace ungrounded answers with a refusal
+    # Sentence-level claim verification (verify.py). Chosen on the calibration
+    # split, reported once on test: eval/claims/selection.json.
+    verify_claims: bool = True
+    verify_model: str = "cross-encoder/nli-deberta-v3-small"
+    verify_entail_t: float = 0.02
+    verify_mode: str = "drug+s1"
 
     @property
     def db_path(self) -> Path:

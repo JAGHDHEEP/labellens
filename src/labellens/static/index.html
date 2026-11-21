@@ -48,6 +48,8 @@
   .badge.ok { background: var(--ok-soft); color: var(--ok); }
   .badge.warn { background: var(--warn-soft); color: var(--warn); }
   .badge.bad { background: var(--bad-soft); color: var(--bad); }
+  .unverified { text-decoration: underline dotted #d99a2b 2px; text-underline-offset: 3px; cursor: help; }
+  .unverified::after { content: "\26A0"; font-size: 11px; margin-left: 2px; color: #d99a2b; }
   .timings { margin-top: 12px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
   .src { padding: 10px 0; border-top: 1px solid var(--line); }
   .src:first-of-type { border-top: 0; padding-top: 0; }
@@ -107,8 +109,17 @@ EXAMPLES.forEach((text) => {
   $("examples").appendChild(b);
 });
 
-function renderAnswer(text) {
-  $("answer").innerHTML = esc(text).replace(/\[(\d{1,2}(?:\s*[,\-\u2013]\s*\d{1,2})*)\]/g,
+function renderAnswer(text, verification) {
+  let html = esc(text);
+  // Sentences the claim verifier could not match to a passage: marked, not hidden.
+  ((verification && verification.claims) || []).forEach((c) => {
+    if (c.verdict !== "unsupported" && c.verdict !== "contradicted") return;
+    const why = c.notes && c.notes.length ? c.notes.join("; ")
+      : (c.verdict === "contradicted" ? "a passage appears to state otherwise" : "no passage was found to state this");
+    const s = esc(c.text);
+    html = html.replace(s, `<span class="unverified" title="Not verified: ${esc(why)}">${s}</span>`);
+  });
+  $("answer").innerHTML = html.replace(/\[(\d{1,2}(?:\s*[,\-\u2013]\s*\d{1,2})*)\]/g,
     (_, g) => g.split(/\s*[,\-\u2013]\s*/).map((n) => `<a class="cite" data-n="${parseInt(n, 10)}">${parseInt(n, 10)}</a>`).join(""));
 }
 $("answer").addEventListener("click", (e) => {
@@ -150,6 +161,12 @@ function renderMeta(a) {
     if (g.truncated) b.push('<span class="badge bad">Answer cut off</span>');
     if (g.unsupported_numbers.length)
       b.push(`<span class="badge bad">Unverified numbers: ${esc(g.unsupported_numbers.join(", "))}</span>`);
+    const v = a.verification || {};
+    if (v.claims && v.claims.length) {
+      b.push(v.flagged ? `<span class="badge warn">${v.flagged} of ${v.claims.length} sentences not verified</span>`
+                       : `<span class="badge ok">${v.claims.length} sentences checked against passages</span>`);
+      if (v.citations_added) b.push(`<span class="badge">+${v.citations_added} citation${v.citations_added > 1 ? "s" : ""} added</span>`);
+    }
   }
   a.scoped_drugs.slice(0, 3).forEach((d) => b.push(`<span class="badge">Scope: ${esc(d)}</span>`));
   if (a.cached) b.push('<span class="badge">cached</span>');
@@ -190,7 +207,7 @@ $("form").addEventListener("submit", async (e) => {
         const data = JSON.parse((frame.match(/^data: (.*)$/m) || [, "null"])[1]);
         if (ev === "sources") renderSources(data, false);
         else if (ev === "token") { text += data; renderAnswer(text); }
-        else if (ev === "final") { renderAnswer(data.text); renderSources(data.sources, data.status === "answered"); renderMeta(data); }
+        else if (ev === "final") { renderAnswer(data.text, data.verification); renderSources(data.sources, data.status === "answered"); renderMeta(data); }
         else if (ev === "error") throw new Error(data.error);
       }
     }

@@ -1,0 +1,2046 @@
+{
+ "benchmark": "FDARxBench (github.com/xiongbetty/FDARxBench, Apache-2.0)",
+ "sample": "stratified, seed 13: 200 factual, 100 multihop, 100 refusal; one question per label per task where possible",
+ "system": "LabelLens local configuration, unchanged (llama3.1:8b, bge-m3, hybrid retrieval, scope, rerank, 6 passages), over an index built from the benchmark's own label text",
+ "grader": "graded by hand by Claude (Opus 5.5) reading every answer against the reference; refusal items the system declined scored mechanically",
+ "summary": {
+  "factual": {
+   "n": 200,
+   "CORRECT": 179,
+   "INCORRECT": 21,
+   "accuracy": 0.895,
+   "ci95": [
+    0.845,
+    0.93
+   ],
+   "reference_defects": 4
+  },
+  "multihop": {
+   "n": 100,
+   "INCORRECT": 41,
+   "CORRECT": 58,
+   "NOT_ATTEMPTED": 1,
+   "accuracy": 0.58,
+   "ci95": [
+    0.482,
+    0.672
+   ],
+   "reference_defects": 0
+  },
+  "refusal": {
+   "n": 100,
+   "CORRECT": 97,
+   "INCORRECT": 3,
+   "accuracy": 0.97,
+   "ci95": [
+    0.915,
+    0.99
+   ],
+   "reference_defects": 0
+  },
+  "refusal_f1": 0.98,
+  "false_refusal_rate_on_answerable": 0.003
+ },
+ "grades": {
+  "f823c311a98254d3": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "805f113b5ca3aa8d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "30633c5267ebc02d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "cd48e045c68fe36a": {
+   "grade": "INCORRECT",
+   "note": "missing \"at least 9 lozenges per day for the first 6 weeks\"; schedule garbled",
+   "reference_defect": false
+  },
+  "5b572faa4a013d4f": {
+   "grade": "INCORRECT",
+   "note": "gives 65 mg once daily / 130 mg twice daily; reference 130-260 mg daily",
+   "reference_defect": false
+  },
+  "0d6e0edc51cf6bb9": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "c65e3dd678c80360": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "5f5c71ee9cdbb062": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "cd72ccee7ae98135": {
+   "grade": "INCORRECT",
+   "note": "REFDEFECT reference is only the MedWatch contact line",
+   "reference_defect": true
+  },
+  "42d5da0b24ec97ba": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "7e0bcadf91b5d621": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ff5ef81cd52ef13d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "4667b1d4f1e4367d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "01d7a4820ca4e3a0": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "814f2c18052ae8ec": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "4761ad4941daff28": {
+   "grade": "INCORRECT",
+   "note": "REFDEFECT reference is only section numbers",
+   "reference_defect": true
+  },
+  "b8718736eb89a882": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ed3fb705e7366084": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "7da567fc55440d05": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f12b2eb856f9907e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8bd13e018e558a12": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "635fafce6e1605d1": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "4b663ac8657ec452": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "3a8cda06f3e83277": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "7ad678601c1854f3": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "4a2b71263df5e83d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f8b4de2cb4a9306e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8700fcc598037d61": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "19fcb78258a52f66": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f9f1f6bfc5b238cb": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "e01dcd79bf8e9b96": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "63b3d777ddae76df": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "cc9cf8aaf34adb1f": {
+   "grade": "INCORRECT",
+   "note": "REFDEFECT dosage question, reference is lactation/infertility text",
+   "reference_defect": true
+  },
+  "e07b452ddfd3ad8d": {
+   "grade": "INCORRECT",
+   "note": "gives only swallow-whole instructions; reference expects the 4 mg / 8 mg dosing",
+   "reference_defect": false
+  },
+  "86280ad7d7269509": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "de57afeb0ac15371": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "73147396963d823a": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "470b191dc6cda46a": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "d0601e3c2e407f26": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "a63b18f14cfd62dd": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "4193bed150ace77b": {
+   "grade": "INCORRECT",
+   "note": "applies the injection-only renal contraindication to all TPOXX; adds breastfeeding as if a contraindication",
+   "reference_defect": false
+  },
+  "030d074f6918332f": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "a078777928129a81": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "2fb1d64dd5a9832e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "62929234f51e14f7": {
+   "grade": "INCORRECT",
+   "note": "lists warnings, not the most common adverse reactions the reference gives",
+   "reference_defect": false
+  },
+  "9816da5ec4ad79cb": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "47dbdfa0ac92cc98": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8a75c92f81145ee4": {
+   "grade": "INCORRECT",
+   "note": "covers 2 of 9 listed risk categories (misses seizures, alcohol, injury, somnambulism, angioedema, skin, nausea)",
+   "reference_defect": false
+  },
+  "40f8676cf7d4e5a7": {
+   "grade": "INCORRECT",
+   "note": "REFDEFECT reference is only section numbers",
+   "reference_defect": true
+  },
+  "bfdc6aaf7523a23b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "56c6601950cc9a64": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "bdbea1728a76f78b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9ff8b18dd805968a": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "eb15bbf64a631c1d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "55f6a104c72c1597": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "7cfcdaff794abba4": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "66a67b98f84f0d32": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "b41eab235248d83f": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "71964bdbb8768906": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "6bc6ec32c9d15045": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "b2f5b0ac5b445ac5": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "08a333a7057d2511": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "421bd6cdaeee6227": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ce1bd346dbe4f130": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "acfb03f918bce991": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "71eac32bcd476b55": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "11e1d23139e270d1": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "59932f871ed47b1e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "5ac29e90433921b9": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "3c5e27147f4f243b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f18142ff34a9178f": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "c5d3294baa57d63a": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "b74ca3d4be3a03cd": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "58732788658d94af": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ca9a92db29cd385c": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8d5f52a956a21c69": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "068884f70a4eafdc": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "0201bcdba44b6091": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "1aa6f59bb677f3bf": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "71c0dae3d857f34c": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "e52357d1d6453ad5": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "738eb69081ec1e9d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "edb489a79bd9cd0d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "a6ef9be8ada90fd2": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "e892a73a0f594049": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "2e9869e2c1aafb7e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "a3e7e1321c3c877e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "3ee3e3ac5935cec9": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "d3268bd05f039255": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "4e7c29a88da4f8a0": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "2accf859e6c95092": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9856cfeaf888b656": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f75c903c65da3b8b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "db701a6ce5a4c0bc": {
+   "grade": "INCORRECT",
+   "note": "gives only administration instructions; reference expects the 4 mg / 5 mg Day 1-21 regimens",
+   "reference_defect": false
+  },
+  "134c858380b6926c": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "92a3459880312025": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "1b90d6ed1a470349": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9e5860aea859818f": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8de3b58f40498ece": {
+   "grade": "INCORRECT",
+   "note": "reference is the infertility statement; answer covers pediatric, hepatic, elderly but not infertility",
+   "reference_defect": false
+  },
+  "1f738b59cf45c7c2": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "39e7645b0d9e1b62": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "0d238a0065536f11": {
+   "grade": "INCORRECT",
+   "note": "misses breast cancer, abnormal uterine bleeding, Hep C drug combination contraindications",
+   "reference_defect": false
+  },
+  "bd25c4cd7f8c52eb": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8803287b920f4ec9": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "24579f2010cefa75": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "5908d3d0c1662505": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f07bbe1357a11085": {
+   "grade": "INCORRECT",
+   "note": "misses pregnancy and lactation, two of the three reference points",
+   "reference_defect": false
+  },
+  "cfecc1e435876bc8": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f0264125ca3c045a": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "498866024b3bd858": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "2999c83e7b468929": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "343fafb9f0b860f8": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ae8d9dcb5f0fc6e8": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "db088b745695845b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "c58aa1204c829619": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "3e36513b330936df": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "3dabdfb1224f2145": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ee4be36f017cc69b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "fde493abdf4b35f2": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "2a1abf4780c21d3b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "958444e8bff6136b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "3db8d8adbe15c764": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "c6b1823dcd40cc80": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "b615b45ead9a00bc": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "b0b45bd12133ca05": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9a2c8929b60485d1": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8957f6e89f0d2b1f": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "3519e94fb561c6f5": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "d99373bac628c0d4": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "5dc9437b5bb4c28d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "3c986ddb9c452676": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "2ffecf73605ff5f5": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "fbbfb2761887b2e2": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "a47ee1e3a7facf10": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "cb6b5c953ded98b5": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "4a17dfdb1b5fbd1b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "86a5a367180d23d4": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "b84fdc42afcb27e1": {
+   "grade": "INCORRECT",
+   "note": "lists pemetrexed/antacids/probenecid; misses the reference's hemostasis drugs, ACE/ARB/beta-blockers, diuretics",
+   "reference_defect": false
+  },
+  "6ef28036d570eb4b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "5b654118f72c51b8": {
+   "grade": "INCORRECT",
+   "note": "does not give this product's most common reactions; mixes in another clonidine product (ONYDA XR)",
+   "reference_defect": false
+  },
+  "c6076d6370b19729": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "4b5fc3049fa7ee76": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "87b98afe239a360c": {
+   "grade": "INCORRECT",
+   "note": "includes the reference items but also presents pregnancy, breastfeeding, liver and mental-health history as \"should not take\", which the label does not state",
+   "reference_defect": false
+  },
+  "fbfe2a523c682256": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "0775264440d1a7aa": {
+   "grade": "INCORRECT",
+   "note": "cut short; misses most contraindications (age <12, respiratory depression, GI obstruction, MAOI...)",
+   "reference_defect": false
+  },
+  "4ea67f94482b08a8": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "09c04ed74770f51f": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "478b5b7f2f50054e": {
+   "grade": "INCORRECT",
+   "note": "misses neuroleptic malignant syndrome and tardive dyskinesia among the major listed warnings",
+   "reference_defect": false
+  },
+  "60ec197cb657f405": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "d4c0e022b9a3f9e5": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "878fb00924fdda09": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "e17e67fa50e9ed19": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "2ab9083d76dde450": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "2e380873e01578f7": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9da08f1350aab600": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "830138c2b3cb4347": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9ad140227083de4c": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "d2c3beba586d5b6e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "760b343c3c95f053": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "87a61e47bca891eb": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8a368a32a05bd0aa": {
+   "grade": "INCORRECT",
+   "note": "misses drug-induced liver injury, the first listed risk; photosensitivity only as an adverse-reaction count",
+   "reference_defect": false
+  },
+  "3a61e9962f4b942e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ebee3118201210fa": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "83db4c583400dc5a": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "aa7fdedb50189ae0": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "405819e43aaaaf5a": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "eea8cb50c60fedde": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "286ac3472483315a": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ea396cae94b49418": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "1c3a4b13bec0f8a9": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "dbac41b3c5bb23c4": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "11d8bf9a0c535808": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "fca4b9c0be8c6dc8": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "a520451590fe0bf3": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "38650f6f9834bc60": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ee31d4390375b3a4": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "86ed7c24c55400bf": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f58682fbdc022ca2": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "86cd8f1b1ec3fca2": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ada9f8cfbf34afb1": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "72be4d98aa083a9b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "1e658ded4a1ce658": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "6d988df8cf11d5cf": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9a345611506c66fd": {
+   "grade": "INCORRECT",
+   "note": "lists serious/post-marketing reactions; not the reference's most common (headache, abdominal pain, nausea...)",
+   "reference_defect": false
+  },
+  "899fea5fab4ce498": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "0b35441560e58fd8": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9aa488f92cd668c3": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "edc6ceb0f46db98c": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "49d81c86dc882c4a": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "d8164160072ddead": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "bb80ca3c2167cd5e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "268bacc3a848a306": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ae43e1f506913ac4": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "e54080a1f3a2509b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "24d6d9426eed3e8e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "80addf500692b787": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f8960714324842c1": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "b8391a2314c7dbcd": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f95853e98e2b47eb": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "91e43ea927225f02": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "22b06558ff31ccfb": {
+   "grade": "INCORRECT",
+   "note": "multihop: answers the indication, misses the carcinogenicity part",
+   "reference_defect": false
+  },
+  "87dac45ea63202fe": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers urinary pH, misses that vasculopathy symptoms improve after dose reduction or discontinuation",
+   "reference_defect": false
+  },
+  "c8b2c8ddbd926085": {
+   "grade": "INCORRECT",
+   "note": "multihop: gives indication, misses storage",
+   "reference_defect": false
+  },
+  "f9e7667be74f0773": {
+   "grade": "INCORRECT",
+   "note": "gives tablet doses and mg/lb, not the reference's 1/4-1/2 teaspoon every 4-6 h for ages 2-<6",
+   "reference_defect": false
+  },
+  "f2e6eaa13fb80f5f": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8031a871f3652b2d": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers monitoring, misses re-evaluating therapy and the cyclosporine/TMA risk",
+   "reference_defect": false
+  },
+  "52ec4d413cb17242": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "781601e57449d7bd": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "80e8e3490d03cc56": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8795d7e887184f07": {
+   "grade": "INCORRECT",
+   "note": "lists other postmarketing reactions; misses pancytopenia, hepatic failure and excretion in rat milk",
+   "reference_defect": false
+  },
+  "10570df901df7e89": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers cautious dosing, misses the vitamin D/E/K and folic acid reductions",
+   "reference_defect": false
+  },
+  "bdfda4a24277bc4b": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers glaucoma, misses the elderly part (no dose adjustment; more adverse reactions at 75+)",
+   "reference_defect": false
+  },
+  "cde41a78d485c3a7": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers fetal harm, misses the infection risk from lymphocyte reduction",
+   "reference_defect": false
+  },
+  "f2d2e49e0562b730": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers suicidality monitoring, misses slow-onset overdose symptoms and hospitalization",
+   "reference_defect": false
+  },
+  "47e9c5a589ae0b0a": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "57c6c0304fca5cee": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "a52017680008b585": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ff6197f6aa6d3da5": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8d3ae0b375679d1f": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9391fce7b33ba339": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "7e378745d57dacec": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "366897c0b02a9cf9": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "2cf8659be711be0f": {
+   "grade": "INCORRECT",
+   "note": "answers only hepatic impairment; misses the indicated population and the QTc finding",
+   "reference_defect": false
+  },
+  "8c9a1b9ed543ee09": {
+   "grade": "INCORRECT",
+   "note": "multihop: gives the indication, but cites other animal findings instead of the centrally mediated toxicity at 425/315-fold exposure",
+   "reference_defect": false
+  },
+  "1a776b9a96973b69": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "52a3dfb35a12c722": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "4ac545a9799e9559": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ed2c2056a2add34b": {
+   "grade": "INCORRECT",
+   "note": "multihop: gives the dose, misses the lactic acidosis risk factors (female sex, obesity)",
+   "reference_defect": false
+  },
+  "89e7dede8edb659d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "7eba304d29511dab": {
+   "grade": "INCORRECT",
+   "note": "says only \"less than additive\"; misses the RAAS / sympathetic mechanism the reference gives",
+   "reference_defect": false
+  },
+  "50f1553a53b3deda": {
+   "grade": "INCORRECT",
+   "note": "multihop: gives the dose, misses the carcinogenicity evidence",
+   "reference_defect": false
+  },
+  "177d21c6ce195e82": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9a9bb1625d54eb83": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "438ff41d5b2301f6": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers elderly start-low dosing, misses the NMS / reduced organ function link",
+   "reference_defect": false
+  },
+  "2e4549328d22fead": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "76d7adb2d3476f5d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "d1f2e1c40a0b1728": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "1bc07f945483be51": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "5e4ebedce942ccd5": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers the pediatric contraindication, misses the elderly lower-dose precaution",
+   "reference_defect": false
+  },
+  "c7648249cb9f82f0": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "54ce2cda235bece8": {
+   "grade": "INCORRECT",
+   "note": "says use backup with enzyme inducers; misses the 7-day backup and 28 days after stopping inducers",
+   "reference_defect": false
+  },
+  "fd56ae57fb50a9b6": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "8cc52656b7c01a45": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers hepatic caution, misses the stroke risk",
+   "reference_defect": false
+  },
+  "fb92eca28bbbda0b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "20bdeef899415292": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "92fea2094a132b75": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "5655b908e865f727": {
+   "grade": "INCORRECT",
+   "note": "covers titration with beta-blockers/digitalis; misses excretion in milk and alternative infant feeding; adds unrelated cimetidine text",
+   "reference_defect": false
+  },
+  "36ddd76449eaf695": {
+   "grade": "INCORRECT",
+   "note": "contradicts itself on norfloxacin/metronidazole and never gives the 33% AUC drop or pantoprazole's lack of effect",
+   "reference_defect": false
+  },
+  "0542649f5c2d44a2": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "fd840143040527ff": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "e003ca7735a5b840": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "c7d5e3fd92487a89": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "a7ebe83c12922502": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "71195af8f89f1da9": {
+   "grade": "INCORRECT",
+   "note": "invents \"can lead to permanent impotence\" for IFIS",
+   "reference_defect": false
+  },
+  "8d3f9d17bd3af32f": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ef53504034a40395": {
+   "grade": "INCORRECT",
+   "note": "says the label gives no guidance on new pulmonary symptoms; reference says withhold pending evaluation",
+   "reference_defect": false
+  },
+  "a0a15cb62d25d72d": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "b9c9cff9dfc9c933": {
+   "grade": "INCORRECT",
+   "note": "multihop: gives the 267 mg TID reduction, misses avoiding strong CYP1A2 inducers",
+   "reference_defect": false
+  },
+  "be5fbba17f2a1618": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "fd0a45e6c0923b65": {
+   "grade": "INCORRECT",
+   "note": "multihop: gives the adult dose, but the children caution is wrong (cites max dose, not lack of established safety outside OCD)",
+   "reference_defect": false
+  },
+  "c68766c2b1165e63": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "098765d51b84315c": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers alcohol/lactate, misses the elderly reduced renal function part",
+   "reference_defect": false
+  },
+  "0208d7fb6083f895": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers missed pills, misses that a DVT history is a contraindication",
+   "reference_defect": false
+  },
+  "9a0351fa7ca3a085": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "0233290eac4c4c69": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "20d349dd4c136ba6": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "eaff2a82a8c98688": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "f9398d3b3396cceb": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "7c2c45cfbae503a7": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "cf7717ad522d4a0c": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers CYP3A interaction, misses the lactation/breastfed child part",
+   "reference_defect": false
+  },
+  "fc0276471126ad13": {
+   "grade": "INCORRECT",
+   "note": "covers methotrexate toxicity, misses monitoring for anemia and platelet function",
+   "reference_defect": false
+  },
+  "3c038e973b03763a": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers obscured diagnosis, misses the elderly special risk",
+   "reference_defect": false
+  },
+  "e034e00764d5728a": {
+   "grade": "INCORRECT",
+   "note": "multihop: gives the dose, misses the nursing caution",
+   "reference_defect": false
+  },
+  "266f27a365dae5c3": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "3a577ef34f0294cc": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "9a6c85861d7dc52e": {
+   "grade": "INCORRECT",
+   "note": "multihop: gives the dose, but names rash instead of agranulocytosis",
+   "reference_defect": false
+  },
+  "965f834ccfd79b86": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "e32cf001dc825b7d": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers EGFR testing, misses avoiding PPIs",
+   "reference_defect": false
+  },
+  "e570a1717b4d8ac3": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers food effect (with a conflicting 20%), misses the 75 mg / 150 mg strengths",
+   "reference_defect": false
+  },
+  "b0ad0c70db160e49": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "da714846c8065c58": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers cautious elderly dosing, misses the secondary-malignancy part",
+   "reference_defect": false
+  },
+  "ea437bcc2c27e96e": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "6bcd6f1f46394d44": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "c7741a8a46d131cd": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers lactation, misses the opioid-delays-absorption interaction",
+   "reference_defect": false
+  },
+  "7738817f25ffb170": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "96f541398419d1b6": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "053025d487fdb6c3": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "d7c8f704a04c4c56": {
+   "grade": "INCORRECT",
+   "note": "says there is no mention of pregnancy testing; reference says fetal harm requires it",
+   "reference_defect": false
+  },
+  "5e15aa50f986fd82": {
+   "grade": "INCORRECT",
+   "note": "says the label does not mention anaphylaxis; reference says permanently discontinue",
+   "reference_defect": false
+  },
+  "be895d0d8318d0ac": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "5a15d58092646f6b": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "707650d4f27cc274": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers peptic ulcer risk, misses voriconazole raising diclofenac levels",
+   "reference_defect": false
+  },
+  "a72c602aa2aac16c": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "39330bf530d4214a": {
+   "grade": "INCORRECT",
+   "note": "multihop: covers pheochromocytoma interference, misses the elderly renal-function part",
+   "reference_defect": false
+  },
+  "f49b8f3df2db3063": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "739df1f98acfe138": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "aa46816778c4a881": {
+   "grade": "INCORRECT",
+   "note": "says data insufficient; misses the suicidal thinking/behavior risk",
+   "reference_defect": false
+  },
+  "af12bf42d2929520": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "ed3c5e129595dbff": {
+   "grade": "CORRECT",
+   "note": "",
+   "reference_defect": false
+  },
+  "a0c46766c2845bad": {
+   "grade": "CORRECT",
+   "note": "refusal: states the label does not address the thyroid part",
+   "reference_defect": false
+  },
+  "a9b42965703fd7c1": {
+   "grade": "INCORRECT",
+   "note": "refusal: answers about thyroid replacement instead of saying it is not in the label",
+   "reference_defect": false
+  },
+  "810e196a6bfa4a8d": {
+   "grade": "INCORRECT",
+   "note": "refusal: answers with hepatic monitoring text instead of declining",
+   "reference_defect": false
+  },
+  "6be49595fc74575b": {
+   "grade": "INCORRECT",
+   "note": "refusal: answers with pediatric/hepatic text instead of declining",
+   "reference_defect": false
+  },
+  "7243584a0aa32311": {
+   "grade": "CORRECT",
+   "note": "refusal: says no information is provided",
+   "reference_defect": false
+  },
+  "2ea9fff1bb1dabb5": {
+   "grade": "CORRECT",
+   "note": "refusal: says no specific guidance is provided",
+   "reference_defect": false
+  },
+  "4134559d5022a19e": {
+   "grade": "NOT_ATTEMPTED",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "94fd7ca79c3ed41a": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "8e81e87278de2223": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "0ce7e507a64f75e4": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "17fcabf9194fdcf3": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "56d124bc162fbe1e": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "8354fea2493137cd": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "f8a969e6edc2338b": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "cc9f72fa58785c42": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "1ca44da0fa593cd5": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "7d357c6c00e63c59": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "f89c8caf8b5f2b94": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "ae89b31247391dd1": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "e0877332f444cb57": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "f478d1fdf627b3ce": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "b0c9f5134a735bc7": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "96032f3896af8910": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "4029372bdbaf63a4": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "a981cd98aff3416c": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "88856b3841a14fe5": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "910206b07575b5dc": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "6aaa8dc0af8e1438": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "6ebc47034dc18861": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "5e57b4be75dd834a": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "5e14c2b6b450d1c2": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "44a8e98a1b5f9808": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "1cb248efcfd5794d": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "d2a80ddda2b76e1e": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "5e3bc0bada0868ac": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "f64c2b077b7a2cc8": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "62feb32a5bcee1a9": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "28977efacacb2ff0": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "d438199371cdd678": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "2ca5471b29987c3e": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "197c4146ced45340": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "ccd7750d76f1741d": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "42db0cb2af472651": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "68c3baabf1ca84c9": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "15096e20a86d9b5d": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "7f37d2d56a25f9b7": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "359b3f8e296e2197": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "129b1f1e0b284c09": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "d19295d5a750e28a": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "aea64edab49fedce": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "90b627eb0abe6880": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "a535ad20c0053b5f": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "4da9baa88ed86a7a": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "2bd468055a529bf5": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "8da12674de513beb": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "cb696c7b6eab86aa": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "68b2fab5ef01d8a8": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "18f4ded85dc0da5c": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "fa7816bdb7639378": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "dff9ba3473750568": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "aa8563c6af47e414": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "df250f5b85b9ae56": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "eef3f0d10c40fa6b": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "0d11c75e364bb26b": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "ccc88fb089e130a2": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "333cd2405e0180d5": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "912ebf88c893c97f": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "e45398979ca57213": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "ecbd33793f4f81f9": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "f7be47bd7eb9eca5": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "992f0bdbc1c6ca4b": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "bafe9a404bec37a2": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "fabcc8fd33e9f7cb": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "152f807c77be4efe": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "9b510063c5565b26": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "6eadbcad11315abf": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "e6518a874f6dcdf5": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "d4a0faf3757bef8f": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "3be9fad7d4968957": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "4cb51a49c80f37ff": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "65327a10da1d4c0f": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "f944a2d3ee14c023": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "e23de9fe766d17fd": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "41c527eb8b869d31": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "50122ba42fce3e20": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "4f5b81f5dfdd53cc": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "502700ba0f602337": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "d4190cfca26c08a3": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "5474cd879c02d991": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "3dc4785c57902824": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "b9af1cdc859b9136": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "395166aea7a2c1af": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "838f8d8915223f80": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "e91c2aedc70ee6ea": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "aef2b41da4120128": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "4292d61f82ffc144": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "c79a6c326986d729": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "26767cc8f9a21d55": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "efe7501b049aa752": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  },
+  "0abd8540645e097b": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_retrieval)",
+   "reference_defect": false
+  },
+  "5e39556fa47f69a4": {
+   "grade": "CORRECT",
+   "note": "declined (abstained_llm)",
+   "reference_defect": false
+  }
+ }
+}

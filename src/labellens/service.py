@@ -41,6 +41,7 @@ from .generation import (
 from .models import Hit, RetrievalResult
 from .providers import LLM, TRUNCATED, ProviderError
 from .retrieval import Retriever
+from .verify import verify_answer
 
 log = logging.getLogger(__name__)
 
@@ -78,6 +79,9 @@ class Answer:
     index_version: int = 0
     cached: bool = False
     request_id: str = ""
+    # Sentence-level check (verify.py): per-claim verdicts, how many claims were
+    # not verified, how many missing citations were added.
+    verification: dict = field(default_factory=dict)
 
 
 def _source_dict(n: int, h: Hit, cited: bool) -> dict:
@@ -112,10 +116,11 @@ def validate_question(question: str) -> str:
 
 
 class RagService:
-    def __init__(self, retriever: Retriever, llm: LLM, settings: Settings):
+    def __init__(self, retriever: Retriever, llm: LLM, settings: Settings, verifier=None):
         self.retriever = retriever
         self.llm = llm
         self.settings = settings
+        self.verifier = verifier
         self._cache: OrderedDict[tuple, Answer] = OrderedDict()
         self._lock = threading.Lock()
         obs.INDEX_CHUNKS.set(len(retriever.dense))
@@ -152,10 +157,18 @@ class RagService:
     def _finish(self, q: str, res: RetrievalResult, raw: str, timings: dict, rid: str,
                 truncated: bool = False) -> Answer:
         hits = res.hits
+        verification: dict = {}
         if is_abstention(raw):
             status, text, g = "abstained_llm", clean_abstention(raw), Grounding()
         else:
             answer = finalize_partial_answer(raw)
+            if self.verifier is not None:
+                t_v = time.perf_counter()
+                v = verify_answer(normalize_citations(answer),
+                                  {i: (h.chunk.text, h.drug) for i, h in enumerate(hits, start=1)},
+                                  self.verifier)
+                answer, verification = v.text, v.to_dict()
+                timings["verify"] = round((time.perf_counter() - t_v) * 1000, 2)
             g = verify_grounding(answer, hits)
             g.gap_notes_removed = int(answer.count("\n") < raw.strip().count("\n")
                                       or len(answer) < len(raw.strip()))
@@ -176,7 +189,7 @@ class RagService:
             sources=[_source_dict(i, h, i in cited) for i, h in enumerate(hits, start=1)],
             grounding=grounding, scoped_drugs=res.scoped_drugs, top_score=res.top_score,
             timings_ms=timings, model=self.llm.model, index_version=res.index_version,
-            request_id=rid,
+            request_id=rid, verification=verification,
         )
 
     def _refuse(self, q: str, res: RetrievalResult, timings: dict, rid: str) -> Answer:
