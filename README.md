@@ -308,6 +308,7 @@ streamlit_app.py   free hosted demo (CPU embeddings, Groq answers)
   evalkit/         golden-set synthesis, ablation, gate calibration, LLM judge,
                    claim-verifier study (claims.py), FDARxBench runner (fdarx.py)
 docs/DECISIONS.md  every design decision, the constraint behind it, what was rejected
+docs/PROJECT_LOG.md  how it was built, phase by phase: every problem, its cause, the fix, the result
 tests/             136 tests, including regression tests for every review and audit finding
 ```
 
