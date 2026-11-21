@@ -3,10 +3,10 @@
   "n_questions": 192,
   "corpus": {
     "documents": 1200,
-    "chunks": 73470,
-    "words": 10561796,
-    "embeddings": 73440,
-    "index_version": 7
+    "chunks": 78852,
+    "words": 10772277,
+    "embeddings": 78633,
+    "index_version": 12
   },
   "embedder": "snowflake/snowflake-arctic-embed-s",
   "reranker": "Xenova/ms-marco-MiniLM-L-6-v2",
@@ -23,31 +23,31 @@
   },
   "configs": {
     "full: hybrid + scope + rerank": {
-      "hit@1": 0.5938,
-      "recall@5": 0.9062,
+      "hit@1": 0.5833,
+      "recall@5": 0.901,
       "recall@10": 0.9219,
-      "mrr@10": 0.7176,
-      "ndcg@10": 0.7684,
-      "strict_recall@5": 0.8646,
-      "section_recall@5": 0.9583,
+      "mrr@10": 0.707,
+      "ndcg@10": 0.7604,
+      "strict_recall@5": 0.8594,
+      "section_recall@5": 0.9531,
       "right_drug@5": 0.9896,
       "scope_linked": 0.9844,
-      "recall@served": 0.8854,
-      "strict_recall@served": 0.849,
+      "recall@served": 0.8802,
+      "strict_recall@served": 0.8438,
       "served_k": 4,
       "recall@5_ci95": [
-        0.8646,
-        0.9479
+        0.8594,
+        0.9427
       ],
-      "latency_ms_p50": 1075.7,
-      "latency_ms_p95": 1222.7
+      "latency_ms_p50": 1018.3,
+      "latency_ms_p95": 3751.8
     }
   },
   "skipped": {},
   "slices": {
     "by_lexical_overlap": {
       "median_overlap": 0.667,
-      "recall@5_low_overlap": 0.8539,
+      "recall@5_low_overlap": 0.8427,
       "recall@5_high_overlap": 0.9515
     },
     "by_name_style": {
@@ -68,14 +68,14 @@
       },
       "typo": {
         "n": 43,
-        "recall@5": 0.9535,
+        "recall@5": 0.9302,
         "scope_link_rate": 1.0
       }
     },
     "by_scope_link": {
       "linked": {
         "n": 189,
-        "recall@5": 0.9206
+        "recall@5": 0.9153
       },
       "not_linked": {
         "n": 3,
@@ -148,6 +148,12 @@
         "question": "What is the risk of liver enzyme elevation with diclofenac potassium tablets?",
         "drug": "Diclofenac Potassium Tablets (Diclofenac Potassium)",
         "section": "warnings"
+      },
+      {
+        "id": "a0203",
+        "question": "Does amikcin cause hearing loss more frequently than other treatments?",
+        "drug": "Amikacin (Arikayce)",
+        "section": "adverse_reactions"
       },
       {
         "id": "a0300",

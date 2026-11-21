@@ -19,7 +19,7 @@
       "out_of_label": 0.0,
       "unknown_drug": 0.9444
     },
-    "auroc_gold_retrieved_vs_unanswerable": 0.9972,
+    "auroc_gold_retrieved_vs_unanswerable": 0.9975,
     "auroc_all_answerable_vs_unanswerable": 0.9971
   },
   "calib_curve": [
@@ -130,7 +130,7 @@
     },
     {
       "threshold": -1.5,
-      "unanswerable_refused": 0.6897,
+      "unanswerable_refused": 0.7241,
       "answerable_wrongly_refused": 0.0
     },
     {
@@ -156,57 +156,57 @@
     {
       "threshold": 1.0,
       "unanswerable_refused": 0.8276,
-      "answerable_wrongly_refused": 0.0152
+      "answerable_wrongly_refused": 0.0154
     },
     {
       "threshold": 1.5,
       "unanswerable_refused": 0.8276,
-      "answerable_wrongly_refused": 0.0152
+      "answerable_wrongly_refused": 0.0154
     },
     {
       "threshold": 2.0,
       "unanswerable_refused": 0.8276,
-      "answerable_wrongly_refused": 0.0305
+      "answerable_wrongly_refused": 0.0256
     },
     {
       "threshold": 2.5,
       "unanswerable_refused": 0.8276,
-      "answerable_wrongly_refused": 0.0609
+      "answerable_wrongly_refused": 0.0564
     },
     {
       "threshold": 3.0,
-      "unanswerable_refused": 0.8966,
-      "answerable_wrongly_refused": 0.0609
+      "unanswerable_refused": 0.8621,
+      "answerable_wrongly_refused": 0.0564
     },
     {
       "threshold": 3.5,
-      "unanswerable_refused": 0.8966,
-      "answerable_wrongly_refused": 0.066
+      "unanswerable_refused": 0.931,
+      "answerable_wrongly_refused": 0.0615
     },
     {
       "threshold": 4.0,
-      "unanswerable_refused": 0.931,
-      "answerable_wrongly_refused": 0.1015
+      "unanswerable_refused": 1.0,
+      "answerable_wrongly_refused": 0.0974
     },
     {
       "threshold": 4.5,
       "unanswerable_refused": 1.0,
-      "answerable_wrongly_refused": 0.1574
+      "answerable_wrongly_refused": 0.1487
     },
     {
       "threshold": 5.0,
       "unanswerable_refused": 1.0,
-      "answerable_wrongly_refused": 0.2132
+      "answerable_wrongly_refused": 0.2
     },
     {
       "threshold": 5.5,
       "unanswerable_refused": 1.0,
-      "answerable_wrongly_refused": 0.2944
+      "answerable_wrongly_refused": 0.2821
     },
     {
       "threshold": 6.0,
       "unanswerable_refused": 1.0,
-      "answerable_wrongly_refused": 0.3756
+      "answerable_wrongly_refused": 0.3641
     }
   ],
   "test_curve": [
@@ -307,23 +307,23 @@
     },
     {
       "threshold": -2.5,
-      "unanswerable_refused": 0.7941,
+      "unanswerable_refused": 0.7647,
       "answerable_wrongly_refused": 0.0
     },
     {
       "threshold": -2.0,
-      "unanswerable_refused": 0.8235,
+      "unanswerable_refused": 0.7941,
       "answerable_wrongly_refused": 0.0
     },
     {
       "threshold": -1.5,
-      "unanswerable_refused": 0.8529,
+      "unanswerable_refused": 0.8235,
       "answerable_wrongly_refused": 0.0
     },
     {
       "threshold": -1.0,
-      "unanswerable_refused": 0.8824,
-      "answerable_wrongly_refused": 0.0
+      "unanswerable_refused": 0.8529,
+      "answerable_wrongly_refused": 0.0052
     },
     {
       "threshold": -0.5,
@@ -343,22 +343,22 @@
     {
       "threshold": 1.0,
       "unanswerable_refused": 0.9706,
-      "answerable_wrongly_refused": 0.0312
+      "answerable_wrongly_refused": 0.026
     },
     {
       "threshold": 1.5,
       "unanswerable_refused": 0.9706,
-      "answerable_wrongly_refused": 0.0365
+      "answerable_wrongly_refused": 0.0312
     },
     {
       "threshold": 2.0,
       "unanswerable_refused": 0.9706,
-      "answerable_wrongly_refused": 0.0365
+      "answerable_wrongly_refused": 0.0312
     },
     {
       "threshold": 2.5,
       "unanswerable_refused": 0.9706,
-      "answerable_wrongly_refused": 0.0521
+      "answerable_wrongly_refused": 0.0469
     },
     {
       "threshold": 3.0,
@@ -388,12 +388,12 @@
     {
       "threshold": 5.5,
       "unanswerable_refused": 1.0,
-      "answerable_wrongly_refused": 0.3125
+      "answerable_wrongly_refused": 0.3073
     },
     {
       "threshold": 6.0,
       "unanswerable_refused": 1.0,
-      "answerable_wrongly_refused": 0.375
+      "answerable_wrongly_refused": 0.3698
     }
   ],
   "scores": [
@@ -521,7 +521,7 @@
       "id": "a0015",
       "split": "calib",
       "type": "answerable",
-      "top_score": 2.531,
+      "top_score": 4.099,
       "pre_gated": false,
       "gold_retrieved": false
     },
@@ -713,7 +713,7 @@
       "id": "a0039",
       "split": "test",
       "type": "answerable",
-      "top_score": -0.85,
+      "top_score": -1.217,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -769,7 +769,7 @@
       "id": "a0046",
       "split": "calib",
       "type": "answerable",
-      "top_score": 5.946,
+      "top_score": 6.249,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -953,7 +953,7 @@
       "id": "a0069",
       "split": "calib",
       "type": "answerable",
-      "top_score": 7.077,
+      "top_score": 8.469,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -1185,7 +1185,7 @@
       "id": "a0098",
       "split": "calib",
       "type": "answerable",
-      "top_score": 8.42,
+      "top_score": 6.903,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -1209,7 +1209,7 @@
       "id": "a0101",
       "split": "calib",
       "type": "answerable",
-      "top_score": 6.493,
+      "top_score": 5.012,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -1289,7 +1289,7 @@
       "id": "a0111",
       "split": "calib",
       "type": "answerable",
-      "top_score": 0.691,
+      "top_score": 0.644,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -1553,7 +1553,7 @@
       "id": "a0144",
       "split": "test",
       "type": "answerable",
-      "top_score": 7.424,
+      "top_score": 8.555,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -1723,7 +1723,7 @@
       "type": "answerable",
       "top_score": 1.561,
       "pre_gated": false,
-      "gold_retrieved": true
+      "gold_retrieved": false
     },
     {
       "id": "a0166",
@@ -1737,7 +1737,7 @@
       "id": "a0167",
       "split": "calib",
       "type": "answerable",
-      "top_score": 4.692,
+      "top_score": 7.355,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -1833,7 +1833,7 @@
       "id": "a0179",
       "split": "calib",
       "type": "answerable",
-      "top_score": 2.397,
+      "top_score": 2.454,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -1915,7 +1915,7 @@
       "type": "answerable",
       "top_score": 0.143,
       "pre_gated": false,
-      "gold_retrieved": true
+      "gold_retrieved": false
     },
     {
       "id": "a0190",
@@ -2001,7 +2001,7 @@
       "id": "a0200",
       "split": "test",
       "type": "answerable",
-      "top_score": 6.367,
+      "top_score": 8.214,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -2065,7 +2065,7 @@
       "id": "a0208",
       "split": "test",
       "type": "answerable",
-      "top_score": 8.926,
+      "top_score": 9.067,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -2137,7 +2137,7 @@
       "id": "a0217",
       "split": "test",
       "type": "answerable",
-      "top_score": 6.06,
+      "top_score": 7.726,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -2145,7 +2145,7 @@
       "id": "a0218",
       "split": "test",
       "type": "answerable",
-      "top_score": 8.062,
+      "top_score": 8.455,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -2289,7 +2289,7 @@
       "id": "a0236",
       "split": "test",
       "type": "answerable",
-      "top_score": 7.743,
+      "top_score": 7.873,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -2353,7 +2353,7 @@
       "id": "a0244",
       "split": "calib",
       "type": "answerable",
-      "top_score": 7.611,
+      "top_score": 7.717,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -2385,7 +2385,7 @@
       "id": "a0248",
       "split": "test",
       "type": "answerable",
-      "top_score": 4.679,
+      "top_score": 8.473,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -3153,7 +3153,7 @@
       "id": "a0344",
       "split": "calib",
       "type": "answerable",
-      "top_score": 5.473,
+      "top_score": 5.968,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -3185,7 +3185,7 @@
       "id": "a0348",
       "split": "calib",
       "type": "answerable",
-      "top_score": 4.567,
+      "top_score": 4.521,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -3193,9 +3193,9 @@
       "id": "a0349",
       "split": "calib",
       "type": "answerable",
-      "top_score": 4.401,
+      "top_score": 4.271,
       "pre_gated": false,
-      "gold_retrieved": true
+      "gold_retrieved": false
     },
     {
       "id": "a0350",
@@ -3289,7 +3289,7 @@
       "id": "a0361",
       "split": "calib",
       "type": "answerable",
-      "top_score": 7.649,
+      "top_score": 7.938,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -3361,7 +3361,7 @@
       "id": "a0370",
       "split": "test",
       "type": "answerable",
-      "top_score": 0.697,
+      "top_score": 2.554,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -3481,7 +3481,7 @@
       "id": "a0385",
       "split": "test",
       "type": "answerable",
-      "top_score": 5.218,
+      "top_score": 4.895,
       "pre_gated": false,
       "gold_retrieved": true
     },
@@ -3601,7 +3601,7 @@
       "id": "u0000",
       "split": "calib",
       "type": "unknown_drug",
-      "top_score": 2.57,
+      "top_score": 3.148,
       "pre_gated": true,
       "gold_retrieved": false
     },
@@ -3617,7 +3617,7 @@
       "id": "u0002",
       "split": "calib",
       "type": "unknown_drug",
-      "top_score": 3.582,
+      "top_score": 3.44,
       "pre_gated": false,
       "gold_retrieved": false
     },
@@ -3649,7 +3649,7 @@
       "id": "u0006",
       "split": "test",
       "type": "unknown_drug",
-      "top_score": 2.886,
+      "top_score": 2.045,
       "pre_gated": true,
       "gold_retrieved": false
     },
@@ -3665,7 +3665,7 @@
       "id": "u0008",
       "split": "calib",
       "type": "unknown_drug",
-      "top_score": 4.022,
+      "top_score": 3.974,
       "pre_gated": false,
       "gold_retrieved": false
     },
@@ -3713,7 +3713,7 @@
       "id": "u0014",
       "split": "calib",
       "type": "unknown_drug",
-      "top_score": 2.933,
+      "top_score": 3.07,
       "pre_gated": false,
       "gold_retrieved": false
     },
@@ -3745,7 +3745,7 @@
       "id": "u0018",
       "split": "calib",
       "type": "unknown_drug",
-      "top_score": 2.408,
+      "top_score": 1.339,
       "pre_gated": true,
       "gold_retrieved": false
     },
@@ -3785,7 +3785,7 @@
       "id": "u0023",
       "split": "calib",
       "type": "unknown_drug",
-      "top_score": 1.896,
+      "top_score": 2.646,
       "pre_gated": true,
       "gold_retrieved": false
     },
@@ -3801,7 +3801,7 @@
       "id": "u0025",
       "split": "test",
       "type": "unknown_drug",
-      "top_score": 2.898,
+      "top_score": 2.879,
       "pre_gated": false,
       "gold_retrieved": false
     },
@@ -3833,7 +3833,7 @@
       "id": "u0029",
       "split": "calib",
       "type": "unknown_drug",
-      "top_score": 2.521,
+      "top_score": 2.478,
       "pre_gated": true,
       "gold_retrieved": false
     },
@@ -3849,7 +3849,7 @@
       "id": "u0031",
       "split": "calib",
       "type": "unknown_drug",
-      "top_score": 4.085,
+      "top_score": 3.85,
       "pre_gated": false,
       "gold_retrieved": false
     },
@@ -3881,7 +3881,7 @@
       "id": "u0035",
       "split": "test",
       "type": "unknown_drug",
-      "top_score": 2.745,
+      "top_score": 2.416,
       "pre_gated": true,
       "gold_retrieved": false
     },
@@ -3889,7 +3889,7 @@
       "id": "u0036",
       "split": "test",
       "type": "unknown_drug",
-      "top_score": -1.804,
+      "top_score": -1.381,
       "pre_gated": true,
       "gold_retrieved": false
     },
@@ -3897,7 +3897,7 @@
       "id": "u0037",
       "split": "calib",
       "type": "unknown_drug",
-      "top_score": 2.921,
+      "top_score": 2.966,
       "pre_gated": false,
       "gold_retrieved": false
     },
@@ -3953,7 +3953,7 @@
       "id": "u0044",
       "split": "test",
       "type": "out_of_label",
-      "top_score": -2.661,
+      "top_score": -0.926,
       "pre_gated": false,
       "gold_retrieved": false
     },
@@ -3977,7 +3977,7 @@
       "id": "u0047",
       "split": "calib",
       "type": "out_of_label",
-      "top_score": -1.023,
+      "top_score": -1.76,
       "pre_gated": false,
       "gold_retrieved": false
     },
@@ -4225,7 +4225,7 @@
       "id": "u0078",
       "split": "calib",
       "type": "out_of_label",
-      "top_score": 0.615,
+      "top_score": 0.557,
       "pre_gated": false,
       "gold_retrieved": false
     },

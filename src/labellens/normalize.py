@@ -119,10 +119,19 @@ def table_to_text(html: str) -> str:
         return ""
     lines: list[str] = []
     caption = _WS.sub(" ", p.caption).strip()
+    rows = p.rows
+    # Many labels put the caption in a one-cell first row ("Table 2. Recommended
+    # dose for Pediatric Patients") instead of <caption>. Used as the column
+    # header it was dropped, and with it the only words saying who the doses
+    # are for.
+    if len(rows) > 2 and len([c for c in rows[0] if c]) == 1 and len(rows[1]) > 1:
+        title = next(c for c in rows[0] if c)
+        caption = f"{caption} {title}".strip() if caption and title not in caption else (caption or title)
+        rows = rows[1:]
     if caption:
         lines.append(caption)
-    header = p.rows[0]
-    body = p.rows[1:] if len(p.rows) > 1 else p.rows
+    header = rows[0]
+    body = rows[1:] if len(rows) > 1 else rows
     for row in body:
         if len(row) == len(header) and len(header) > 1 and row is not header:
             cells = [f"{h}: {c}" if h else c for h, c in zip(header, row) if c]
@@ -174,7 +183,9 @@ def normalize_label(rec: dict) -> Document | None:
         if not isinstance(value[0], str):
             continue
         if key.endswith("_table"):
-            rendered = "\n".join(t for t in (table_to_text(v) for v in value) if t)
+            # A blank line between tables keeps their boundaries for the
+            # chunker, which labels each table's chunks with its caption.
+            rendered = "\n\n".join(t for t in (table_to_text(v) for v in value) if t)
             if rendered:
                 tables[key] = rendered
         else:

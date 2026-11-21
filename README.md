@@ -28,17 +28,17 @@ question ─► entity scope ─► BM25 (FTS5) ─┐
 
 | Stage | What it does | Why |
 |---|---|---|
-| **Structure-aware chunking** | Splits on the label's own sections and numbered subsections. Prepends `Drug (Brand) \| Section \| Subsection` to every chunk. | A chunk saying "contraindicated in severe renal impairment" is useless without the drug name attached. |
+| **Structure-aware chunking** | Splits on the label's own sections and numbered subsections, and chunks each table on its own. Prepends `Drug (Brand) \| Section \| Subsection or table caption` to every chunk. | A chunk saying "contraindicated in severe renal impairment" is useless without the drug name attached, and "5 mg once daily for 5 to <10 kg" is dangerous without "Pediatric Patients". |
 | **Entity scoping** | Links drug names (generic, brand, salt-less, biosimilar, typo-tolerant) to an alias table built at ingest, then hard-filters both retrieval arms. | Fixes "right section, wrong drug" with a microsecond dictionary lookup instead of an LLM call. |
 | **Hybrid retrieval + RRF** | BM25 top-50 and exact dense top-50, fused by rank. | BM25 catches `CYP2C9` and `eGFR below 30`; dense catches paraphrase. Rank fusion needs no score tuning. |
 | **Cross-encoder rerank** | Re-scores the fused top-30 with an ONNX `ms-marco-MiniLM` model. | Retrieve wide, rerank narrow. No PyTorch in the serving image. |
 | **Near-duplicate collapse** | Keeps the best copy of passages with ≥ 0.85 Jaccard overlap, and records what it suppressed. | Six distinct pieces of evidence, not one paragraph six times. |
 | **Abstention gates** | Refuses before generation on (a) a word found nowhere in the corpus or (b) a reranker score below a threshold calibrated on held-out data. The model can also refuse with `INSUFFICIENT_EVIDENCE`. | A refusal is the cheapest path, not the most expensive one. |
-| **Grounding checks** | Citations must point at supplied sources. Every number must appear, with its unit, in the passage it cites. | Catches a wrong dose deterministically, with no second LLM call. |
+| **Grounding checks** | Citations must point at supplied sources. Every number must appear in the passage it cites, with its unit when it has one ("2 days" is not supported by "2 weeks"). Uncited closing claims that "the sources do not cover X" are removed. | Catches a wrong dose deterministically, with no second LLM call. It cannot catch a sentence that reverses or misattributes its source without changing a number; that is measured offline below, not blocked. |
 
 ## Results
 
-All numbers come from the **held-out test split** of a 480-question golden set (400 answerable, 80 unanswerable), over 1,200 labels / 73,470 passages. Thresholds were tuned on a separate calibration split. Raw outputs are in [`eval/results/`](eval/results), and the method and its known biases are described in [`evalkit/dataset.py`](src/labellens/evalkit/dataset.py).
+All numbers come from the **held-out test split** of a 480-question golden set (400 answerable, 80 unanswerable), over 1,200 labels / 78,852 passages. Thresholds were tuned on a separate calibration split. Raw outputs are in [`eval/results/`](eval/results), and the method and its known biases are described in [`evalkit/dataset.py`](src/labellens/evalkit/dataset.py).
 
 ### Retrieval: what each component is worth
 
@@ -46,26 +46,30 @@ All numbers come from the **held-out test split** of a 480-question golden set (
 
 | Configuration | Hit@1 | Recall@5 | In prompt (6) | MRR@10 | Right drug in top 5 | p95 latency |
 |---|---:|---:|---:|---:|---:|---:|
-| Naive: dense only, plain chunks | 43.2% | 66.1% | 68.8% | 0.533 | 90.1% | 49 ms |
-| BM25 only, plain chunks | 27.1% | 56.2% | 58.9% | 0.392 | 85.9% | 54 ms |
-| Dense + contextual header | 53.6% | 83.3% | 84.9% | 0.663 | 97.9% | 65 ms |
-| Hybrid (BM25 + dense, RRF) | 50.5% | 79.7% | 82.3% | 0.633 | 94.3% | 130 ms |
-| Hybrid + cross-encoder rerank | 53.1% | 87.0% | 87.5% | 0.667 | 98.4% | 1.2 s |
-| Hybrid + entity scoping | 56.8% | 89.1% | 90.6% | 0.698 | 98.4% | 204 ms |
-| **Full: hybrid + scoping + rerank** | **59.4%** | **90.6%** | **91.7%** | **0.719** | **99.0%** | 1.3 s |
-| Full, without contextual header | 53.1% | 81.2% | 83.3% | 0.651 | 99.0% | 1.3 s |
+| Naive: dense only, plain chunks | 42.2% | 65.6% | 68.2% | 0.524 | 90.6% | 65 ms |
+| BM25 only, plain chunks | 28.6% | 55.7% | 58.9% | 0.402 | 86.5% | 44 ms |
+| Dense + contextual header | 51.6% | 82.8% | 84.4% | 0.647 | 97.9% | 54 ms |
+| Hybrid (BM25 + dense, RRF) | 47.9% | 78.1% | 81.2% | 0.612 | 93.2% | 111 ms |
+| Hybrid + cross-encoder rerank | 53.1% | 85.4% | 86.5% | 0.660 | 99.0% | 1.2 s |
+| Hybrid + entity scoping | 55.2% | 88.5% | 89.6% | 0.683 | 97.9% | 190 ms |
+| **Full: hybrid + scoping + rerank** | **58.3%** | **90.1%** | **91.1%** | **0.708** | **99.0%** | 1.2 s |
+| Full, without contextual header | 52.1% | 81.8% | 83.3% | 0.644 | 99.0% | 1.2 s |
+| Scoping + rerank, dense only (no BM25) | 58.3% | 89.6% | 90.6% | 0.709 | 99.0% | – |
+| Scoping + rerank, BM25 only (no dense) | 58.3% | 89.1% | 89.6% | 0.703 | 98.4% | – |
 
-Full pipeline Recall@5: 95% bootstrap CI **86.5–94.8%**. Strict (exact-chunk) Recall@5: 86.5%. The credited figure also counts another manufacturer's identical copy of the same paragraph. Every number was re-derived by an independent script that shares no code with the evaluation harness, and they match; the exact settings of each run are stored in the result file.
+Full pipeline Recall@5: 95% bootstrap CI **85.9–94.3%**. Strict (exact-chunk) Recall@5: 85.9%. The last two rows were measured later on a slower machine state, so their latency is not comparable and is omitted. The credited figure also counts another manufacturer's identical copy of the same paragraph. Every number was re-derived by an independent script that shares no code with the evaluation harness, and they match; the exact settings of each run are stored in the result file.
 
 What this does *not* measure: gold passages are prose only (tables and passages under 60 words are never gold), and each question has exactly one gold passage, so a correct answer found in a different passage counts as a miss.
 
 **What the ablation shows**
 
-- **The contextual header is the largest single gain:** +17.2 points for dense retrieval, and +9.4 points inside the full pipeline. Without it, "contraindicated in severe renal impairment" could be about any of 1,200 drugs.
-- **Naive hybrid search hurt** (79.7% vs 83.3% for dense alone). Every label shares the same section vocabulary, so BM25 alone is weak (56.2%) and drags the fusion down. Hybrid pays off only once entity scoping removes the other labels.
-- **Entity scoping is the cheapest lever:** 89.1% with no reranker, at about 200 ms instead of 1.2 s.
-- **Once scoped, the embedding model barely matters.** A label has a median of 53 passages, so BM25-50 plus dense-50 already cover nearly all of it, and the reranker decides. The hosted demo's 33M-parameter CPU model scores the same Recall@5 (90.6%) as `bge-m3` (568M) on GPU. The hosted demo gives the model only 4 passages, though, so its gold-in-prompt rate is 88.5%.
-- **Bias check:** Recall@5 is 85.4% on questions with below-median word overlap with their source, and 95.2% above it. Misspelled drug names: 95.3% (n = 43).
+- **The contextual header is the largest single gain:** +17.2 points for dense retrieval, and +8.3 points inside the full pipeline. Without it, "contraindicated in severe renal impairment" could be about any of 1,200 drugs.
+- **Naive hybrid search hurt** (78.1% vs 82.8% for dense alone). Every label shares the same section vocabulary, so BM25 alone is weak (67.2% even with the contextual header) and drags the fusion down.
+- **Entity scoping is the cheapest lever:** 88.5% with no reranker, at about 200 ms instead of 1.2 s.
+- **Once scoped and reranked, either arm alone is almost as good.** Dropping BM25 costs 0.5 points (paired 95% CI −1.6 to +3.1) and dropping dense costs 1.0 point (−1.0 to +3.1); neither difference is significant on 192 questions. BM25 stays because it is free (the FTS5 index lives in the same file), it matches exact strings such as `CYP2C9` or a brand name the embedder has never seen, and it keeps working while new passages are still waiting for their vectors. That is a robustness argument, not a measured accuracy gain.
+- **Once scoped, the embedding model barely matters.** A label has a median of 56 passages, so BM25-50 plus dense-50 already cover nearly all of it, and the reranker decides. The hosted demo's 33M-parameter CPU model scores the same Recall@5 (90.1%) as `bge-m3` (568M) on GPU. The hosted demo gives the model only 4 passages, though, so its gold-in-prompt rate is 88.0%.
+- **Bias check:** Recall@5 is 84.3% on questions with below-median word overlap with their source, and 95.2% above it. Misspelled drug names: 93.0% (n = 43).
+- **Re-chunking cost nothing measurable.** Labelling table chunks with their captions and splitting about 540 more sections into subsections (73,470 → 78,852 passages) moved Recall@5 from 90.6% to 90.1%, one question. The gold passages were re-mapped to the new chunks first (391 of 400 by text overlap, 9 split ones by their reference answer), and the eval now refuses to run if a gold id is missing from the index. The benefit of the change does not show here at all, because gold passages are never tables; it shows in the live check below.
 
 ### Refusing when the labels don't have the answer
 
@@ -85,41 +89,56 @@ A first threshold rule allowed 2% false refusals on calibration data. It wrongly
 
 The local configuration was asked 154 test questions (120 answerable, 34 unanswerable): generator `llama3.1:8b`, judge `qwen3:8b`, a different model so nothing grades its own work.
 
-| Answerable questions (n = 120) | Now | First run |
+| Answerable questions (n = 120) | 8B judge | Stronger judge |
 |---|---:|---:|
-| **Correct end to end** (answered, and judged correct) | **96.7%** | 88.3% |
-| Gold passage among the 6 the model saw | 94.2% | 94.2% |
-| Model chose `INSUFFICIENT_EVIDENCE` | 0% | 8.3% |
-| Refused by the retrieval gate | 0.8% | 0.8% |
+| **Correct end to end** (answered, and judged correct) | 95.8% | **91.7%** |
+| Gold passage among the 6 the model saw | 94.2% | |
+| Model chose `INSUFFICIENT_EVIDENCE` | 0% | |
+| Refused by the retrieval gate | 0.8% | |
 
-| Of the answers given | Now (119) | First run (109) |
+| Of the 119 answers given | 8B judge | Stronger judge |
 |---|---:|---:|
-| Judged correct against the reference | 97.5% | 97.3% |
-| Judged faithful: every claim supported by the passages | 99.2% | 99.1% |
-| **Deterministic grounding checks passed** | **98.3%** | 97.2% |
-| Sentences carrying a citation | 87.9% | 90.3% |
-| Citations pointing at a passage that wasn't supplied | 0% | 0% |
-| Cut off by the token limit | 0% | 0% |
+| Judged correct against the reference | 96.6% | **92.4%** |
+| Judged faithful: every claim supported by the passages | 100% | **90.8%** |
+| States something a passage contradicts or reverses | | 3.4% (4) |
+| Cites a passage that does not support the claim | | 10.1% |
+| **Deterministic grounding checks passed** | **97.5%** | |
+| Sentences carrying a citation | 95.0% | |
+| Citations pointing at a passage that wasn't supplied | 0% | |
+| Cut off by the token limit | 0% | |
+
+**Why two judges.** The generator and the original judge are both 8B models, and a small judge can fail along with the model it grades. So every answer was re-judged by a much stronger model (Claude Opus 5.5, four independent batches, shown the passages and the reference but not the 8B judge's verdicts), with a rubric that checks each number, population, route, indication and direction. The two agree on correctness for 92% of answers. Of the 9 disagreements, the stronger judge was stricter in 7. Its verdicts are in [`eval/results/strong_judge.json`](eval/results/strong_judge.json). Treat **91.7% correct end to end** as the headline, not 95.8%.
 
 | Unanswerable questions (n = 34) | |
 |---|---:|
 | **Refused** | **100%** (94.1% before the LLM, 5.9% by the LLM) |
 
-Latency with the local GPU model (RTX 4060 laptop): p50 4.3 s / p95 9.3 s end to end, and p50 1.9 s until the first streamed token (retrieval included). The hosted Groq model generates in under 1 s.
+Latency with the local GPU model (RTX 4060 laptop): p50 4.3–5.5 s / p95 9.3–10.1 s end to end, and p50 about 2 s until the first streamed token (retrieval included). The range is between runs on the same machine: a back-to-back test of the old and new index showed the slower runs came from the laptop, not the code. The hosted Groq model generates in under 1 s.
 
-**What changed between the two runs.** The same 120 questions were asked, with the same models and seed:
+**What the stronger judge found, and what was fixed.** Its first pass found 15 unfaithful answers, and 9 of them had the same cause. The model closed a correct answer with a sentence such as "The sources do not cover breastfeeding" while a supplied passage covered exactly that. In a blind A/B on the 35 answers that had such a note, 16 of 27 notes were false under the old prompt and 10 of 18 under a stricter one, while all 35 answers were judged correct under both. A note asserts an absence, cites nothing, and cannot be checked, so the system no longer shows one: rule 4 was tightened, and an uncited closing "not covered" sentence is removed before the answer is checked and displayed. Faithfulness under the stronger judge went from 87.4% to 90.8%, and citation coverage from 87.9% to 95.0%.
 
-- **Partial answers are kept.** On 8% of answerable questions, the model had written a full cited answer and then closed with an `INSUFFICIENT_EVIDENCE` line for the part the sources don't cover. The service treated the whole reply as a refusal and threw the answer away. Such replies are now kept, checked and shown with a "Not covered by the sources" note. All 10 recovered answers were judged correct and faithful, and unanswerable questions are still refused 100% of the time.
-- **Faster.** On Windows, `localhost` tried IPv6 first and cost about 2 s per new connection to Ollama; the client now uses `127.0.0.1`. The question embedding also runs on the CPU (about 60 ms), so the chat model keeps the 8 GB GPU instead of being swapped out on every question.
-- Citation coverage fell slightly because a "Not covered" note is an uncited sentence by design.
+**What remains** is mostly misattribution. A real fact from the passages gets pinned to the wrong population, trial or drug: a pooled 11-drug result described as primidone's, later-onset SMA figures given for infantile-onset, a nitroglycerin study attributed to isosorbide. Every number in such a sentence appears in the source, so the deterministic check passes. The rest: one answer reverses its source (it says multiple small injections cause atrophy; the label recommends them to minimise it), one gives a wrong standard deviation, and one makes a false "the labels give no comparison" claim in the middle of an answer, where the closing-note filter does not look. This is the main open problem (see Limitations).
+
+**Earlier changes**, between the first run and the version above (same 120 questions, same models and seed):
+
+- **Partial answers are kept.** On 8% of answerable questions, the model had written a full cited answer and then closed with an `INSUFFICIENT_EVIDENCE` line for the part the sources don't cover. The service treated the whole reply as a refusal and threw the answer away. Such replies are now kept and checked. (The uncovered-part line was at first shown as a note; it is now dropped, see above and [DECISIONS §15](docs/DECISIONS.md#15-the-model-may-not-assert-an-absence).) All 10 recovered answers were judged correct and faithful, and unanswerable questions are still refused 100% of the time.
+- **Faster.** On Windows, `localhost` tried IPv6 first and cost about 2 s per new connection to Ollama; the client now uses `127.0.0.1`. The question embedding also runs on the CPU (about 80 ms median), so the chat model keeps the 8 GB GPU instead of being swapped out on every question.
 
 **Reading these numbers honestly**
 
-- The main failure mode is now **retrieval, not generation**. The gold passage is missing from the prompt for 5.8% of questions, and no model can answer from missing evidence. 0.8% of answers were judged unfaithful.
-- **One answer regressed:** for ropinirole in dialysis, the model gave both 18 mg/day and 3 mg/day. The labels state different maximums for different indications, and the judge marked the answer wrong. A second answer went the other way, from wrong to right.
-- **2 answers were flagged by the number check, and both flags are deserved.** One answer repeated a sentence five times, citing passages that don't contain the number. The other is a known gap: in a long flattened table, the "%" sits too far from its number.
-- **The checker has been corrected twice, never to hide a failure.** Each time, the stored answers were re-scored deterministically (`python -m labellens.evalkit.rescore`) without regenerating them, and the before and after figures are kept in `generation.json`. The first correction covered real label formats (`47.8 (13.7) hours`, `µg` for `mcg`, the `%` in a table header). The second covered numbers glued to a word in the label text ("younger than18 years").
+- **Two failure modes are left, about equally common.** Retrieval: the gold passage is missing from the prompt for 5.8% of questions, and no model can answer from missing evidence. Generation: misattribution within the passages it was given (above).
+- **3 answers were flagged by the number check; 2 flags are deserved.** Apixaban's ARISTOTLE bleeding rates and an azithromycin standard deviation are cited to passages that do not contain them. The third is a false positive: relugolix's 35% is in the cited passage, but that table was flattened into prose with its "%" stated far from the numbers, and the checker now accepts a table-wide "%" only for a real cell in a matching row. The stronger judge found 12 answers with a wrong citation, so the check catches the numeric ones and misses the rest.
+- **The checker has been corrected three times, never to hide a failure.** Each time, the stored answers were re-scored deterministically (`python -m labellens.evalkit.rescore`) without regenerating them. The re-scorer now appends each correction, with its reason and before and after figures, to a history in `generation.json`; earlier corrections are in the git history of that file. The first correction covered real label formats (`47.8 (13.7) hours`, `µg` for `mcg`, the `%` in a table header). The second covered numbers glued to a word in the label text ("younger than18 years"). The third covered a number used as a label ("Week 2 dose" is not a claim about "2 doses"), trailing zeros ("13.7" in a "13.70" cell) and a "%" stated once in a table's caption or header row. An independent review of that third change showed the first version was too loose (it accepted "20%" read off a "20 mg" column header, and a mg dose after "per day" with the wrong unit); the version shipped accepts only a cell value in the row the sentence names, and never drops a mass, volume or percentage unit.
 - An 8B model is a lenient judge. Treat judge scores as relative signals for comparing versions, not absolute truth.
+
+### Live check against today's FDA labels
+
+Fourteen new, hand-written everyday questions (maximum acetaminophen dose, ibuprofen in the third trimester, warfarin's boxed warning, omeprazole for GERD, an Ozempic price question, "can I double my pills"…) were answered locally. Every cited passage and every number was then compared with the **current** label fetched from the openFDA API ([`eval/results/livecheck.json`](eval/results/livecheck.json)). This is a spot check: 14 questions cannot estimate an error rate.
+
+- No answer contained a number missing from the live label. 20 of 23 cited passages are still word for word in today's label; 3 labels have been revised since the index was built, so a production deployment needs a scheduled re-ingest (it is incremental).
+- **It found a real safety bug.** "What is the dose of omeprazole for GERD?" was answered with the pediatric weight-band table (5 mg for 5 to <10 kg, 10 mg for 10 to <20 kg…), with nothing saying it was pediatric, 3 runs out of 3. The adult dose was among the passages. The cause was chunking, not the model: the section began `2 DOSAGE AND ADMINISTRATION *`, a heading form the subsection splitter did not recognise, and all of a field's tables were packed together, so a chunk could hold the end of the adult table and the start of the pediatric one while later chunks lost the "Pediatric Patients" caption. A prompt rule ("name the population") did not help and made two other answers worse, so it was dropped.
+- **Fix:** more heading forms are recognised, each table is chunked on its own, and every chunk of a table carries its numbered caption in the header the model sees. An independent review of that fix found ten edge cases (captions stored in a table's first row and dropped, group rows and footnotes taken as captions, sibling tables merged as near-duplicates, gold ids shifted by a position-based chunk id…), all fixed and pinned by tests. Omeprazole now gets "20 mg once daily for up to 4 weeks", 3 runs out of 3, and seven other dosing questions name the population for every weight- or age-banded dose.
+- One answer is still wrong after the fix: atorvastatin's discontinuation rates are listed as the "≥2%" adverse reactions. Both sentences are in one passage, and the 8B model merged them.
 
 ### Outside spot check: 16 adversarial questions
 
@@ -133,18 +152,18 @@ An outside reviewer wrote a test plan covering interactions, multi-drug comparis
 | "Can warfarin be taken with amiodarone?" began "Warfarin can be taken…", from one label only | The prompt forbids clearance statements and asks what each label says |
 | "Can I take this drug with my other medication?" was refused in one run but answered from four unrelated labels in another | A question that points at a drug without naming one is refused before the LLM, deterministically |
 
-After the fixes: 6 of 16 questions correctly refused (cost, probability, patient-specific dose, fictional drug, prompt injection, unnamed drug); 8 correct; 1 partially correct (the metformin/apixaban comparison still omits metformin's eGFR 30–45 rule); and the manufacturer-comparison question refused because that feature isn't supported. All 9 answered questions passed the grounding checks. Retrieval Recall@5 on the test split is unchanged at 90.6%.
+After the fixes: 6 of 16 questions correctly refused (cost, probability, patient-specific dose, fictional drug, prompt injection, unnamed drug); 8 correct; 1 partially correct (the metformin/apixaban comparison still omits metformin's eGFR 30–45 rule); and the manufacturer-comparison question refused because that feature isn't supported. All 9 answered questions passed the grounding checks. Retrieval Recall@5 on the test split was unchanged at 90.6% at the time (90.1% after the later re-chunking).
 
 ## Engineering for production
 
-- **One transactional store.** Documents, chunks, the BM25 index, embeddings and aliases live in one SQLite file. A label revision replaces all of them atomically, so the keyword and vector indexes can never drift apart. ([why](docs/DECISIONS.md#1-one-sqlite-file-instead-of-a-vector-database-plus-a-search-engine))
+- **One transactional store.** Documents, chunks, the BM25 index, embeddings and aliases live in one SQLite file. A label revision replaces its chunks, keyword index and aliases in one transaction. Vectors for new text follow when embedding finishes, and the index version is bumped only then, so a running server never loads a half-embedded index (but see Limitations for what it serves meanwhile). ([why](docs/DECISIONS.md#1-one-sqlite-file-instead-of-a-vector-database-plus-a-search-engine))
 - **Incremental, idempotent ingest.** Unchanged labels are skipped by content hash. Embeddings are keyed by the hash of the embedded text, so a re-run embeds only new text. A pipeline version in the fingerprint re-indexes everything when cleaning logic changes.
 - **Hot reload.** A running server picks up a re-ingest without a restart and swaps in the new index as one immutable snapshot. The response cache is keyed by index version, so it invalidates itself.
 - **Streaming that never retracts.** Server-sent events stream the answer, but text that may turn out to be a refusal, and every answer in strict mode, is held back until it has been verified.
 - **Observability.** Prometheus metrics with per-stage latency histograms (scope, BM25, embed, dense, rerank, first token, generation), grounding-failure counters, structured JSON logs with request ids, and `/healthz` and `/readyz`.
 - **Failure handling.** Retries with backoff for model backends, a `503` with `Retry-After` when a backend is down, and empty or truncated completions flagged and never cached.
 - **Swappable providers.** Embedder, reranker and LLM are three small protocols. The generator runs locally on Ollama or on Claude (`LABELLENS_LLM_PROVIDER=anthropic`) with no code change.
-- **Tests that need no GPU.** 113 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
+- **Tests that need no GPU.** 130 tests use deterministic fakes for every model, so CI runs the whole pipeline, including the HTTP API, in about a second.
 
 ## Quick start
 
@@ -213,17 +232,18 @@ bash run_eval.sh
 
 ## Hosted demo (Streamlit Community Cloud)
 
-The free hosted version runs the same pipeline (entity scoping, hybrid retrieval, reranking, gates and grounding checks) on a CPU-only host with about 1 GB of memory. Only the model providers are swapped:
+The free hosted version runs the same pipeline (entity scoping, hybrid retrieval, reranking, gates and grounding checks) on a CPU-only host with about 1 GB of memory. The model providers are swapped, and the CPU budget sets a smaller rerank and prompt:
 
 | | Full (local) | Hosted (free) |
 |---|---|---|
 | Passage embeddings | `bge-m3`, 1024-d, GPU | `snowflake-arctic-embed-s`, 384-d. The index is embedded on GPU with Ollama and queried on CPU with ONNX; same weights, verified identical vectors. |
-| Index | 713 MB, float32 | Compact export with float16 vectors, downloaded on first start |
+| Index | about 1.1 GB, float32 (two embedding variants: with and without the contextual header, for the ablation) | Compact export with float16 vectors, downloaded on first start |
 | Answer model | `llama3.1:8b` on Ollama | `gpt-oss-20b` on Groq, falling back to `gpt-oss-120b` on rate limits |
+| Candidates reranked | 30 | 20 |
 | Passages in prompt | 6 | 4 (Groq's free tier allows 8k tokens per minute per model) |
 | Protection | none | 5 questions per minute per session, short rate-limit waits instead of errors |
-| **Retrieval Recall@5 (test split)** | **90.6%** | **90.6%** (Hit@1 59.4%, p95 1.2 s on CPU) |
-| **Gold passage in the prompt** | **91.7%** of 6 passages | **88.5%** of 4 passages |
+| **Retrieval Recall@5 (test split)** | **90.1%** | **90.1%** (Hit@1 58.3%) |
+| **Gold passage in the prompt** | **91.1%** of 6 passages | **88.0%** of 4 passages |
 
 Deploy your own:
 
@@ -247,16 +267,20 @@ src/labellens/
 streamlit_app.py   free hosted demo (CPU embeddings, Groq answers)
   evalkit/         golden-set synthesis, ablation, gate calibration, LLM judge
 docs/DECISIONS.md  every design decision, the constraint behind it, what was rejected
-tests/             113 tests, including regression tests for every review and audit finding
+tests/             130 tests, including regression tests for every review and audit finding
 ```
 
 ## Limitations
 
-- **Synthetic questions.** The golden set is LLM-generated from label passages. Its biases and mitigations are described in `src/labellens/evalkit/dataset.py`. Clinician-written questions would be a stronger test.
-- **Ranking, not just recall.** The right passage is in the top 5 for 90.6% of questions but ranked first for only 59.4%. The model sees six passages (91.7% contain the gold one), so this costs little in answers, but a section-aware query router would raise it.
+- **Synthetic questions.** The golden set is generated by an 8B model from label passages, so it inherits the chunker's view of a label: questions come from prose passages the chunker produced, and real users ask differently. The 16 outside questions and the 14 live-check questions are hand-written, but 30 questions is a spot check. A few hundred clinician-written questions would be the real test.
+- **The answer judges.** The 8B judge scored 95.8% correct; a stronger blind judge scored 91.7%. Neither is a pharmacist. A human review of a sample is the next step before trusting either number.
+- **Misattribution is not blocked.** The deterministic checks verify citations and numbers. They cannot see a sentence that reverses its source ("safe" for "contraindicated") or attaches a real fact to the wrong population, trial or drug. The stronger judge found this in about 1 answer in 10, mostly the wrong-population or wrong-trial kind. A larger generator, or a second-pass entailment check per sentence, is the obvious next step; both cost latency.
+- **Ranking, not just recall.** The right passage is in the top 5 for 90.1% of questions but ranked first for only 58.3%. The model sees six passages (91.1% contain the gold one), so this costs little in answers, but a section-aware query router would raise it.
+- **The refusal gate is tuned on easy negatives.** Its threshold allows zero false refusals on calibration data, and AUROC is 0.997, but the unanswerable questions are invented drugs or facts no label states (price, patents). A question with a false premise about a real drug ("why is X contraindicated in asthma?" when it is not) would score as answerable, and only the model and the checks stand behind it.
+- **Re-ingesting under a running server.** During an ingest, chunks are replaced immediately but their vectors arrive only when embedding finishes (minutes for a full rebuild). Until the index version is bumped, a running server keeps its old vector snapshot, whose row ids no longer exist, so dense search returns nothing for re-ingested labels and answers come from BM25 alone. Restart-free updates should build into a second file and switch. The hosted demo already works that way (it downloads a finished index).
 - **Unlinked drug names.** When no drug name in the question can be linked (3 of 192 test questions, mostly 5-ingredient combination products), retrieval runs unscoped and misses.
 - **Paraphrase errors.** The deterministic checks can't catch a sentence that misstates its source without changing a number. That residual risk is measured offline (judge faithfulness) but not blocked at request time.
-- **Corpus size.** The index holds about 1,200 of the ~37,000 prescription labels in openFDA (the most recent revision of each distinct drug, plus about 100 commonly prescribed drugs). The design targets the full set; the remaining work is ingest time.
+- **Corpus size.** The index holds about 1,200 of the ~37,000 prescription labels in openFDA (the most recent revision of each distinct drug, plus about 100 commonly prescribed drugs). Nothing here shows the numbers hold at 37,000. Scoping should carry over, since a question about one drug still searches only that drug's labels, but unscoped questions, BM25 noise, the alias table's ambiguity and an exact in-memory dense scan (about 2.4 million passages: 1.9 GB of vectors at 384-d float16, 10 GB at 1024-d float32, past the point where an approximate index is worth it) all get harder. Measuring that is the next piece of work, not a solved one.
 - **Label text only.** No clinical guidelines and no patient-specific reasoning. LabelLens reports what the labels say. It supports a professional's own judgment and doesn't replace a pharmacist or a clinical decision-support system such as Lexicomp or Micromedex. A label that doesn't mention an interaction is not evidence that none exists.
 - **One label revision per drug.** The index keeps the latest revision of each distinct label, so it can't compare manufacturers' versions or show what changed between revisions. Sources link to the exact label on DailyMed by set id.
 - **Attribution in multi-drug answers.** Every fact cites a passage, and the UI shows which drug's label each passage comes from. But a sentence like "the warfarin label says…" can still name the wrong label while citing the right passage. The checks don't catch that.

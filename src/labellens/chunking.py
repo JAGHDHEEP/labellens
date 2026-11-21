@@ -26,6 +26,17 @@ _SENT_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z(\[0-9])")
 _ABBREV = re.compile(r"(?:\b(?:e\.g|i\.e|vs|approx|Fig|No|Dr|St|etc|U\.S|al)\.)$")
 _SECTION_HEAD = re.compile(r"^(\d{1,2})\s+([A-Z][A-Z\s,&/()\-:]{3,}?)\s+(?=[A-Z][a-z]|\d|\(|\[)")
 _SUBSECTION = re.compile(r"(?:^|(?<=\s))(\d{1,2})\.(\d{1,2})\s+(?=[A-Z][A-Za-z])")
+# A numbered heading _SECTION_HEAD cannot strip safely because what follows it
+# is not ordinary prose: "2 DOSAGE AND ADMINISTRATION * if ulcer present ...",
+# "5 WARNINGS AND PRECAUTIONS • Symptomatic ...", "4 CONTRAINDICATIONS WINREVAIR
+# is ...". The number still names the section, so subsections are found; the
+# heading is left in the text rather than risk cutting a drug name off it.
+# Also "2. DOSAGE AND ...", "2 Dosage and Administration ..." and "1INDICATIONS".
+_SECTION_NUMBER = re.compile(r"^(\d{1,2})\.?\s*[A-Z][A-Za-z&]+\b")
+# A table caption: "Table 2", "TABLE 3.", "Table 2a:", "Table IV".
+_TABLE_CAPTION = re.compile(r"^table\s+(?:\d+[a-z]?|[ivx]+)\b", re.I)
+_CAPTION_END = re.compile(r"(?<=[a-z)])\s+(?:\d{1,2}[.)]|[*†‡§∗])\s*(?=[A-Z])")
+MAX_TITLE_WORDS = 40
 _CONNECTORS = {"and", "or", "of", "in", "with", "the", "to", "for", "on", "a", "an", "by", "from"}
 
 
@@ -81,7 +92,7 @@ def split_subsections(text: str) -> list[tuple[str, str]]:
         major = m.group(1)
         text = text[m.end():]
     else:
-        lead = _SUBSECTION.match(text)
+        lead = _SUBSECTION.match(text) or _SECTION_NUMBER.match(text)
         if lead:
             major = lead.group(1)
 
@@ -109,8 +120,16 @@ def split_subsections(text: str) -> list[tuple[str, str]]:
     for i, (_, body_start, label) in enumerate(cuts):
         end = cuts[i + 1][0] if i + 1 < len(cuts) else len(text)
         body = text[body_start:end].strip()
-        if body:
-            parts.append((label, body))
+        if not body:
+            continue
+        # "1.4 Diabetic Retinopathy (DR)" with nothing under it (indications
+        # listed as bare headings) is not a chunk of its own: a 3-word chunk
+        # repeats the heading and takes a retrieval slot.
+        if parts and len(body.split()) <= len(label.split()) + 1:
+            prev_label, prev_body = parts[-1]
+            parts[-1] = (prev_label, f"{prev_body} {label.split(' ', 1)[0]} {body}")
+            continue
+        parts.append((label, body))
     return parts
 
 
@@ -144,13 +163,18 @@ def pack(units: list[str], max_words: int, min_words: int, joiner: str = " ") ->
     return [joiner.join(c) for c in chunks]
 
 
-def _make_chunk(doc: Document, sec: Section, sub: str, ordinal: int, text: str) -> Chunk:
+def _make_chunk(doc: Document, sec: Section, sub: str, ordinal: int, text: str,
+                repeat: int = 0) -> Chunk:
     header = f"{doc.display_name} | {sec.title}"
     if sub:
         header += f" | {sub}"
     embed_text = f"{header}\n{text}"
     text_hash = hashlib.sha256(embed_text.encode("utf-8")).hexdigest()
-    chunk_id = hashlib.sha1(f"{doc.doc_id}|{sec.key}|{ordinal}|{text_hash}".encode()).hexdigest()[:16]
+    # The id hashes the section and the exact embedded text (plus a counter for
+    # an identical chunk repeated in one section), not the document-wide
+    # position: adding a chunk early in a label must not rename every later
+    # chunk, or every stored reference to one (the golden set) breaks.
+    chunk_id = hashlib.sha1(f"{doc.doc_id}|{sec.key}|{repeat}|{text_hash}".encode()).hexdigest()[:16]
     return Chunk(
         chunk_id=chunk_id, doc_id=doc.doc_id, section_key=sec.key, section_title=sec.title,
         subsection=sub, ordinal=ordinal, kind=sec.kind, text=text, header=header,
@@ -158,21 +182,75 @@ def _make_chunk(doc: Document, sec: Section, sub: str, ordinal: int, text: str) 
     )
 
 
+def table_title(rows: list[str]) -> str:
+    """The caption of one linearised table, if its first line is one.
+
+    "Table 2 Recommended Dosage Regimen of Omeprazole in Pediatric Patients by
+    Indication" is a title; a data row ("Indication | Dose"), a labelled cell
+    ("Age: 1 to 16 years") or a footnote ("* if ulcer present ...") is not.
+
+    Only a numbered caption is trusted. A first line that is not one may be a
+    group row ("Ear and Labyrinth Disorders") or a footnote that the label puts
+    before the body ("1 Includes abdominal pain"); stamped on every chunk of
+    the table it would mislabel them, which is worse than no label.
+    """
+    if len(rows) < 2:
+        return ""
+    first = rows[0].strip()
+    if " | " in first or not _TABLE_CAPTION.match(first):
+        return ""
+    # Labels often run the first footnote into the caption line:
+    # "... in Pediatric Patients by Indication 1. The efficacy of ...".
+    head = _TABLE_CAPTION.match(first).end()
+    first = first[:head] + _CAPTION_END.split(first[head:], maxsplit=1)[0]
+    return " ".join(first.split()[:MAX_TITLE_WORDS])
+
+
+def table_pieces(text: str, max_words: int, min_words: int) -> list[tuple[str, str]]:
+    """Chunk a table section one table at a time (tables are separated by a
+    blank line), labelling every chunk of a table with that table's caption.
+
+    Without this, a chunk could start with the last rows of an adult dosing
+    table and continue into a pediatric one, and later chunks of the pediatric
+    table lost the only line that said who the doses are for. The 8B model
+    then reported "5 mg once daily for 5 to less than 10 kg" as the dose.
+    """
+    blocks: list[list[str]] = []
+    for block in re.split(r"\n\s*\n", text):
+        rows = [r for r in block.split("\n") if r.strip()]
+        if not rows:
+            continue
+        small = sum(len(r.split()) for r in rows) < min_words
+        # A tiny untitled table ("Figure 1", a two-cell unit table) joins the
+        # table before it rather than becoming a fragment chunk.
+        if blocks and small and not table_title(rows):
+            blocks[-1] += rows
+        else:
+            blocks.append(rows)
+    pieces: list[tuple[str, str]] = []
+    for rows in blocks:
+        title = table_title(rows)
+        pieces += [(title, p) for p in pack(rows, max_words, min_words, joiner="\n")]
+    return pieces
+
+
 def chunk_document(doc: Document, max_words: int = 220, min_words: int = 25) -> list[Chunk]:
     chunks: list[Chunk] = []
     for sec in doc.sections:
         if sec.kind == "table":
-            rows = [r for r in sec.text.split("\n") if r.strip()]
-            pieces = [("", p) for p in pack(rows, max_words, min_words, joiner="\n")]
+            pieces = table_pieces(sec.text, max_words, min_words)
         else:
             pieces = []
             for sub, body in split_subsections(sec.text):
                 for p in pack(split_sentences(body), max_words, min_words):
                     pieces.append((sub, p))
+        seen: dict[tuple[str, str], int] = {}
         for sub, text in pieces:
             # Keep very short chunks ("None.") - they are real answers - but not
             # empty ones or a bare heading with no body.
             if not re.search(r"[a-z0-9]", text):
                 continue
-            chunks.append(_make_chunk(doc, sec, sub, len(chunks), text))
+            repeat = seen.get((sub, text), 0)
+            seen[(sub, text)] = repeat + 1
+            chunks.append(_make_chunk(doc, sec, sub, len(chunks), text, repeat))
     return chunks

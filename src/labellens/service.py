@@ -157,6 +157,8 @@ class RagService:
         else:
             answer = finalize_partial_answer(raw)
             g = verify_grounding(answer, hits)
+            g.gap_notes_removed = int(answer.count("\n") < raw.strip().count("\n")
+                                      or len(answer) < len(raw.strip()))
             status, text = "answered", normalize_citations(answer).strip()
             if g.invalid_citations:
                 obs.GROUNDING_FAILURES.labels("invalid_citation").inc()
@@ -287,7 +289,7 @@ class RagService:
             if released == 0:
                 yield "token", ans.text
             elif ans.text.startswith(streamed) and len(ans.text) > released:
-                yield "token", ans.text[released:]  # e.g. the "Not covered" note
+                yield "token", ans.text[released:]
 
         self._cache_put(key, ans)
         self._record(ans)

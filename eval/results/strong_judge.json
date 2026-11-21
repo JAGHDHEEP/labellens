@@ -1,0 +1,1913 @@
+{
+ "judge_model": "claude-opus-5-5, 4 independent batches, blind to the 8B judge's verdicts",
+ "runs": {
+  "before_gap_note_fix": {
+   "a0334": {
+    "id": "a0334",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "TSH every 12 weeks matches the reference and passage [1]."
+   },
+   "a0300": {
+    "id": "a0300",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Lists the label's patient factors and the half dose for elderly and renal or hepatic patients, but leaves out pain severity and the lowest effective dose, both of which the reference states."
+   },
+   "a0223": {
+    "id": "a0223",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Says no differences were found and that elderly dosing should be cautious, matching the reference and [1]."
+   },
+   "a0304": {
+    "id": "a0304",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "45 mg/kg/day is correct and supported by [1], but [2] gives only '10 times the MRHD' and does not state 45 mg/kg/day."
+   },
+   "a0157": {
+    "id": "a0157",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The core facts (mortality and malformations at about 3x exposure) are correct, but the 'not covered' line wrongly says the sources omit background risk, which [1] gives as 2-4% and 15-20%."
+   },
+   "a0152": {
+    "id": "a0152",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Less than 1% of the adult dose, supported by [1]."
+   },
+   "a0266": {
+    "id": "a0266",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Follows the label exactly: contraindicated for onychomycosis in CHF, and for other indications only if benefit outweighs risk. The reference's 'any indication' overstates the label, so the answer is not penalized for differing from it."
+   },
+   "a0057": {
+    "id": "a0057",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Effective contraception during treatment and for 6 months after, matching [1]."
+   },
+   "a0321": {
+    "id": "a0321",
+    "correct": false,
+    "faithful": false,
+    "qualitative_error": true,
+    "wrong_citation": false,
+    "note": "Attributes the pooled 11-AED result (RR 1.8, 0.43% vs 0.24%) to 'patients randomized to primidone', but passage [1] describes patients randomized to any of the AEDs, so the drug is wrong."
+   },
+   "a0372": {
+    "id": "a0372",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "47.8 (13.7) hours at 40 IU/kg in adults and adolescents, supported by [1] and [2]."
+   },
+   "a0180": {
+    "id": "a0180",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Malignant hyperthermia with RYR1/CACNA1S variants and the contraindication, all supported by [2] and [3]."
+   },
+   "a0246": {
+    "id": "a0246",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Says levels rise with 2D6 inhibitors such as fluoxetine and cimetidine, matching the reference and [1] and [2]."
+   },
+   "a0375": {
+    "id": "a0375",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Restoring remethylation lowers homocysteine and the product is indicated for this, supported by [1] and [2]."
+   },
+   "a0322": {
+    "id": "a0322",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "The adverse reaction list is correct (it is in [3] and [5]), but [2] is cited for every item, including dizziness alone, and [2] contains only the table header with no reactions."
+   },
+   "a0352": {
+    "id": "a0352",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Says it may be prudent not to stop abruptly in hypertension, matching [1]."
+   },
+   "a0336": {
+    "id": "a0336",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Nausea 6.1% placebo vs 15.8% and 20.3% on semaglutide, supported by [2] and [3]."
+   },
+   "a0081": {
+    "id": "a0081",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The question is ambiguous across trials. The answer gives the reference's 1.7% (the Paget's comparison with risedronate) with its correct context, plus the osteoporosis-trial figures, all cited correctly."
+   },
+   "a0127": {
+    "id": "a0127",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "2 to 3 grams, from [1]; it omits that toxicity varies, but the key fact is there."
+   },
+   "a0202": {
+    "id": "a0202",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Malabsorption, soybean formula and anionic exchange resins cause fecal loss, supported by [1]."
+   },
+   "a0239": {
+    "id": "a0239",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Rebound hypertension, tachycardia and hypertonia, more likely with high doses or narcotics, supported by [1] and [4]."
+   },
+   "a0122": {
+    "id": "a0122",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Adverse reactions were similar to the weight reduction trials, per [1]; the closing 'not covered' line contradicts the answer's own statement but adds no false clinical claim."
+   },
+   "a0258": {
+    "id": "a0258",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Every two to three hours initially, per [1]; it omits the taper, which is minor."
+   },
+   "a0340": {
+    "id": "a0340",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Maintaining sinus rhythm and delaying recurrence, per [1]; calling the indication 'a limitation of use' is awkward wording but not wrong on the facts."
+   },
+   "a0330": {
+    "id": "a0330",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Leaves out the reference's main point, hypokalemia with muscle weakness, confusion and arrhythmias, which passage [5] covers; the GI adverse effects it lists are supported by [3]."
+   },
+   "a0103": {
+    "id": "a0103",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "Does not state the 1.54 hazard ratio or that the difference was not significant, and cites [3] for ARISTOTLE concomitant-aspirin figures that appear only in [1]."
+   },
+   "a0055": {
+    "id": "a0055",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "Correct that it does not readily cross the placenta, but only [1] and [2] say so; [3], [4] and [5] do not."
+   },
+   "a0270": {
+    "id": "a0270",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "One to two 50 mL vials (44.6-100 mEq) IV, per [1]."
+   },
+   "a0150": {
+    "id": "a0150",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States the reference fact that no embryofetal toxicity or malformations were seen in infants, plus placental transfer, all supported by [1] and [2]."
+   },
+   "a0338": {
+    "id": "a0338",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Refrigerate at 2-8°C, protect from sunlight, no more than 7 days out, do not freeze, all per [1]."
+   },
+   "a0257": {
+    "id": "a0257",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Respiratory depression, laryngospasm, bronchospasm and shallow respirations, all supported by [1] and [5]."
+   },
+   "a0096": {
+    "id": "a0096",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Names fatigue as a common reaction with nivolumab plus ipilimumab, citing passages that support it; the reference's ~50% figure is missing and does not appear in any passage."
+   },
+   "a0236": {
+    "id": "a0236",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Gives 100 mg at week 0, then 50 mg, for the 15 to <40 kg band, matching the table; the explicit week 6 timing is folded into 'every 4 weeks thereafter'."
+   },
+   "a0290": {
+    "id": "a0290",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Supine position and IV normal saline are cited correctly to [2]; the vasopressor advice comes from the overdosage passage, and the answer leaves out that treatment can continue once blood pressure stabilizes."
+   },
+   "a0316": {
+    "id": "a0316",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The core finding (no increased overall cardiovascular malformation risk) is correct and cited, but the closing claim that the sources do not cover LVOTO is false: passages 1 and 2 discuss LVOTO findings."
+   },
+   "a0225": {
+    "id": "a0225",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Includes the fatal risk of accidental administration [4] and the risk of death from paralysis [3]; it leaves out the reference's storage advice (cap and ferrule intact)."
+   },
+   "a0075": {
+    "id": "a0075",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States up to 12 months or longer, which is correct, but the closing note wrongly says the sources give no specific time frame, contradicting the answer itself and passages 1-3; the 9-month figure is about effects on other drugs."
+   },
+   "a0286": {
+    "id": "a0286",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "The signs listed are correct and supported by [1] and [3], but [6] is cited for each sign even though it only names NMS and lists no signs."
+   },
+   "a0381": {
+    "id": "a0381",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States that fetal exposure may increase immune-mediated disorders or alter immune responses [2], matching the reference, with supported animal data."
+   },
+   "a0333": {
+    "id": "a0333",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "Bone pain of 31% vs 26% is correct, but the Study 3 design details (docetaxel 100 mg/m2 every 21 days) come from passage 5 and are cited to [1][2]."
+   },
+   "a0287": {
+    "id": "a0287",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Clearance falls by 40/50/60/70% by severity and correlates with CLcr, all accurately cited to [1]."
+   },
+   "a0279": {
+    "id": "a0279",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Answers yes, citing the warning that mydriatics may transiently raise intraocular pressure [2]; this is consistent with the reference."
+   },
+   "a0045": {
+    "id": "a0045",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Leads with 37% [1], matching the reference; the other study populations' figures (35% ALCL, 34%, 7% pediatric IMT) are each correctly attributed."
+   },
+   "a0193": {
+    "id": "a0193",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Says safety and efficacy for age-related hypogonadism have not been established [1], matching the reference."
+   },
+   "a0199": {
+    "id": "a0199",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Describes hepatotoxicity reports and transaminase monitoring, with accurate citations, but never says that liver enzyme elevations occur in a significant share of patients, which is the reference's point; the passages also lack that fact."
+   },
+   "a0044": {
+    "id": "a0044",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Includes the reference point that more than two 5 mg tablets are usually not needed; calling 10 mg the 'maximum' is loose, and the escalation to 15/20 mg leaves out the persistent-hypokalemia condition."
+   },
+   "a0210": {
+    "id": "a0210",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Drowsiness at 29% is correct, but the closing claim that the sources do not cover 10 mg side effects is false: passage 1 includes the 10 mg column."
+   },
+   "a0027": {
+    "id": "a0027",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Says the impact of hepatic impairment is unknown and has not been studied [4], matching the reference."
+   },
+   "a0198": {
+    "id": "a0198",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Says elderly patients should start on low doses because of reduced organ function and sedation risk [1], matching the reference."
+   },
+   "a0110": {
+    "id": "a0110",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Gives 600 mg orally once daily, which is correct; it leaves out 'until disease progression or unacceptable toxicity', and its 'not covered' note is odd but harmless."
+   },
+   "a0002": {
+    "id": "a0002",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Back pain (29%) and arthralgia (22%) in pediatric patients are accurately cited, but it leaves out the reference's qualifier that back pain was more frequent in females."
+   },
+   "a0071": {
+    "id": "a0071",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Gives 50 g/week, supported by [1][3]."
+   },
+   "a0310": {
+    "id": "a0310",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Transverse insertion through the plaque width without passing through is correctly cited to [1]; the Dupuytren's details are correctly attributed to [6]."
+   },
+   "a0371": {
+    "id": "a0371",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Gives triglycerides increased in 35% of patients (Grade 3-4: 2%) per Table 2, matching the reference figure."
+   },
+   "a0345": {
+    "id": "a0345",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Up to 15 days in about 20% of patients [1] matches the reference; the 30-day clearance statement is supported by [2]."
+   },
+   "a0182": {
+    "id": "a0182",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "CYP3A4 inducers lower and inhibitors raise tinidazole levels, correctly cited to [1], matching the reference."
+   },
+   "a0043": {
+    "id": "a0043",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Cholinergic crisis with muscle weakness involving respiration and possible death is cited to [2], matching the reference."
+   },
+   "a0176": {
+    "id": "a0176",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Lists profound sedation, respiratory depression, coma and death [1], matching the reference."
+   },
+   "a0208": {
+    "id": "a0208",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Gives 740-1110 MBq (20-30 mCi) for breast imaging [1], matching the reference."
+   },
+   "a0269": {
+    "id": "a0269",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Lists the 473 mL bottle and the 15 mL and 30 mL unit-dose cups [1], matching the reference."
+   },
+   "a0200": {
+    "id": "a0200",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Lists dyspnea, rash, pruritus and angioedema as hypersensitivity reactions, supported by [1][3][4]."
+   },
+   "a0325": {
+    "id": "a0325",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Matches reference; clearance and Cmax similar in black vs Caucasian males, supported by [1] and [2]."
+   },
+   "a0378": {
+    "id": "a0378",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States the core fact correctly, then adds a 'Not covered by the sources' line that contradicts its own cited passages."
+   },
+   "a0307": {
+    "id": "a0307",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Contraindication in neonates <=28 days and fatal precipitate cases both correctly cited to [3]."
+   },
+   "a0132": {
+    "id": "a0132",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Pediatric patients 6 years and older matches the reference's 6 to 17 years; supported by [1] and [2]."
+   },
+   "a0186": {
+    "id": "a0186",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Matches reference verbatim from [1]."
+   },
+   "a0145": {
+    "id": "a0145",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "NSAIDs reduce diuretic effect and close observation is needed; supported by [1]."
+   },
+   "a0276": {
+    "id": "a0276",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Includes the reference's liver enzyme, ALP and bilirubin tests plus TB evaluation and vaccinations; all supported by [1] and [4]."
+   },
+   "a0357": {
+    "id": "a0357",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "Common aHUS reactions are correct, but the answer lists abdominal pain and pneumonia as Table 9 >=10% reactions citing [1], which only names them as serious adverse reactions in more than 2 patients."
+   },
+   "a0385": {
+    "id": "a0385",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "3.5% (33/949) is correct, but passage [3] (laboratory tests) is cited and does not support it."
+   },
+   "a0217": {
+    "id": "a0217",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Indicated for CAR T-induced CRS in patients 2 years and older; the dose details are correctly cited to [6]."
+   },
+   "a0323": {
+    "id": "a0323",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Lists all the reference's reactions, but the last sentence says [1] reports fever, diarrhea and rash at >=10% in infantile-onset SMA, when [1] gives those figures for later-onset SMA."
+   },
+   "a0383": {
+    "id": "a0383",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "Hyperglycemia reports are correctly cited to [1], but hypoglycemia is cited to [5], which does not contain it (it is in [3])."
+   },
+   "a0155": {
+    "id": "a0155",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Oligohydramnios-related risks are correct, but the closing note says the sources do not cover breastfeeding, while passage [4] covers lactation."
+   },
+   "a0387": {
+    "id": "a0387",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "5.3% and its definition are supported by [1] and [2]."
+   },
+   "a0061": {
+    "id": "a0061",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "No dose adjustment needed; all clearance figures match [1]."
+   },
+   "a0076": {
+    "id": "a0076",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Reversible ARF after 50 tablets is correctly cited to [2]; the extra claims are accurately cited to [1] and [3]."
+   },
+   "a0140": {
+    "id": "a0140",
+    "correct": false,
+    "faithful": false,
+    "qualitative_error": true,
+    "wrong_citation": false,
+    "note": "Inverts the label: [1] recommends multiple small injections to minimize atrophy, but the answer says they may cause dermal and subdermal depressions."
+   },
+   "a0335": {
+    "id": "a0335",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "15 mg once daily for NYHA Class I/II CHF is supported by [1] and [2]."
+   },
+   "a0144": {
+    "id": "a0144",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Full Table 1 reductions, including 90/30 to 45/15, match [1]."
+   },
+   "a0171": {
+    "id": "a0171",
+    "correct": false,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "Gives 1.14 +/- 0.13 mcg/mL instead of the reference's 1.08 mcg/mL (stated in [1]), and the cited passage [3] gives the SD as +/-0.14, not +/-0.13."
+   },
+   "a0359": {
+    "id": "a0359",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Nausea 16% vs 49% (Grade 3/4 0.7% vs 3.7%) matches [2]; the odd 'not covered' line about age is harmless."
+   },
+   "a0124": {
+    "id": "a0124",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Matches reference; supported by [1] and [2]."
+   },
+   "a0041": {
+    "id": "a0041",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Indicated in pediatric patients aged 3 to 16 years per [1]; the Xelstrym details are correctly cited to [2]."
+   },
+   "a0212": {
+    "id": "a0212",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Should not be used for penicillin G-susceptible organisms; supported by [1]."
+   },
+   "a0053": {
+    "id": "a0053",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Absorption is optimal with food per [1]."
+   },
+   "a0181": {
+    "id": "a0181",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Do not breastfeed during treatment and for 1 week after the last dose; supported by [2] and [4]."
+   },
+   "a0162": {
+    "id": "a0162",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "AUC +84% and Cmax +36%, use with caution; supported by [2] and [4]."
+   },
+   "a0173": {
+    "id": "a0173",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Increased GI adverse reaction risk with other anticholinergics; supported by [1] and [4]."
+   },
+   "a0369": {
+    "id": "a0369",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Trial did not establish efficacy versus placebo in adolescents; response rates match [1]."
+   },
+   "a0052": {
+    "id": "a0052",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Lists the five indicated infections with the organisms named in [1] and [2]."
+   },
+   "a0312": {
+    "id": "a0312",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Core risk content is correct, but the answer pins the 1.4x and 0.04x dose ratios to the combined mouse and rabbit abnormalities (including cranioschisis). In passage 2 those ratios are mouse-only, and the rabbit doses were 0.02x and 0.05x."
+   },
+   "a0311": {
+    "id": "a0311",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States both 18 mg/day and 3 mg/day as the dialysis maximum without saying that 18 mg/day is for Parkinson's disease and 3 mg/day for RLS, so the answer is contradictory and lacks the key indication qualifier."
+   },
+   "a0080": {
+    "id": "a0080",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "50 mg daily in adults matches passage 1."
+   },
+   "a0353": {
+    "id": "a0353",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The symptom lists are correct, but the closing note says the sources do not cover the combination product. Passage 2 is the combination product's own overdosage section."
+   },
+   "a0131": {
+    "id": "a0131",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Myelosuppression and its 2 to 8 week onset are supported by passages 1, 3 and 4."
+   },
+   "a0195": {
+    "id": "a0195",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Temporary discontinuation in high-risk conditions matches passages 1 and 2."
+   },
+   "a0283": {
+    "id": "a0283",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Correctly reports no fetal harm in animal studies. It leaves out the reference's caveat on human data and use only if clearly needed, but the question asks only about animal studies."
+   },
+   "a0104": {
+    "id": "a0104",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Proteolytic degradation matches passage 1."
+   },
+   "a0062": {
+    "id": "a0062",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The full list of allergic signs matches passages 1 and 3."
+   },
+   "a0254": {
+    "id": "a0254",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Immediate discontinuation plus intensive symptomatic treatment and monitoring are supported."
+   },
+   "a0297": {
+    "id": "a0297",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States interference with the HPLC theophylline assay as in passage 1. It omits the solvent-dependence detail but answers the yes/no question."
+   },
+   "a0185": {
+    "id": "a0185",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Discontinuation in rheumatoid arthritis patients with unexplained gross or persistent microscopic hematuria matches passage 1. The extra statements are supported by passages 1 and 2."
+   },
+   "a0309": {
+    "id": "a0309",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "48 hours after the first step-up dose is supported by passages 1 and 2."
+   },
+   "a0058": {
+    "id": "a0058",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Overdose symptoms match passages 1 and 2."
+   },
+   "a0004": {
+    "id": "a0004",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "A dose-free interval of at least 14 hours matches passage 2. The other statements are supported by passages 1, 4 and 5."
+   },
+   "a0026": {
+    "id": "a0026",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The ratios 1, 1.25 and 1.6 at increasing doses show the ratio rising, which is correct. The note that the sources give no direct answer is contradicted by passage 1, which states that the ratio increases with increasing dose."
+   },
+   "a0183": {
+    "id": "a0183",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Fall in blood pressure with reflex tachycardia [3] and the ganglion-blocker interaction [1] are supported."
+   },
+   "a0393": {
+    "id": "a0393",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Correctly says yes and lists serious reactions supported by passages 1, 2 and 6, though it names categories (for example hypersensitivity) rather than the reference's angioedema, anaphylaxis and arrhythmias."
+   },
+   "a0248": {
+    "id": "a0248",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "0.25 mg IV or IM for ages 2 to 17 is correct per passage 3. Passage 2, cited for the pediatric dose, is the adult dose section, and passage 1 does not state 0.25 mg."
+   },
+   "a0216": {
+    "id": "a0216",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The short-term efficacy indication matches passage 1. The dosing comes from the nonpsychotic behavior disorders range in passage 2, a reasonable reading."
+   },
+   "a0020": {
+    "id": "a0020",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "No reported adverse reactions, matching passages 1 and 2."
+   },
+   "a0328": {
+    "id": "a0328",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Screening all patients with HBsAg and anti-HBc before treatment is supported by passage 3."
+   },
+   "a0291": {
+    "id": "a0291",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "4.4 g matches passage 1. The serum level detail from the reference is omitted but was not asked for."
+   },
+   "a0399": {
+    "id": "a0399",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "No significant pharmacokinetic interaction in either direction, matching passage 2."
+   },
+   "a0192": {
+    "id": "a0192",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "25 mg alogliptin and 2000 mg metformin HCl match passages 1 and 2."
+   },
+   "a0159": {
+    "id": "a0159",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Concomitant use not recommended because of additive effects, matching passage 1."
+   },
+   "a0063": {
+    "id": "a0063",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The increased mortality and its figures are supported by passage 1. The figures come from class-wide antipsychotic data, and the answer's wording does not misstate that."
+   },
+   "a0158": {
+    "id": "a0158",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Every 2 weeks for the first month, then monthly, matches passage 2."
+   },
+   "a0143": {
+    "id": "a0143",
+    "correct": false,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Mentions that the data are consistent with higher liver-transplant dosing but then hedges and says the sources do not compare liver and kidney patients. Passages 2 and 5 do compare them, so the answer never gives a clear yes and makes an unsupported claim."
+   }
+  },
+  "final": {
+   "a0334": {
+    "id": "a0334",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States TSH every 12 weeks as in passage 1 and the reference; the passage gives this in a clinical-trial context, but it matches the reference."
+   },
+   "a0300": {
+    "id": "a0300",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Lists the label's individualization factors and the half dose for elderly/impaired patients, but omits the reference's pain severity, prior treatment and lowest-effective-dose guidance."
+   },
+   "a0223": {
+    "id": "a0223",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Matches the reference (no differences identified; cautious dose selection) and is fully supported by passages 1-2."
+   },
+   "a0304": {
+    "id": "a0304",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Gives 45 mg/kg/day for rabbits, supported by passage 1; the paragraph is repeated, but the content is accurate."
+   },
+   "a0157": {
+    "id": "a0157",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Embryo-fetal mortality and malformations in rats at about 3 times human exposure, supported by passages 1-2."
+   },
+   "a0152": {
+    "id": "a0152",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Less than 1% of the adult dose at 150 mL/kg/day milk intake, supported by passage 1."
+   },
+   "a0266": {
+    "id": "a0266",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The reference says no use for any indication; the answer (correctly per passage 4) restricts the absolute prohibition to onychomycosis and allows other indications if benefit outweighs risk, so it disagrees with the reference, which itself appears to overstate the label."
+   },
+   "a0057": {
+    "id": "a0057",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "The content is correct, but passage [4] (pregnancy risk summary) does not mention contraception for 6 months."
+   },
+   "a0321": {
+    "id": "a0321",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Passage 1 gives the RR 1.8 / 'twice the risk' figure for pooled trials of 11 AEDs, not for patients randomized to primidone, so attributing it to primidone is unsupported."
+   },
+   "a0372": {
+    "id": "a0372",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "47.8 (13.7) hours at 40 IU/kg in adults and adolescents, supported by passages 1-2."
+   },
+   "a0180": {
+    "id": "a0180",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Malignant hyperthermia with RYR1/CACNA1S variants and family history, supported by passages 2-3."
+   },
+   "a0246": {
+    "id": "a0246",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Increased imipramine levels with 2D6 inhibitors such as fluoxetine, and possible lower dose needs, all supported by passages 1-2."
+   },
+   "a0375": {
+    "id": "a0375",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Indication and remethylation mechanism match the reference and passages 1-2."
+   },
+   "a0322": {
+    "id": "a0322",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "The list matches the adult 4 mg/kg table, but passage [2] only introduces Table 6 and does not name diarrhea, headache, rash or CPK; [5] and [3] do."
+   },
+   "a0352": {
+    "id": "a0352",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Avoid abrupt discontinuation because of possibly unrecognized CAD, and taper over 1-2 weeks, supported by passages 1 and 3."
+   },
+   "a0336": {
+    "id": "a0336",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Nausea 6.1% placebo vs 15.8% and 20.3%, matching the reference and passages 2-3."
+   },
+   "a0081": {
+    "id": "a0081",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Includes the reference's 1.7% (Paget's trial vs risedronate) with correct attribution, plus accurate rates from the osteoporosis trials; the question is ambiguous about which study."
+   },
+   "a0127": {
+    "id": "a0127",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "2 to 3 grams for adults, per passage 1; omits the note that toxicity is variable, which is minor."
+   },
+   "a0202": {
+    "id": "a0202",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Malabsorption, soybean formula and anion exchange resins cause excessive fecal loss, supported by passage 1."
+   },
+   "a0239": {
+    "id": "a0239",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Rebound hypertension, tachycardia and hypertonia, and slow tapering at 20-28 mg/day for 9 weeks or more, supported by passages 1 and 4."
+   },
+   "a0122": {
+    "id": "a0122",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Adverse reactions at 10/15 mg weekly were similar to the weight-reduction trials, per passage 1; the demographic details are supported by passage 2."
+   },
+   "a0258": {
+    "id": "a0258",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Every two to three hours initially, per passage 1; omits the tapering, which is minor."
+   },
+   "a0340": {
+    "id": "a0340",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Maintenance of normal sinus rhythm (delay in recurrence of AFIB/AFL), supported by passages 1-2."
+   },
+   "a0330": {
+    "id": "a0330",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Lists GI and aspiration adverse reactions but omits the reference's key point: hypokalemia/electrolyte disturbance with weakness, confusion and arrhythmias (in passages 3 and 5)."
+   },
+   "a0103": {
+    "id": "a0103",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "Gives no 1.54 relative risk and does not say the difference was nonsignificant; it only says 'modest increase'. The ARISTOTLE aspirin co-use figures are cited to [2] (boxed warning) but come from passage 1."
+   },
+   "a0055": {
+    "id": "a0055",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "Does not readily cross is supported by [1] and [2], but passages [3], [4] and [5] do not mention placental transfer."
+   },
+   "a0270": {
+    "id": "a0270",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "One to two 50 mL vials (44.6-100 mEq) IV, matching the reference and passage 1."
+   },
+   "a0150": {
+    "id": "a0150",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States that no embryofetal toxicity or malformations were seen in monkey infants, supported by passages 1-2; the extra context is accurate."
+   },
+   "a0338": {
+    "id": "a0338",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Refrigerate at 2-8°C, no more than 7 days out, protect from sunlight, do not freeze; all from passage 1."
+   },
+   "a0257": {
+    "id": "a0257",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Respiratory depression, laryngospasm, bronchospasm and shallow respirations, all supported by passages 1, 4 and 5."
+   },
+   "a0096": {
+    "id": "a0096",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Names fatigue among common reactions with nivolumab+ipilimumab, quoted accurately from [3] and [4]. It does not give the reference's ~50% figure, which is not in the passages."
+   },
+   "a0236": {
+    "id": "a0236",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "100 mg at week 0, 50 mg at week 2, then 50 mg every 4 weeks for the 15 to <40 kg band, all supported by [1]-[4]. It does not explicitly name week 6 as the start of maintenance."
+   },
+   "a0290": {
+    "id": "a0290",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Gives the supine position and IV normal saline from [2]. It omits that treatment can usually continue once BP stabilizes, and the vasopressor advice is lifted from the overdosage section [1], not general hypotension management."
+   },
+   "a0316": {
+    "id": "a0316",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States no increased overall risk of cardiovascular malformations and a rate similar to background; registry, NBDPS and Slone figures all match [1]-[3]."
+   },
+   "a0225": {
+    "id": "a0225",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Covers fatal accidental administration [4] and the other risks, all correctly cited. It omits the reference's storage instruction (cap and ferrule intact)."
+   },
+   "a0075": {
+    "id": "a0075",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Up to 12 months or longer matches the reference and [1]-[3]. The 9-month drug-interaction statement is correctly attributed to [4]."
+   },
+   "a0286": {
+    "id": "a0286",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": true,
+    "wrong_citation": false,
+    "note": "The core NMS signs are correct from [1], [3] and [6]. However, it lists confusion, obtundation, falls and EPS from [2] as NMS signs, when [2] describes increased sensitivity in patients with Parkinson's disease or Lewy body dementia, so a population is misattributed."
+   },
+   "a0381": {
+    "id": "a0381",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States fetal exposure may increase the risk of immune-mediated disorders or alter immune response [2]; the other claims match [1]-[3]."
+   },
+   "a0333": {
+    "id": "a0333",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Bone pain 31% vs 26% placebo, correctly cited to [2]."
+   },
+   "a0287": {
+    "id": "a0287",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Reduced clearance correlated with CLcr, with correct 40/50/60/70% reductions, CLcr bands and the hemodialysis figure from [1]."
+   },
+   "a0279": {
+    "id": "a0279",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Yes, transient IOP elevation. Strictly, [2] says this about mydriatics as a class rather than tropicamide by name, but tropicamide is the product's mydriatic, so the claim is acceptable."
+   },
+   "a0045": {
+    "id": "a0045",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "37% matches the reference and [1]; the other populations (ALCL 35%, pediatric IMT 7%, Study 1 34%) are labeled and cited correctly."
+   },
+   "a0193": {
+    "id": "a0193",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Safety and efficacy for age-related hypogonadism not established, verbatim from [1]."
+   },
+   "a0199": {
+    "id": "a0199",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Discusses hepatotoxicity reports and transaminase monitoring from [6] but never addresses how often liver enzymes rise, which is what the reference states."
+   },
+   "a0044": {
+    "id": "a0044",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "10 mg/day and 'more than two 5 mg tablets usually not needed' match [2]. However, it softens the condition for going to 15-20 mg from 'persistent hypokalemia documented' to 'if necessary'."
+   },
+   "a0210": {
+    "id": "a0210",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Drowsiness 29% at 5 mg, plus the other 5 mg rates, all correctly taken from [1]."
+   },
+   "a0027": {
+    "id": "a0027",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Effect of hepatic impairment unknown and not studied, matching [4]."
+   },
+   "a0198": {
+    "id": "a0198",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Start elderly patients on low doses because of reduced organ function and sedation risk, verbatim from [1]."
+   },
+   "a0110": {
+    "id": "a0110",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "600 mg orally once daily on an empty stomach, plus correct dose reductions from [1], [2] and [5]. It omits 'until disease progression or unacceptable toxicity', a minor gap."
+   },
+   "a0002": {
+    "id": "a0002",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Back pain and arthralgia figures in pediatric subjects are correct from [1]. It omits the reference's point that back pain was more frequent in females."
+   },
+   "a0071": {
+    "id": "a0071",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "50 g/week, supported by [1] and [3]."
+   },
+   "a0310": {
+    "id": "a0310",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Enter from the side, do not pass completely through the plaque, and deposit along the needle track, supported by [1] and [2]. It does not use the word 'transversely' but describes the same technique."
+   },
+   "a0371": {
+    "id": "a0371",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "35% matches the reference, but calling triglycerides 'the most common laboratory abnormality' is contradicted by [2], where glucose increased is higher at 44%."
+   },
+   "a0345": {
+    "id": "a0345",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Up to 15 days in about 20% of patients matches [1]; the 30-day statement matches [2]."
+   },
+   "a0182": {
+    "id": "a0182",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Correct direction for both CYP3A4 inducers and inhibitors, with the named examples from [1]."
+   },
+   "a0043": {
+    "id": "a0043",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Cholinergic crisis with muscle weakness involving respiration that may lead to death, from [2]."
+   },
+   "a0176": {
+    "id": "a0176",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Profound sedation, respiratory depression, coma and death, matching [1]; the [4] claims are supported."
+   },
+   "a0208": {
+    "id": "a0208",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "740-1110 MBq (20-30 mCi) for breast imaging, from [1]; the imaging sequence matches [2]."
+   },
+   "a0269": {
+    "id": "a0269",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Lists 473 mL, 15 mL and 30 mL sizes with the packaging details, all from [1]."
+   },
+   "a0200": {
+    "id": "a0200",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Dyspnea, angioedema, rash and pruritus are supported by [1], [3] and [4]. Labeling them 'common' is a slight overstatement the passages do not make."
+   },
+   "a0325": {
+    "id": "a0325",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Matches reference; clearance and Cmax similar in black and Caucasian males, supported by [1] and [2]."
+   },
+   "a0378": {
+    "id": "a0378",
+    "correct": false,
+    "faithful": false,
+    "qualitative_error": true,
+    "wrong_citation": true,
+    "note": "After correctly saying age-subgroup data are inadequate, the answer cites [5] for 'no clinically-significant differences based on age', but [5] says the analysis was by sex, so the answer contradicts itself."
+   },
+   "a0307": {
+    "id": "a0307",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Correct contraindication in neonates 28 days or younger, with fatal precipitation cases; all claims supported by [3] and [2]."
+   },
+   "a0132": {
+    "id": "a0132",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Gives 6 years and older (supported by [1] and [2]), which is consistent with the reference's 6-17 range; it does not state the upper bound of 17 but is still accurate."
+   },
+   "a0186": {
+    "id": "a0186",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Matches reference and [1] verbatim."
+   },
+   "a0145": {
+    "id": "a0145",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Correctly states that NSAIDs reduce the diuretic effect and that close observation is needed, per [1]."
+   },
+   "a0276": {
+    "id": "a0276",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Includes the liver enzymes, alkaline phosphatase and bilirubin tests, plus correct extra items (TB evaluation, vaccinations) from [1] and [4]."
+   },
+   "a0357": {
+    "id": "a0357",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "The seven most common reactions are correct, but the bulleted 'Table 9' list cites [1] for abdominal pain and pneumonia; [1] lists these only as serious adverse reactions, not Table 9 entries at 10% or more."
+   },
+   "a0385": {
+    "id": "a0385",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "3.5% (n=33) is correct per [1] and [2], but [3] (laboratory tests) does not support it."
+   },
+   "a0217": {
+    "id": "a0217",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Correctly says approved for CRS in patients 2 years and older; the weight-based dosing matches [6]."
+   },
+   "a0323": {
+    "id": "a0323",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Lists the correct reactions, but its final sentence says [1] gives fever, diarrhea and rash at 10% or more in infantile-onset SMA; [1] gives those figures for later-onset SMA and calls infantile-onset only 'similar'."
+   },
+   "a0383": {
+    "id": "a0383",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "Hyperglycemia is correctly supported by [1], but hypoglycemia is cited to [5]; it actually appears in [3]."
+   },
+   "a0155": {
+    "id": "a0155",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Correctly describes oligohydramnios with pulmonary hypoplasia, skeletal abnormalities and neonatal death, supported by [1]-[3]."
+   },
+   "a0387": {
+    "id": "a0387",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "5.3% matches the reference; the definition and mean changes are accurately drawn from [2] and [6]."
+   },
+   "a0061": {
+    "id": "a0061",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "No dose adjustment needed; clearance figures match [1]."
+   },
+   "a0076": {
+    "id": "a0076",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Reversible acute renal failure after 50 tablets is correct per [2]; the extra claims are supported by [1] and [3]."
+   },
+   "a0140": {
+    "id": "a0140",
+    "correct": false,
+    "faithful": false,
+    "qualitative_error": true,
+    "wrong_citation": true,
+    "note": "Says multiple small injections cause dermal depressions; [1] instead recommends multiple small injections to minimize atrophy, so the answer inverts the reference."
+   },
+   "a0335": {
+    "id": "a0335",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "15 mg once daily for NYHA Class I or II is correct per [1] and [2]."
+   },
+   "a0144": {
+    "id": "a0144",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The full Table 1 includes 90/30 reduced to 45/15, matching the reference; supported by [1] and [3]."
+   },
+   "a0171": {
+    "id": "a0171",
+    "correct": false,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States 1.14 ± 0.13 mcg/mL, but the reference is 1.08 mcg/mL ([1]), and [3] actually gives 1.14 ± 0.14 (0.13 is a 2-hour value in the table in [2])."
+   },
+   "a0359": {
+    "id": "a0359",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Nausea 16% vs 49% and grade 3/4 0.7% vs 3.7% match [1] and [2]."
+   },
+   "a0124": {
+    "id": "a0124",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Matches reference and [1]/[2]."
+   },
+   "a0041": {
+    "id": "a0041",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Correct indication for ages 3 to 16 per [1]; the Xelstrym information is accurately attributed to [2]."
+   },
+   "a0212": {
+    "id": "a0212",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Correctly says do not use it for penicillin G-susceptible organisms, per [1]."
+   },
+   "a0053": {
+    "id": "a0053",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Absorption is optimal with food; dose linearity is also correctly quoted from [1]."
+   },
+   "a0181": {
+    "id": "a0181",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Avoid breastfeeding during treatment and for 1 week after the last dose, supported by [2] and [4]."
+   },
+   "a0162": {
+    "id": "a0162",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "84% AUC and 36% Cmax increases and the caution are correct per [2] and [4]."
+   },
+   "a0173": {
+    "id": "a0173",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Increased GI risk with other anticholinergics, and concomitant use not recommended, per [1]; the additive-interaction claim is supported by [4]."
+   },
+   "a0369": {
+    "id": "a0369",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Efficacy versus placebo was not established in adolescents; the figures match [1]."
+   },
+   "a0052": {
+    "id": "a0052",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "All five indications with the correct organisms, per [1] and [2]."
+   },
+   "a0312": {
+    "id": "a0312",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Core teratogenicity facts match the reference, but the answer pins the 1.4x and 0.04x dose multiples on the abnormalities in 'mice and rabbits'. In passage 2 those are mouse-only doses, 1.4x was the fetotoxicity dose, rabbit multiples were 0.02x and 0.05x, and cranioschisis was reported only in rabbits."
+   },
+   "a0311": {
+    "id": "a0311",
+    "correct": false,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "The answer gives both 18 mg/day and 3 mg/day as the maximum for the same hemodialysis population without the key qualifier (18 mg for Parkinson's disease, 3 mg for RLS), so it contradicts itself. Passage [4] does not state 3 mg/day."
+   },
+   "a0080": {
+    "id": "a0080",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "50 mg daily starting dose in adults matches passage 1."
+   },
+   "a0353": {
+    "id": "a0353",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Overdose symptoms by component are reproduced accurately from passage 2."
+   },
+   "a0131": {
+    "id": "a0131",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Myelosuppression (neutropenia, anemia, thrombocytopenia, onset at 2-8 weeks) is supported by passages 1, 3 and 4."
+   },
+   "a0195": {
+    "id": "a0195",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "The core action (temporarily discontinue) is correct, but passage [3] is cited for the patient counseling and muscle-pain reporting statements and contains neither."
+   },
+   "a0283": {
+    "id": "a0283",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "States no fetal harm in animal studies (passage 1). It omits the lack of human studies and the 'use only if clearly needed' advice, but the question asks only about animal data."
+   },
+   "a0104": {
+    "id": "a0104",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Proteolytic degradation into small peptides and amino acids matches the reference and passage 1."
+   },
+   "a0062": {
+    "id": "a0062",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Allergic signs are listed correctly from passages 1 and 3. The list is needlessly duplicated, but nothing in it is inaccurate."
+   },
+   "a0254": {
+    "id": "a0254",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Immediate discontinuation with intensive symptomatic treatment and monitoring matches passage 1."
+   },
+   "a0297": {
+    "id": "a0297",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Says acetazolamide interferes with the HPLC theophylline assay. It omits that this depends on the extraction solvent and may not affect other assay methods, but the core yes is right."
+   },
+   "a0185": {
+    "id": "a0185",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Discontinuation in rheumatoid arthritis patients with gross or persistent microscopic hematuria matches passage 1."
+   },
+   "a0309": {
+    "id": "a0309",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "48 hours after the first step-up dose is supported by passages 1 and 2."
+   },
+   "a0058": {
+    "id": "a0058",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Overdose symptoms match the reference and passages 1 and 2."
+   },
+   "a0004": {
+    "id": "a0004",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": true,
+    "wrong_citation": false,
+    "note": "Gives the correct 14-hour interval, but presents the 10-12 hour dose-free interval as an isosorbide dinitrate finding ('in one study'). Passage 1 says that figure comes from nitroglycerin studies, so it is the wrong drug and conflicts with the recommendation."
+   },
+   "a0026": {
+    "id": "a0026",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "The PAA:PAGN ratios of 1, 1.25 and 1.6 at 4, 6 and 9 mL show the ratio rising with dose (passage 1), though the answer never states the direction explicitly. The extra sex and hepatic data are accurate but off-topic."
+   },
+   "a0183": {
+    "id": "a0183",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "A fall in blood pressure with reflex tachycardia (passage 3) and the ganglion-blocker interaction (passage 1) are supported."
+   },
+   "a0393": {
+    "id": "a0393",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Mentions angioedema, anaphylaxis and arrhythmias as the reference does, but calls every post-marketing event in passage 5 (e.g. nausea, rash, cough) a 'serious side effect'. The passage says those events were chosen for seriousness, reporting frequency or a likely beta-mediated mechanism."
+   },
+   "a0248": {
+    "id": "a0248",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": true,
+    "note": "0.25 mg IV/IM for ages 2-17 is correct and supported by [3], but [2] is the adult dosing passage and does not support the pediatric dose."
+   },
+   "a0216": {
+    "id": "a0216",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Short-term effectiveness for hyperactive children with conduct disorders matches passage 1. Applying the nonpsychotic behavior disorder dose range is a reasonable reading of passage 2."
+   },
+   "a0020": {
+    "id": "a0020",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "No reported adverse reactions matches passages 1 and 2."
+   },
+   "a0328": {
+    "id": "a0328",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Screening all patients for HBsAg and anti-HBc before treatment is supported by passage 3."
+   },
+   "a0291": {
+    "id": "a0291",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "4.4 g lowest fatal dose matches passage 1. The serum level is omitted, but the question asks only for the dose."
+   },
+   "a0399": {
+    "id": "a0399",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "No significant pharmacokinetic interaction in either direction is supported by passage 2."
+   },
+   "a0192": {
+    "id": "a0192",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "25 mg alogliptin and 2000 mg metformin HCl matches passages 1 and 2."
+   },
+   "a0159": {
+    "id": "a0159",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "'Not recommended' because of additive systemic effects matches passage 1."
+   },
+   "a0063": {
+    "id": "a0063",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Increased mortality in elderly dementia-related psychosis is supported by passages 1-3. The figures 1.6-1.7x, 4.5% and 2.6% are accurate."
+   },
+   "a0158": {
+    "id": "a0158",
+    "correct": true,
+    "faithful": true,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Every 2 weeks in the first month, then monthly, matches passage 2."
+   },
+   "a0143": {
+    "id": "a0143",
+    "correct": true,
+    "faithful": false,
+    "qualitative_error": false,
+    "wrong_citation": false,
+    "note": "Conveys that liver transplant patients need higher dosing (passage 2) but hedges with 'may'. It also claims the labels give no direct liver vs kidney dose comparison, which passage 2 (need for higher dosing in adult liver transplant) and passage 5 (1.5 g liver vs 1 g kidney giving similar AUC) contradict."
+   }
+  }
+ }
+}

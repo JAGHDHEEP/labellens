@@ -1,0 +1,647 @@
+{
+ "what": "14 fresh, hand-written questions answered by the local configuration; every cited passage and every number in each answer compared with the CURRENT label fetched from the openFDA API by set_id. A spot check, not an evaluation: n is small.",
+ "fetched": "2026-11-20",
+ "before_table_caption_fix": {
+  "summary": {
+   "questions": 14,
+   "grounding_ok": 14,
+   "cited_passages": 28,
+   "checked_against_live_label": 21,
+   "still_verbatim_in_live_label": 19,
+   "answer_numbers_missing_from_live_label": 0
+  },
+  "rows": [
+   {
+    "q": "What is the maximum daily dose of acetaminophen for adults?",
+    "status": "answered",
+    "ok": true,
+    "ms": 13524,
+    "answer": "The maximum daily dose of acetaminophen for adults is 4,000 mg per day [1]. This includes all routes of administration and all acetaminophen-containing products, including combination products [1].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Acetaminophen",
+      "section": "Dosage and Administration",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20260924"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "Can I take ibuprofen during the third trimester of pregnancy?",
+    "status": "answered",
+    "ok": true,
+    "ms": 5374,
+    "answer": "According to the sources, ibuprofen should be avoided during the third trimester of pregnancy because it may cause premature closure of the fetal ductus arteriosus [1][2][6].\n\nNot covered by the sources: The sources do not provide information on the specific risks or effects of taking ibuprofen during the third trimester beyond the risk of premature closure of the fetal ductus arteriosus.",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Ibuprofen",
+      "section": "Pregnancy",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261111"
+     },
+     {
+      "n": 2,
+      "drug": "Ibuprofen",
+      "section": "Pregnancy",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261111"
+     },
+     {
+      "n": 6,
+      "drug": "Ibuprofen",
+      "section": "Patient Counseling Information",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261111"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What is the boxed warning for warfarin?",
+    "status": "answered",
+    "ok": true,
+    "ms": 6973,
+    "answer": "The boxed warning for warfarin is:\n\nWARNING: BLEEDING RISK • Warfarin sodium can cause major or fatal bleeding [see Warnings and Precautions (5.1) ] . • Perform regular monitoring of INR in all treated patients [see Dosage and Administration (2.1) ] . • Drugs, dietary changes, and other factors affect INR levels achieved with warfarin sodium therapy [see Drug Interactions (7) ] . • Instruct patients about prevention measures to minimize risk of bleeding and to report signs and symptoms of bleeding [see Patient Counseling Information (17) ] .\n\n[1]\n\nThe boxed warning also states that warfarin sodium can cause major or fatal bleeding. [1]\n\nThe following serious adverse reactions to warfarin sodium are discussed in greater detail in other sections of the labeling: • Hemorrhage [see Boxed Warning , Warnings and Precautions (5.1) , and Overdosage (10) ] [2]\n\nMost common adverse reactions to warfarin sodium are fatal and nonfatal hemorrhage from any tissue or organ. [2]",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Warfarin (Warfarin Sodium)",
+      "section": "Boxed Warning",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261103"
+     },
+     {
+      "n": 2,
+      "drug": "Warfarin (Warfarin Sodium)",
+      "live": "fetch failed: HTTP Error 500: Internal Server Error"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "How should lisinopril be dosed for hypertension in adults?",
+    "status": "answered",
+    "ok": true,
+    "ms": 4127,
+    "answer": "The recommended initial dose of lisinopril for hypertension in adults is 10 mg once a day [1]. Dosage should be adjusted according to blood pressure response [1]. The usual dosage range is 20 mg to 40 mg per day administered in a single daily dose [1]. Doses up to 80 mg have been used but do not appear to give greater effect [1]. The initial dose in adult patients with hypertension taking diuretics is 5 mg once per day [1].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Lisinopril",
+      "section": "Dosage and Administration",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261105"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What are the common side effects of atorvastatin?",
+    "status": "answered",
+    "ok": true,
+    "ms": 5379,
+    "answer": "The most common adverse reactions (incidence ≥5%) are nasopharyngitis, arthralgia, diarrhea, pain in extremity, and urinary tract infection [1]. \n\nCommon adverse reactions that led to treatment discontinuation and occurred at a rate greater than placebo were: myalgia (0.7%), diarrhea (0.5%), nausea (0.4%), alanine aminotransferase increase (0.4%), and hepatic enzyme increase (0.4%) [3].\n\nTable 1 summarizes adverse reactions reported in ≥ 2% and at a rate greater than placebo in patients treated with atorvastatin calcium tablets (n=8,755), from seventeen placebo-controlled trials [3].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Atorvastatin Calcium",
+      "section": "Adverse Reactions",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261106"
+     },
+     {
+      "n": 3,
+      "drug": "Atorvastatin Calcium",
+      "section": "Adverse Reactions",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261106"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "Is sertraline safe for children?",
+    "status": "answered",
+    "ok": true,
+    "ms": 6514,
+    "answer": "The safety and effectiveness of sertraline hydrochloride in pediatric patients other than those with OCD have not been established [1][4]. Safety and effectiveness in pediatric patients in patients with OCD below the age of 6 have not been established [3]. Two placebo-controlled trials were conducted in pediatric patients with MDD, but the data were not sufficient to support an indication for use in pediatric patients [3].\n\nHowever, the safety and efficacy of sertraline hydrochloride have been established in the treatment of OCD in pediatric patients aged 6 to 17 [3]. Monitoring Pediatric Patients Treated with Sertraline Hydrochloride: Monitor all patients being treated with antidepressants for clinical worsening, suicidal thoughts, and unusual changes in behavior, especially during the initial few months of treatment, or at times of dose increases or decreases [3].\n\nDecreased appetite and weight loss have been observed with the use of SSRIs [3]. Monitor weight and growth in pediatric patients treated with an SSRI such as sertraline hydrochloride [3].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Sertraline Hydrochloride",
+      "section": "Use in Specific Populations",
+      "passage_still_in_live_label": false,
+      "live_effective_time": "20261105"
+     },
+     {
+      "n": 3,
+      "drug": "Sertraline",
+      "section": "Pediatric Use",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20260922"
+     },
+     {
+      "n": 4,
+      "drug": "Sertraline",
+      "live": "fetch failed: HTTP Error 500: Internal Server Error"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What should I avoid while taking metronidazole?",
+    "status": "answered",
+    "ok": true,
+    "ms": 5206,
+    "answer": "Avoid consuming alcoholic beverages or products containing propylene glycol while taking metronidazole and for at least three days afterward [2]. This is because abdominal cramps, nausea, vomiting, headaches, and flushing may occur [2]. Do not administer metronidazole to patients who have taken disulfiram within the last two weeks [3]. Metronidazole has been reported to potentiate the anticoagulant effect of warfarin and other oral coumarin anticoagulants, resulting in a prolongation of prothrombin time [3]. Monitor prothrombin time and INR when metronidazole is prescribed for patients on this type of anticoagulant therapy [3].",
+    "cited": [
+     {
+      "n": 2,
+      "drug": "Metronidazole",
+      "section": "Patient Counseling Information",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261116"
+     },
+     {
+      "n": 3,
+      "drug": "Metronidazole",
+      "section": "Drug Interactions",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261116"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "How do I take levothyroxine with food?",
+    "status": "answered",
+    "ok": true,
+    "ms": 5292,
+    "answer": "Administer Levothyroxine Sodium Tablets on an empty stomach, one-half to one hour before breakfast [1]. Do not take Levothyroxine Sodium Tablets within 4 hours of certain foods that may affect absorption, such as soybean-based infant formula [1]. Do not store the suspension of Levothyroxine Sodium Tablets in foods that decrease absorption, such as soybean-based infant formula [1]. Administer Levothyroxine Sodium Tablets as a single daily dose, preferably on an empty stomach, one-half to one hour before breakfast [2]. Do not take Levothyroxine Sodium Tablets within 4 hours of agents such as iron and calcium supplements and antacids, which can decrease the absorption of levothyroxine [4].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Levothyroxine Sodium",
+      "section": "Dosage and Administration",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261109"
+     },
+     {
+      "n": 2,
+      "drug": "Levothyroxine Sodium",
+      "section": "Dosage and Administration",
+      "passage_still_in_live_label": false,
+      "live_effective_time": "20261109"
+     },
+     {
+      "n": 4,
+      "drug": "Levothyroxine Sodium",
+      "section": "Patient Counseling Information",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261109"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What is the starting dose of gabapentin for postherpetic neuralgia?",
+    "status": "answered",
+    "ok": true,
+    "ms": 3467,
+    "answer": "The starting dose of gabapentin for postherpetic neuralgia is a single 300 mg dose on Day 1 [1]. The dose can be titrated up to 600 mg/day on Day 2 [1]. The dose can be further titrated up to 900 mg/day on Day 3 [1].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Gabapentin",
+      "section": "Dosage and Administration",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261109"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "Does amoxicillin interact with oral contraceptives?",
+    "status": "answered",
+    "ok": true,
+    "ms": 2499,
+    "answer": "Amoxicillin may affect the intestinal flora, leading to lower estrogen reabsorption and reduced efficacy of combined oral estrogen/progesterone contraceptives [1]. Amoxicillin may reduce the efficacy of oral contraceptives [2].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Amoxicillin",
+      "section": "Drug Interactions",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261109"
+     },
+     {
+      "n": 2,
+      "drug": "Amoxicillin",
+      "live": "fetch failed: HTTP Error 500: Internal Server Error"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What is the dose of omeprazole for GERD?",
+    "status": "answered",
+    "ok": true,
+    "ms": 6302,
+    "answer": "For symptomatic GERD, the dose of omeprazole is:\n* 5 mg once daily for up to 4 weeks for patients 5 to less than 10 kg [1]\n* 10 mg once daily for up to 4 weeks for patients 10 to less than 20 kg [1]\n* 20 mg once daily for up to 4 weeks for patients 20 kg and greater [1]\n\nFor EE due to Acid-Mediated GERD, the dose of omeprazole is:\n* 5 mg once daily for 4 to 8 weeks for patients 5 to less than 10 kg [2]\n* 10 mg once daily for 4 to 8 weeks for patients 10 to less than 20 kg [2]\n* 20 mg once daily for 4 to 8 weeks for patients 20 kg and greater [2]\n\nNote: The efficacy of omeprazole used for longer than 8 weeks in patients with EE has not been established [5].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Omeprazole",
+      "live": "fetch failed: HTTP Error 500: Internal Server Error"
+     },
+     {
+      "n": 2,
+      "drug": "Omeprazole",
+      "section": "Dosage and Administration (table)",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261027"
+     },
+     {
+      "n": 5,
+      "drug": "Omeprazole",
+      "section": "Dosage and Administration (table)",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261027"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What are the contraindications of sildenafil?",
+    "status": "answered",
+    "ok": true,
+    "ms": 4632,
+    "answer": "Administration of sildenafil tablets to patients using nitric oxide donors, such as organic nitrates or organic nitrites in any form [1][2][3][5]. Sildenafil tablets were shown to potentiate the hypotensive effect of nitrates [3][5]. Known hypersensitivity to sildenafil or any component of tablet [1][2][3]. Administration with guanylate cyclase (GC) stimulators, such as riociguat [2][3][4].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Sildenafil Citrate",
+      "live": "fetch failed: HTTP Error 500: Internal Server Error"
+     },
+     {
+      "n": 2,
+      "drug": "Sildenafil Citrate",
+      "live": "fetch failed: HTTP Error 500: Internal Server Error"
+     },
+     {
+      "n": 3,
+      "drug": "Sildenafil",
+      "live": "fetch failed: HTTP Error 500: Internal Server Error"
+     },
+     {
+      "n": 4,
+      "drug": "Sildenafil",
+      "section": "Contraindications",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261106"
+     },
+     {
+      "n": 5,
+      "drug": "Sildenafil Citrate",
+      "section": "Contraindications",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261103"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What is the price of Ozempic?",
+    "status": "abstained_retrieval",
+    "ok": true,
+    "ms": 1051,
+    "answer": "I can't answer this from the indexed FDA labels: no passage was relevant enough to support an answer. Try naming the drug explicitly, or rephrase the question.",
+    "cited": []
+   },
+   {
+    "q": "Can I double my dose of my pills if I missed one?",
+    "status": "abstained_retrieval",
+    "ok": true,
+    "ms": 710,
+    "answer": "Which drug do you mean? The question refers to a drug without naming it, and labels differ by drug. Ask again with the drug names, for example: \"Can warfarin be taken with amiodarone?\"",
+    "cited": []
+   }
+  ]
+ },
+ "after_table_caption_fix": {
+  "summary": {
+   "questions": 14,
+   "grounding_ok": 14,
+   "cited_passages": 23,
+   "checked_against_live_label": 23,
+   "still_verbatim_in_live_label": 20,
+   "answer_numbers_missing_from_live_label": 0
+  },
+  "rows": [
+   {
+    "q": "What is the maximum daily dose of acetaminophen for adults?",
+    "status": "answered",
+    "ok": true,
+    "ms": 10386,
+    "answer": "The maximum daily dose of acetaminophen for adults is 4,000 mg per day [1]. This includes all routes of administration and all acetaminophen-containing products, including combination products [1].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Acetaminophen",
+      "section": "Dosage and Administration",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20260924"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "Can I take ibuprofen during the third trimester of pregnancy?",
+    "status": "answered",
+    "ok": true,
+    "ms": 5432,
+    "answer": "According to the sources, ibuprofen should be avoided during the third trimester of pregnancy because it may cause premature closure of the fetal ductus arteriosus [1][2][6].\n\nNot covered by the sources: The sources do not provide information on the specific risks or effects of taking ibuprofen during the third trimester beyond the risk of premature closure of the fetal ductus arteriosus.",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Ibuprofen",
+      "section": "Pregnancy",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261111"
+     },
+     {
+      "n": 2,
+      "drug": "Ibuprofen",
+      "section": "Pregnancy",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261111"
+     },
+     {
+      "n": 6,
+      "drug": "Ibuprofen",
+      "section": "Patient Counseling Information",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261111"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What is the boxed warning for warfarin?",
+    "status": "answered",
+    "ok": true,
+    "ms": 4525,
+    "answer": "The boxed warning for warfarin is:\n\n• Warfarin sodium can cause major or fatal bleeding [1].\n• Perform regular monitoring of INR in all treated patients [1].\n• Drugs, dietary changes, and other factors affect INR levels achieved with warfarin sodium therapy [1].\n• Instruct patients about prevention measures to minimize risk of bleeding and to report signs and symptoms of bleeding [1].\n\nThe boxed warning is also mentioned in [2] as part of the discussion on hemorrhage.\n\nNote: The boxed warning is not explicitly stated in [2], but it is mentioned as part of the discussion on hemorrhage.",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Warfarin (Warfarin Sodium)",
+      "section": "Boxed Warning",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261103"
+     },
+     {
+      "n": 2,
+      "drug": "Warfarin (Warfarin Sodium)",
+      "section": "Adverse Reactions",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261103"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "How should lisinopril be dosed for hypertension in adults?",
+    "status": "answered",
+    "ok": true,
+    "ms": 4007,
+    "answer": "The recommended initial dose of lisinopril for hypertension in adults is 10 mg once a day [1]. Dosage should be adjusted according to blood pressure response [1]. The usual dosage range is 20 mg to 40 mg per day administered in a single daily dose [1]. Doses up to 80 mg have been used but do not appear to give greater effect [1]. The initial dose in adult patients with hypertension taking diuretics is 5 mg once per day [1].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Lisinopril",
+      "section": "Dosage and Administration",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261105"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What are the common side effects of atorvastatin?",
+    "status": "answered",
+    "ok": true,
+    "ms": 6559,
+    "answer": "The most common adverse reactions (incidence ≥5%) are nasopharyngitis, arthralgia, diarrhea, pain in extremity, and urinary tract infection [1]. \n\nCommon adverse reactions that led to treatment discontinuation and occurred at a rate greater than placebo were: myalgia (0.7%), diarrhea (0.5%), nausea (0.4%), alanine aminotransferase increase (0.4%), and hepatic enzyme increase (0.4%) [4].\n\nCommon adverse reactions reported in ≥ 2% and at a rate greater than placebo in patients treated with atorvastatin calcium tablets include:\n• myalgia (0.7%)\n• diarrhea (0.5%)\n• nausea (0.4%)\n• alanine aminotransferase increase (0.4%)\n• hepatic enzyme increase (0.4%)\n• nasopharyngitis\n• arthralgia\n• pain in extremity\n• urinary tract infection [4].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Atorvastatin Calcium",
+      "section": "Adverse Reactions",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261106"
+     },
+     {
+      "n": 4,
+      "drug": "Atorvastatin Calcium",
+      "section": "Adverse Reactions",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261106"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "Is sertraline safe for children?",
+    "status": "answered",
+    "ok": true,
+    "ms": 7631,
+    "answer": "The safety and efficacy of sertraline hydrochloride have been established in the treatment of OCD in pediatric patients aged 6 to 17 [3]. Safety and effectiveness in pediatric patients in patients with OCD below the age of 6 have not been established [3]. Safety and effectiveness have not been established in pediatric patients for indications other than OCD [3]. Two placebo-controlled trials were conducted in pediatric patients with MDD, but the data were not sufficient to support an indication for use in pediatric patients [3].\n\nNot covered by the sources: The long-term effects of sertraline hydrochloride on the growth, development, and maturation in pediatric patients are not directly evaluated.",
+    "cited": [
+     {
+      "n": 3,
+      "drug": "Sertraline",
+      "section": "Pediatric Use",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20260922"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What should I avoid while taking metronidazole?",
+    "status": "answered",
+    "ok": true,
+    "ms": 8422,
+    "answer": "Avoid consuming alcoholic beverages or products containing propylene glycol while taking metronidazole and for at least three days afterward [2]. This is because abdominal cramps, nausea, vomiting, headaches, and flushing may occur [2]. Do not administer metronidazole to patients who have taken disulfiram within the last two weeks [3]. Metronidazole has been reported to potentiate the anticoagulant effect of warfarin and other oral coumarin anticoagulants, resulting in a prolongation of prothrombin time [3]. Monitor prothrombin time and INR when metronidazole is prescribed for patients on this type of anticoagulant therapy [3].",
+    "cited": [
+     {
+      "n": 2,
+      "drug": "Metronidazole",
+      "section": "Patient Counseling Information",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261116"
+     },
+     {
+      "n": 3,
+      "drug": "Metronidazole",
+      "section": "Drug Interactions",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261116"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "How do I take levothyroxine with food?",
+    "status": "answered",
+    "ok": true,
+    "ms": 7959,
+    "answer": "Administer Levothyroxine Sodium Tablets on an empty stomach, one-half to one hour before breakfast [1]. Do not take Levothyroxine Sodium Tablets within 4 hours of certain foods that may affect absorption, such as soybean-based infant formula [1]. Do not store the suspension of Levothyroxine Sodium Tablets in foods that decrease absorption, such as soybean-based infant formula [1]. Administer Levothyroxine Sodium Tablets as a single daily dose, preferably on an empty stomach, one-half to one hour before breakfast [2]. Do not take Levothyroxine Sodium Tablets within 4 hours of agents such as iron and calcium supplements and antacids, which can decrease the absorption of levothyroxine [4].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Levothyroxine Sodium",
+      "section": "Dosage and Administration",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261109"
+     },
+     {
+      "n": 2,
+      "drug": "Levothyroxine Sodium",
+      "section": "Dosage and Administration",
+      "passage_still_in_live_label": false,
+      "live_effective_time": "20261109"
+     },
+     {
+      "n": 4,
+      "drug": "Levothyroxine Sodium",
+      "section": "Patient Counseling Information",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261109"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What is the starting dose of gabapentin for postherpetic neuralgia?",
+    "status": "answered",
+    "ok": true,
+    "ms": 5067,
+    "answer": "The starting dose of gabapentin for postherpetic neuralgia is a single 300 mg dose on Day 1 [1]. The dose can be titrated up to 600 mg/day on Day 2 [1]. The dose can be further titrated up to 900 mg/day on Day 3 [1].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Gabapentin",
+      "section": "Dosage and Administration",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261109"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "Does amoxicillin interact with oral contraceptives?",
+    "status": "answered",
+    "ok": true,
+    "ms": 2729,
+    "answer": "Amoxicillin may affect the intestinal flora, leading to lower estrogen reabsorption and reduced efficacy of combined oral estrogen/progesterone contraceptives [1]. Amoxicillin may reduce the efficacy of oral contraceptives [2].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Amoxicillin",
+      "section": "Drug Interactions",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261109"
+     },
+     {
+      "n": 2,
+      "drug": "Amoxicillin",
+      "section": "Drug Interactions",
+      "passage_still_in_live_label": false,
+      "live_effective_time": "20261109"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What is the dose of omeprazole for GERD?",
+    "status": "answered",
+    "ok": true,
+    "ms": 2661,
+    "answer": "For the treatment of symptomatic GERD, the recommended dose of omeprazole is 20 mg once daily for up to 4 weeks [4].",
+    "cited": [
+     {
+      "n": 4,
+      "drug": "Omeprazole",
+      "section": "Dosage and Administration (table)",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261027"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What are the contraindications of sildenafil?",
+    "status": "answered",
+    "ok": true,
+    "ms": 7644,
+    "answer": "Sildenafil tablets are contraindicated in patients with a known hypersensitivity to sildenafil, as contained in sildenafil tablets and REVATIO, or any component of the tablet [1]. Hypersensitivity reactions have been reported, including rash and urticaria [1]. Administration of sildenafil tablets to patients using nitric oxide donors, such as organic nitrates or organic nitrites in any form, is contraindicated [2]. Sildenafil tablets were shown to potentiate the hypotensive effect of nitrates [2]. Known hypersensitivity to sildenafil or any component of tablet is a contraindication [2]. Administration with guanylate cyclase (GC) stimulators, such as riociguat, is contraindicated [2]. Nitrates are contraindicated with sildenafil tablets [3]. Consistent with its known effects on the nitric oxide/cGMP pathway, sildenafil tablets were shown to potentiate the hypotensive effects of nitrates [3]. After patients have taken sildenafil tablets, it is unknown when nitrates, if necessary, can be safely administered [3]. Do not use sildenafil tablets in patients who are using a GC stimulator, such as riociguat [4]. PDE5 inhibitors, including sildenafil tablets, may potentiate the hypotensive effects of GC stimulators [4].",
+    "cited": [
+     {
+      "n": 1,
+      "drug": "Sildenafil",
+      "section": "Contraindications",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261106"
+     },
+     {
+      "n": 2,
+      "drug": "Sildenafil",
+      "section": "Contraindications",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261106"
+     },
+     {
+      "n": 3,
+      "drug": "Sildenafil",
+      "section": "Contraindications",
+      "passage_still_in_live_label": false,
+      "live_effective_time": "20261106"
+     },
+     {
+      "n": 4,
+      "drug": "Sildenafil",
+      "section": "Contraindications",
+      "passage_still_in_live_label": true,
+      "live_effective_time": "20261106"
+     }
+    ],
+    "numbers_not_in_live_label": []
+   },
+   {
+    "q": "What is the price of Ozempic?",
+    "status": "abstained_retrieval",
+    "ok": true,
+    "ms": 937,
+    "answer": "I can't answer this from the indexed FDA labels: no passage was relevant enough to support an answer. Try naming the drug explicitly, or rephrase the question.",
+    "cited": []
+   },
+   {
+    "q": "Can I double my dose of my pills if I missed one?",
+    "status": "abstained_retrieval",
+    "ok": true,
+    "ms": 666,
+    "answer": "Which drug do you mean? The question refers to a drug without naming it, and labels differ by drug. Ask again with the drug names, for example: \"Can warfarin be taken with amiodarone?\"",
+    "cited": []
+   }
+  ]
+ },
+ "manual_review": {
+  "before": "12 of 14 handled correctly; omeprazole GERD dose answered with pediatric weight-band doses not labelled as pediatric; warfarin boxed warning came back empty once (not reproducible in 3 reruns)",
+  "after": "13 of 14 handled correctly; omeprazole now gives the adult dose (20 mg once daily up to 4 weeks) 3/3 runs; atorvastatin answer mislabels discontinuation rates as the >=2% list (8B synthesis error within one passage)"
+ }
+}

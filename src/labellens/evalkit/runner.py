@@ -41,6 +41,9 @@ CONFIGS: dict[str, tuple[str, dict]] = {
     "hybrid RRF + rerank": ("context", dict(use_entity_scope=False)),
     "hybrid RRF + entity scope": ("context", dict(use_rerank=False)),
     "full: hybrid + scope + rerank": ("context", dict()),
+    # Is each retrieval arm still earning its place once the search is scoped?
+    "scope + dense + rerank (no BM25)": ("context", dict(use_bm25=False)),
+    "scope + BM25 + rerank (no dense)": ("context", dict(use_dense=False)),
     "full, raw chunks (no header)": ("raw", dict()),
 }
 FULL = "full: hybrid + scope + rerank"
@@ -138,8 +141,26 @@ def _score_config(retriever: Retriever, cfg: Settings, items: list[dict],
     return out
 
 
+def check_gold_ids(items: list[dict], db_path) -> None:
+    """Fail loudly if a gold passage is not in the index.
+
+    Gold passages are referenced by chunk_id. If re-chunking renamed one, every
+    question pointing at it would silently score as a retrieval miss and the
+    regression gate would record the drop as the new baseline.
+    """
+    ids = [i["chunk_id"] for i in items if i.get("chunk_id")]
+    store = Store(db_path)
+    found = {r[0] for r in store._db.execute(
+        f"SELECT chunk_id FROM chunks WHERE chunk_id IN ({','.join('?' * len(ids))})", ids)} if ids else set()
+    missing = sorted(set(ids) - found)
+    if missing:
+        raise SystemExit(f"{len(missing)} gold chunk ids are not in {db_path} (e.g. {missing[:3]}). "
+                         "The index was re-chunked: remap the golden set before evaluating.")
+
+
 def task_retrieval(args, settings: Settings) -> int:
     items = [i for i in _test(dataset.read_jsonl(Path(args.golden))) if i["type"] == "answerable"]
+    check_gold_ids(items, settings.db_path)
     store = Store(settings.db_path)
     embedder = build_embedder(settings)
     reranker = CrossEncoderReranker(settings.rerank_model)
@@ -242,6 +263,7 @@ def task_gate(args, settings: Settings) -> int:
     gate (via ``should_refuse``) to the test split.
     """
     items = dataset.read_jsonl(Path(args.golden))
+    check_gold_ids(items, settings.db_path)
     retriever = build_retriever(settings)
     rows = []
     for it in items:
@@ -371,6 +393,7 @@ def _rate(rows: list[dict], key: str) -> float:
 
 def task_generation(args, settings: Settings) -> int:
     items = _test(dataset.read_jsonl(Path(args.golden)))
+    check_gold_ids(items, settings.db_path)
     rng = random.Random(21)
     answerable = [i for i in items if i["type"] == "answerable"]
     rng.shuffle(answerable)

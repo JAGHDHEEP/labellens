@@ -107,3 +107,31 @@ Each entry: the decision, the constraint that forced it, what was rejected, and 
 **Why zero.** The two errors don't cost the same. A valid question refused is a user turned away. An unanswerable question that passes this gate still meets the model's explicit `INSUFFICIENT_EVIDENCE` check. So the gate should be conservative, and the model handles the rest.
 
 **Found along the way.** The wrongly refused questions were almost all misspelled drug names. Two linker defects were behind them: generic-word blocking also blocked full names such as *sodium bicarbonate*, and typo correction only compared against one-word names, so *isosoride dinitrate* never matched. Typos are now corrected word by word against the drug-name lexicon before exact matching. Misspelled questions linked to the correct label: 74 of 79.
+
+## 14. Tables are chunked one at a time, and every chunk carries its caption
+
+**Constraint.** A dose without its population is a wrong answer. Labels state pediatric doses in weight-band tables ("5 to less than 10 kg: 5 mg"), and the only words saying who those doses are for are often in the table caption ("Table 2 … in Pediatric Patients").
+
+**What went wrong.** A live check against current labels asked "What is the dose of omeprazole for GERD?". The answer listed the pediatric weight bands as the dose, 3 runs out of 3, although the adult dose was among the passages. Two chunking defects were behind it. The dosage section began `2 DOSAGE AND ADMINISTRATION *`, and the subsection splitter required a letter or digit after the heading, so the "2.2 Recommended Pediatric Dosage" title never reached a chunk header. And all tables of a field were packed into one stream, so a chunk could hold the end of the adult table and the start of the pediatric one, while later chunks lost the caption entirely.
+
+**Decision.** More heading forms are recognised (`2.`, title case, a symbol after the title, no space). Each table is packed on its own, and every chunk of a table carries the table's numbered caption as its subsection, so it is embedded with the chunk and shown to the model in the source header. Only "Table N" captions are trusted. A first row that is a group label ("Ear and Labyrinth Disorders") or a footnote would mislabel every chunk of the table, which is worse than no label. A caption stored as a one-cell first row is kept rather than consumed as the column header.
+
+**Rejected.** A prompt rule ("name the population of every dose") did not fix omeprazole and made two other dosing answers worse. The missing information had to be put back into the evidence, not demanded from the model.
+
+**Consequences, found by an independent review of the fix.** Chunk ids hashed the chunk's position in the whole document, so adding chunks early in a label renamed every later chunk, including 94 gold passages. Ids now hash the section and the exact text, the golden set was re-mapped, and the eval refuses to run if a gold id is missing. Near-duplicate collapse compared text only, so two tables of one label that differ only by caption (the HEC and MEC regimens) collapsed into one; same-label chunks with different captions are no longer duplicates. Retrieval on the golden set moved from 90.6% to 90.1% Recall@5, one question, which the golden set cannot reward because its gold passages are never tables.
+
+## 15. The model may not assert an absence
+
+**Constraint.** Every claim shown must be one the system can check. A sentence that cites nothing and says "the sources do not cover X" cannot be checked: it claims an absence.
+
+**What went wrong.** Re-judging all answers with a much stronger model found that 9 of 15 unfaithful answers had a false closing note, and 8 of those were otherwise correct answers ("The sources do not cover breastfeeding", with the lactation section among the passages). The partial-answer fix had made these notes visible. In a blind A/B, 16 of 27 such notes were false under the old prompt and 10 of 18 under a stricter rule.
+
+**Decision.** Rule 4 now tells the model to check every source before saying anything is missing, and to say nothing when the question is answered. Uncited closing sentences that assert an absence are removed before checking and display, and a partial answer's `INSUFFICIENT_EVIDENCE` line is dropped rather than shown. A cited sentence such as "efficacy beyond 8 weeks has not been established [5]" is label content and stays.
+
+**Cost.** True notes go too (8 of 18 in the A/B). A user is no longer told that part of a question was not covered; they see only cited facts. That trade is deliberate: an unverifiable note that is false more often than true makes the answer worse.
+
+## 16. Two judges, and the stronger one is the headline
+
+**Constraint.** An 8B judge grading an 8B generator can share its blind spots.
+
+**Decision.** The offline judge (`qwen3:8b`) stays, because it is free, local and reproducible, and it compares versions well. Every published answer-quality number is also re-judged by a much stronger model that sees the passages and the reference but not the 8B verdicts. Where the two disagree, the stronger judge's figure is the one quoted: 91.7% correct end to end, against 95.8% from the 8B judge.

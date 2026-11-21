@@ -32,7 +32,7 @@ log = logging.getLogger(__name__)
 # Bump when cleaning or chunking logic changes. It is folded into each stored
 # document fingerprint, so a code change re-indexes every label on the next
 # ingest instead of silently leaving old-style chunks in the index.
-PIPELINE_VERSION = "4"
+PIPELINE_VERSION = "6"
 
 
 @dataclass

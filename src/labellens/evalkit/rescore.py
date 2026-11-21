@@ -48,14 +48,19 @@ def rescore(path: Path, reason: str) -> dict:
                                              for r in answered]), 4)
     oa["mean_citation_coverage"] = round(mean([r["grounding"]["citation_coverage"]
                                                for r in answered]), 4)
-    summary["grounding_rescored"] = {
-        "reason": reason,
-        "before": {k: before[k] for k in ("grounding_checks_pass", "has_unsupported_number")},
-    }
+    keys = ("grounding_checks_pass", "has_unsupported_number", "has_invalid_citation",
+            "mean_citation_coverage")
+    entry = {"reason": reason,
+             "before": {k: before[k] for k in keys if k in before},
+             "after": {k: oa[k] for k in keys}}
+    # Every correction is kept, oldest first: a reader can see each change the
+    # checker went through and what it did to the published figures.
+    history = summary.get("grounding_rescored", [])
+    if isinstance(history, dict):  # files written before the history existed
+        history = [history]
+    summary["grounding_rescored"] = [*history, entry]
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
-    return {"before": summary["grounding_rescored"]["before"],
-            "after": {k: oa[k] for k in ("grounding_checks_pass", "has_unsupported_number",
-                                         "has_invalid_citation", "mean_citation_coverage")}}
+    return {"before": entry["before"], "after": entry["after"]}
 
 
 if __name__ == "__main__":

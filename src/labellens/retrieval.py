@@ -207,6 +207,11 @@ def collapse_near_duplicates(hits: list[Hit], limit: int) -> list[Hit]:
     for h in hits:
         toks = set(_WORD.findall(h.chunk.text.lower()))
         for other, other_toks in kept:
+            # Two tables of one label that differ only by caption (the HEC and
+            # the MEC regimen, adults and children) are different evidence.
+            if (other.chunk.doc_id == h.chunk.doc_id
+                    and other.chunk.subsection != h.chunk.subsection):
+                continue
             union = len(toks | other_toks)
             if union and len(toks & other_toks) / union >= DUPLICATE_JACCARD:
                 other.dup_ids.append(h.chunk.chunk_id)

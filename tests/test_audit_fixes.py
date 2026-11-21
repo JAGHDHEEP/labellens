@@ -131,7 +131,7 @@ def test_cited_answer_followed_by_a_gap_note_is_a_partial_answer_not_a_refusal()
     assert not is_abstention(PARTIAL)
     out = finalize_partial_answer(PARTIAL)
     assert out.startswith("Metformin is contraindicated") and "INSUFFICIENT_EVIDENCE" not in out
-    assert out.endswith("Not covered by the sources: the sources do not cover use with iodinated contrast.")
+    assert out == "Metformin is contraindicated in severe renal impairment (eGFR below 30 mL/min/1.73 m2) [1]."
     assert is_abstention("INSUFFICIENT_EVIDENCE: no price is listed.")
     assert is_abstention("I am sorry.\nINSUFFICIENT_EVIDENCE: no price is listed.")
 
@@ -142,7 +142,7 @@ def test_service_keeps_the_partial_answer_and_checks_it(retriever, settings):
     svc = RagService(retriever, FakeLLM(PARTIAL.replace("[1]", f"[{n}]")), settings)
     ans = svc.ask("What are the contraindications of metformin?")
     assert ans.status == "answered" and ans.grounding["ok"]
-    assert "Not covered by the sources" in ans.text and "INSUFFICIENT" not in ans.text
+    assert ans.text.startswith("Metformin is contraindicated") and "INSUFFICIENT" not in ans.text
 
 
 def test_stream_never_previews_the_sentinel_line(retriever, settings):
@@ -155,7 +155,7 @@ def test_stream_never_previews_the_sentinel_line(retriever, settings):
     events = list(svc.ask_stream("What are the contraindications of metformin?"))
     shown = "".join(p for e, p in events if e == "token")
     assert "INSUFFICIENT" not in shown and events[-1][1].status == "answered"
-    assert events[-1][1].text == shown
+    assert events[-1][1].text == shown.strip()  # the UIs re-render the final text
 
 
 def test_number_glued_to_a_word_in_the_label_still_counts_as_evidence(retriever):
@@ -164,3 +164,32 @@ def test_number_glued_to_a_word_in_the_label_still_counts_as_evidence(retriever)
     assert _digits("not recommended in patients younger than18 years") == \
         "not recommended in patients younger than 18 years"
     assert _digits("inhibitor of CYP2C9 and MATE2-K") == "inhibitor of CYP2C9 and MATE2-K"
+
+
+
+def test_a_number_used_as_a_label_is_checked_bare():
+    from labellens.generation import verify_grounding
+    from labellens.models import Chunk, Hit
+
+    c = Chunk(chunk_id="x", doc_id="d", section_key="s", section_title="S", subsection="",
+              ordinal=0, kind="table", text="Week 0: 100 mg | Week 2: 50 mg", header="",
+              text_hash="x", n_words=7)
+    hits = [Hit(rowid=0, chunk=c, drug="Golimumab")]
+    assert verify_grounding("Week 2 dose: 50 mg [1].", hits).ok
+    assert verify_grounding("Week 3 dose: 50 mg [1].", hits).unsupported_numbers == ["3"]
+    assert verify_grounding("Give 2 doses of 50 mg [1].", hits).unsupported_numbers == ["2 doses"]
+
+
+
+def test_uncited_closing_gap_notes_are_dropped_but_cited_limits_stay():
+    from labellens.generation import drop_gap_notes
+
+    ans = "Dose is 20 mg once daily [1].\n\nNote: The sources do not specify the duration."
+    assert drop_gap_notes(ans) == "Dose is 20 mg once daily [1]."
+    ans = "Dose is 20 mg [1]. The label does not mention breastfeeding. No information is given on cost."
+    assert drop_gap_notes(ans) == "Dose is 20 mg [1]."
+    cited = "Dose is 20 mg [1]. Efficacy beyond 8 weeks has not been established [5]."
+    assert drop_gap_notes(cited) == cited
+    cited_gap = "Dose is 20 mg [1]. The sources do not specify a pediatric dose [2]."
+    assert drop_gap_notes(cited_gap) == cited_gap  # cited: checked like any other sentence
+    assert drop_gap_notes("- 20 mg once daily [1]\n- 40 mg for ulcers [2]") == "- 20 mg once daily [1]\n- 40 mg for ulcers [2]"
